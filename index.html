@@ -1,0 +1,3098 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Solace | Dedicated Space</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Lucide Vector Icons -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<!-- Google Fonts: Cormorant Garamond, Poppins & DM Mono -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+--bg-primary: #FFF8F6;
+--card-bg: #FFFFFF;
+--text-primary: #3A1B20;
+--accent-color: #B82C38;
+--accent-color-2: #E11D48;
+--opening-bg: #1c1917;
+--opening-text: #fff8f6;
+--header-bg: #ffffff;
+--header-text: #1c1917;
+--border-color: rgba(184, 44, 56, 0.2);
+--accent-color-glow: rgba(225, 29, 72, 0.28);
+
+/* SEPARATE MOON TAB CUSTOM THEME VARIABLES */
+--moon-tab-bg: #07060d;
+--moon-tab-card-bg: #120e24;
+--moon-tab-text: #fef3c7;
+--moon-tab-accent-1: #fbbf24;
+--moon-tab-accent-2: #f59e0b;
+--moon-tab-glow: rgba(251, 191, 36, 0.28);
+}
+body {
+background-color: var(--bg-primary);
+color: var(--text-primary);
+font-family: 'Poppins', sans-serif;
+-webkit-font-smoothing: antialiased;
+transition: background-color 0.4s ease, color 0.4s ease;
+}
+.grid-pattern {
+background-size: 32px 32px;
+background-image:
+linear-gradient(to right, rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+linear-gradient(to bottom, rgba(0, 0, 0, 0.025) 1px, transparent 1px);
+}
+.serif-title {
+font-family: 'Cormorant Garamond', serif;
+color: inherit;
+}
+.mono-font {
+font-family: 'DM Mono', monospace;
+}
+::-webkit-scrollbar {
+width: 6px;
+height: 6px;
+}
+::-webkit-scrollbar-track {
+background: transparent;
+}
+::-webkit-scrollbar-thumb {
+background: rgba(150, 150, 150, 0.3);
+border-radius: 99px;
+}
+.envelope-card {
+background-color: var(--card-bg, #ffffff);
+border: 2px dashed var(--accent-color, #B82C38);
+border-radius: 28px;
+box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.08);
+position: relative;
+overflow: hidden;
+transition: all 0.3s ease;
+}
+.envelope-airmail-border {
+background: repeating-linear-gradient(
+135deg,
+var(--accent-color, #B82C38),
+var(--accent-color, #B82C38) 12px,
+#ffffff 12px,
+#ffffff 20px,
+var(--accent-color-2, #E11D48) 20px,
+var(--accent-color-2, #E11D48) 32px,
+#ffffff 32px,
+#ffffff 40px
+);
+height: 8px;
+width: 100%;
+}
+.letter-stationery-paper {
+background-color: #FFFFFF !important;
+color: #1f2937 !important;
+box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.03), 0 4px 20px rgba(0, 0, 0, 0.06);
+border: 1px solid rgba(0, 0, 0, 0.08);
+position: relative;
+}
+.perspective-1000 {
+perspective: 1000px;
+}
+.mixtape-card-inner {
+position: relative;
+width: 100%;
+height: 100%;
+transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+transform-style: preserve-3d;
+}
+.mixtape-card.flipped .mixtape-card-inner {
+transform: rotateY(180deg);
+}
+.mixtape-front, .mixtape-back {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+backface-visibility: hidden;
+-webkit-backface-visibility: hidden;
+}
+.mixtape-back {
+transform: rotateY(180deg);
+}
+.cassette-label-sticker {
+background: #fffdf9;
+border-top: 4px solid var(--accent-color, #B82C38);
+border-radius: 14px;
+box-shadow: inset 0 0 10px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+border-left: 1px dashed rgba(0,0,0,0.1);
+border-right: 1px dashed rgba(0,0,0,0.1);
+}
+.cassette-reel-hole {
+width: 38px;
+height: 38px;
+border-radius: 50%;
+background: #111;
+border: 3px solid #666;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+}
+.book-card-container {
+background: linear-gradient(135deg, rgba(20,20,20,0.95) 0%, rgba(35,35,35,0.98) 100%);
+border-left: 12px solid var(--accent-color, #B82C38);
+border-right: 4px solid var(--accent-color-2, #E11D48);
+border-radius: 8px 24px 24px 8px;
+box-shadow: -8px 0 20px rgba(0,0,0,0.25), 0 12px 30px rgba(0,0,0,0.15);
+position: relative;
+color: #fcfcfc;
+border-top: 1px solid rgba(255, 255, 255, 0.15);
+border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.book-card-container:hover {
+transform: translateY(-4px);
+box-shadow: -10px 0 24px rgba(0,0,0,0.3), 0 16px 36px rgba(0,0,0,0.2);
+}
+.book-bookmark-ribbon {
+position: absolute;
+top: 0;
+right: 24px;
+width: 16px;
+height: 44px;
+background: var(--accent-color-2, #E11D48);
+clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+.transparent-glass-jar {
+background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(15, 23, 42, 0.8) 40%, var(--moon-tab-glow, rgba(251, 191, 36, 0.15)) 100%);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+border: 2px solid var(--moon-tab-accent-1, #fbbf24);
+border-radius: 40px 40px 60px 60px;
+box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), inset 0 0 35px var(--moon-tab-accent-2, #f59e0b);
+position: relative;
+}
+.jar-cork-lid {
+background: linear-gradient(to right, #451a03, #78350f, #92400e, #451a03);
+border-radius: 12px 12px 4px 4px;
+border: 1px solid var(--moon-tab-accent-1, #fbbf24);
+box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+}
+.jar-glass-shine {
+position: absolute;
+top: 4%;
+left: 5%;
+width: 20%;
+height: 88%;
+background: linear-gradient(to right, rgba(255,255,255,0.35), rgba(255,255,255,0.01));
+border-radius: 30px 10px 10px 30px;
+pointer-events: none;
+}
+.jar-dark-glow-backdrop {
+background-color: var(--moon-tab-card-bg, #120e24);
+box-shadow: 0 0 70px var(--moon-tab-glow, rgba(251, 191, 36, 0.2)), inset 0 0 50px rgba(0, 0, 0, 0.95);
+border: 2px solid var(--moon-tab-accent-1, #fbbf24);
+}
+.raw-moon-pile-btn {
+background: transparent !important;
+border: none !important;
+outline: none !important;
+box-shadow: none !important;
+padding: 0 !important;
+margin: 0 !important;
+line-height: 1;
+filter: drop-shadow(0 0 12px var(--moon-tab-glow, rgba(251, 191, 36, 0.9)));
+transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+cursor: pointer;
+user-select: none;
+-webkit-tap-highlight-color: transparent !important;
+}
+.raw-moon-pile-btn:hover {
+filter: drop-shadow(0 0 28px var(--moon-tab-accent-1, rgba(251, 191, 36, 1))) drop-shadow(0 0 14px rgba(255, 255, 255, 1));
+transform: scale(1.4) translateY(-6px);
+z-index: 40;
+}
+@keyframes floatHeart {
+0%, 100% { transform: translateY(0px) rotate(-6deg) scale(1); }
+50% { transform: translateY(-14px) rotate(8deg) scale(1.15); }
+}
+@keyframes floatHeartReverse {
+0%, 100% { transform: translateY(0px) rotate(6deg) scale(1); }
+50% { transform: translateY(-12px) rotate(-8deg) scale(1.12); }
+}
+@keyframes spinSlow {
+from { transform: rotate(0deg); }
+to { transform: rotate(360deg); }
+}
+@keyframes pulseGlow {
+0%, 100% { opacity: 0.35; transform: scale(1); }
+50% { opacity: 0.85; transform: scale(1.18); }
+}
+@keyframes tabParticleFloat {
+0% { opacity: 0; transform: translate(-50%, 60px) scale(0.3) rotate(-30deg); }
+12% { opacity: 0.5; transform: translate(-50%, -60px) scale(1.1) rotate(15deg); }
+66% { opacity: 0.5; transform: translate(var(--tx, -50%), -840px) scale(1) rotate(var(--rot, 30deg)); }
+88% { opacity: 0.45; transform: translate(var(--tx, -50%), -860px) scale(0.95) rotate(var(--rot, 40deg)); }
+100% { opacity: 0; transform: translate(var(--tx, -50%), -880px) scale(0.7) rotate(var(--rot, 45deg)); }
+}
+@keyframes musicNoteFloat {
+0% { opacity: 0; transform: translate(0, 0) scale(0.6) rotate(0deg); }
+30% { opacity: 0.9; }
+100% { opacity: 0; transform: translate(25px, -60px) scale(1.2) rotate(20deg); }
+}
+.floating-music-note {
+position: absolute;
+animation: musicNoteFloat 2.8s ease-out infinite;
+pointer-events: none;
+}
+@keyframes cardPopEntrance {
+0% { opacity: 0; transform: translateY(16px) scale(0.98); }
+100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-floating-heart { animation: floatHeart 3.4s ease-in-out infinite; display: inline-block; }
+.animate-floating-heart-rev { animation: floatHeartReverse 4s ease-in-out infinite; display: inline-block; }
+.animate-spin-slow { animation: spinSlow 14s linear infinite; }
+.animate-pulse-glow { animation: pulseGlow 2.8s ease-in-out infinite; }
+
+.tab-heart-particle {
+position: fixed;
+bottom: -60px;
+pointer-events: none;
+z-index: 80;
+opacity: 0.5 !important;
+animation: tabParticleFloat 8s cubic-bezier(0.18, 0.85, 0.25, 1) forwards;
+}
+
+.header-styled-bg {
+background: var(--header-bg, #ffffff);
+color: var(--header-text, #1c1917);
+border-bottom: 2px solid var(--accent-color-2, #E11D48);
+box-shadow: 0 10px 30px -8px rgba(0,0,0,0.05);
+transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+.nav-tab-btn {
+font-family: 'Poppins', sans-serif;
+transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-tab-btn.tab-active-intro,
+.nav-tab-btn.tab-active-songs,
+.nav-tab-btn.tab-active-spotify,
+.nav-tab-btn.tab-active-stories {
+background: linear-gradient(135deg, var(--accent-color, #B82C38), var(--accent-color-2, #E11D48)) !important;
+color: #ffffff !important;
+box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+.nav-tab-btn.tab-active-moons {
+background: linear-gradient(135deg, var(--moon-tab-accent-1, #fbbf24), var(--moon-tab-accent-2, #f59e0b)) !important;
+color: #120e24 !important;
+box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+}
+.song-cat-pill {
+transition: all 0.2s ease;
+border: 1px solid var(--border-color);
+}
+.song-cat-pill.active {
+background: linear-gradient(135deg, var(--accent-color, #B82C38), var(--accent-color-2, #E11D48));
+color: #ffffff;
+border-color: var(--accent-color-2, #E11D48);
+box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+.assistive-touch-float {
+position: fixed;
+right: 20px;
+bottom: 30px;
+z-index: 90;
+width: 50px;
+height: 50px;
+border-radius: 50%;
+background: rgba(255, 255, 255, 0.55);
+backdrop-filter: blur(14px);
+-webkit-backdrop-filter: blur(14px);
+border: 2px solid var(--accent-color-2, #E11D48);
+box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: grab;
+user-select: none;
+touch-action: none;
+transition: transform 0.2s ease, background 0.2s ease;
+}
+.assistive-touch-float:active {
+cursor: grabbing;
+transform: scale(0.95);
+}
+.assistive-touch-float:hover {
+background: rgba(255, 255, 255, 0.85);
+}
+@keyframes auraOrbFloat {
+0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+50% { transform: translate(25px, -35px) scale(1.25); opacity: 0.6; }
+}
+@keyframes auraOrbFloatRev {
+0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.25; }
+50% { transform: translate(-30px, 30px) scale(1.2); opacity: 0.55; }
+}
+.animate-aura-1 { animation: auraOrbFloat 8s ease-in-out infinite; }
+.animate-aura-2 { animation: auraOrbFloatRev 10s ease-in-out infinite; }
+.tab-content { display: none; opacity: 0; position: relative; }
+.tab-content.active {
+display: block;
+animation: cardPopEntrance 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.line-clamp-4 {
+display: -webkit-box;
+-webkit-line-clamp: 4;
+-webkit-box-orient: vertical;
+overflow: hidden;
+}
+.palette-btn {
+width: 24px;
+height: 24px;
+border-radius: 50%;
+border: 2px solid rgba(255,255,255,0.8);
+box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+transition: transform 0.2s;
+}
+.palette-btn:hover {
+transform: scale(1.2);
+}
+.passcode-heart {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: drop-shadow(0 0 4px rgba(0,0,0,0.4));
+}
+.passcode-heart svg {
+  width: 100%;
+  height: 100%;
+  stroke: var(--accent-color, #B82C38);
+  stroke-width: 2.2;
+  fill: transparent;
+  transition: all 0.25s ease;
+}
+.passcode-heart.filled svg {
+  fill: var(--accent-color-2, #E11D48);
+  stroke: var(--accent-color, #B82C38);
+  filter: drop-shadow(0 0 10px var(--accent-color-2, #E11D48));
+  transform: scale(1.2);
+}
+
+@keyframes heartShatterBreak {
+  0% { transform: scale(1) rotate(0deg); }
+  15% { transform: scale(1.3) rotate(-16deg) translateX(-5px); filter: drop-shadow(0 0 12px #ef4444); }
+  30% { transform: scale(0.9) rotate(16deg) translateX(5px); clip-path: polygon(0 0, 48% 100%, 100% 0); }
+  45% { transform: scale(1.15) rotate(-10deg) translateX(-3px); clip-path: polygon(0 0, 52% 100%, 100% 0); }
+  60% { transform: scale(0.85) rotate(10deg) translateX(3px); }
+  75% { transform: scale(1.05) rotate(-5deg); }
+  100% { transform: scale(1) rotate(0deg); clip-path: none; }
+}
+
+.passcode-heart.heart-broken svg {
+  fill: #ef4444 !important;
+  stroke: #dc2626 !important;
+  animation: heartShatterBreak 0.6s ease-in-out forwards;
+}
+
+.passcode-pad-btn {
+width: 52px;
+height: 52px;
+border-radius: 50%;
+background: rgba(255, 255, 255, 0.08);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 18px;
+font-weight: 600;
+transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+user-select: none;
+cursor: pointer;
+border: 1.5px solid var(--accent-color-2, #E11D48);
+color: #ffffff;
+box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+.passcode-pad-btn:hover {
+background: var(--accent-color-2, #E11D48);
+color: #ffffff;
+box-shadow: 0 0 20px var(--accent-color-2, #E11D48);
+transform: scale(1.08);
+}
+.passcode-pad-btn:active {
+background: var(--accent-color-2, #E11D48);
+transform: scale(0.92);
+box-shadow: 0 0 25px var(--accent-color-2, #E11D48);
+}
+
+/* SPOTIFY THEME & SLEEVE STYLING */
+.album-sleeve-box {
+background-color: var(--card-bg, #ffffff);
+color: var(--text-primary, #3A1B20);
+border: 2px solid var(--accent-color, #B82C38);
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+transition: all 0.3s ease;
+}
+
+@keyframes dynamicThemeGlowPulse {
+0% { box-shadow: 0 0 35px var(--accent-color), 0 0 70px var(--accent-color-2), inset 0 0 25px var(--accent-color); border-color: var(--accent-color); }
+50% { box-shadow: 0 0 45px var(--accent-color-2), 0 0 85px var(--accent-color), inset 0 0 30px var(--accent-color-2); border-color: var(--accent-color-2); }
+100% { box-shadow: 0 0 35px var(--accent-color), 0 0 70px var(--accent-color-2), inset 0 0 25px var(--accent-color); border-color: var(--accent-color); }
+}
+.vinyl-glowing-active {
+animation: dynamicThemeGlowPulse 4s ease-in-out infinite;
+border-width: 2px !important;
+}
+
+.coquette-ribbon-border {
+  background: transparent;
+  border: 1.5px solid var(--accent-color-2, #C084FC);
+  border-radius: 16px;
+  position: relative;
+  transition: all 0.25s ease;
+}
+.coquette-ribbon-border:hover {
+  background: rgba(225, 29, 72, 0.08);
+  border-color: var(--accent-color, #A855F7);
+  box-shadow: 0 4px 15px rgba(225, 29, 72, 0.15);
+}
+
+.finder-modal-window {
+  background: #FFFFFF;
+  border: 1.5px solid var(--accent-color-2, #E9D5FF);
+  border-radius: 24px;
+  box-shadow: 0 25px 60px -15px rgba(147, 51, 234, 0.25);
+  overflow: hidden;
+}
+
+.finder-sidebar {
+  background: rgba(245, 243, 255, 0.85);
+  border-right: 1px solid #E9D5FF;
+}
+
+.finder-right-panel {
+  background-color: #FFFFFF;
+  background-image: radial-gradient(#f3e8ff 1.2px, transparent 1.2px);
+  background-size: 18px 18px;
+}
+
+.finder-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 14px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #581C87;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.finder-sidebar-item:hover {
+  background: rgba(168, 85, 247, 0.12);
+}
+
+.finder-sidebar-item.active {
+  background: #9333EA;
+  color: #FFFFFF;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(147, 51, 234, 0.25);
+}
+
+@keyframes moonBeamPulse {
+0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 15px var(--moon-tab-glow, rgba(251, 191, 36, 0.8))); }
+50% { transform: scale(1.12) rotate(5deg); filter: drop-shadow(0 0 35px var(--moon-tab-accent-1, rgba(251, 191, 36, 1))) drop-shadow(0 0 15px rgba(255, 255, 255, 0.9)); }
+}
+@keyframes moonBeamShimmer {
+0%, 100% { opacity: 0.7; transform: translateY(0); }
+50% { opacity: 1; transform: translateY(-3px); }
+}
+.moon-loading-icon {
+animation: moonBeamPulse 2s ease-in-out infinite;
+display: inline-block;
+}
+.moon-loading-text {
+animation: moonBeamShimmer 1.8s ease-in-out infinite;
+}
+</style>
+</head>
+<body class="min-h-screen flex flex-col justify-between grid-pattern antialiased selection:bg-purple-100 relative overflow-x-hidden">
+
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden opacity-30">
+<div class="absolute top-12 left-[6%] animate-floating-heart" style="color: var(--accent-color-2);">
+<i data-lucide="heart" class="w-6 h-6 fill-current opacity-30"></i>
+</div>
+<div class="absolute top-1/3 right-[5%] animate-floating-heart-rev" style="color: var(--accent-color);">
+<i data-lucide="sparkles" class="w-7 h-7"></i>
+</div>
+<div class="absolute bottom-1/4 left-[4%] animate-floating-heart" style="color: var(--accent-color-2);">
+<i data-lucide="star" class="w-6 h-6 fill-current opacity-30"></i>
+</div>
+<div class="absolute bottom-12 right-[10%] animate-floating-heart-rev" style="color: var(--accent-color);">
+<i data-lucide="moon" class="w-6 h-6"></i>
+</div>
+</div>
+
+<div id="heart-opening-screen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center p-4 md:p-8 transition-all duration-500 overflow-y-auto w-full h-full" style="background-color: var(--opening-bg, #1c1917); color: var(--opening-text, #fff8f6);">
+<div class="absolute -top-32 -left-32 w-[450px] h-[450px] rounded-full blur-3xl animate-aura-1 pointer-events-none" style="background-color: var(--accent-color-2, #E11D48); opacity: 0.25;"></div>
+<div class="absolute -bottom-32 -right-32 w-[450px] h-[450px] rounded-full blur-3xl animate-aura-2 pointer-events-none" style="background-color: var(--accent-color, #B82C38); opacity: 0.25;"></div>
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-purple-500/10 blur-3xl animate-pulse-glow pointer-events-none"></div>
+
+<!-- RESTORED SMALL OPENING PAGE CLIPARTS -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
+<div class="absolute top-[10%] left-[12%] animate-floating-heart text-rose-300">
+<i data-lucide="heart" class="w-4 h-4 fill-rose-300/30"></i>
+</div>
+<div class="absolute top-[18%] right-[14%] animate-floating-heart-rev text-amber-200">
+<i data-lucide="sparkles" class="w-4 h-4"></i>
+</div>
+<div class="absolute top-[32%] left-[8%] animate-floating-heart text-sky-300">
+<i data-lucide="music" class="w-4 h-4"></i>
+</div>
+<div class="absolute top-[40%] right-[10%] animate-floating-heart-rev text-purple-300">
+<i data-lucide="feather" class="w-4 h-4"></i>
+</div>
+<div class="absolute top-[68%] left-[14%] animate-floating-heart text-amber-300">
+<i data-lucide="star" class="w-3.5 h-3.5"></i>
+</div>
+<div class="absolute bottom-[16%] left-[20%] animate-floating-heart-rev text-rose-200">
+<i data-lucide="mail" class="w-3.5 h-3.5"></i>
+</div>
+<div class="absolute bottom-[20%] right-[22%] animate-floating-heart text-amber-300">
+<i data-lucide="moon" class="w-4 h-4"></i>
+</div>
+<div class="absolute top-[22%] left-[30%] animate-floating-heart-rev text-pink-300">
+<i data-lucide="disc" class="w-3.5 h-3.5"></i>
+</div>
+</div>
+
+<div class="max-w-md w-full text-center space-y-5 relative z-10 my-auto py-8">
+<div class="relative inline-block group">
+<div class="absolute -inset-6 rounded-full blur-2xl animate-pulse-glow" style="background-color: var(--accent-color-2, #E11D48); opacity: 0.25;"></div>
+<div class="w-24 h-24 md:w-32 md:h-32 mx-auto rounded-full flex items-center justify-center shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-3 border-rose-200/50 relative" style="background: linear-gradient(135deg, var(--accent-color), var(--accent-color-2));">
+<i data-lucide="heart" class="w-14 h-14 md:w-18 md:h-18 text-white fill-white/40 animate-pulse"></i>
+<i data-lucide="sparkles" class="w-4 h-4 md:w-5 md:h-5 text-amber-200 absolute top-2 right-2 animate-bounce"></i>
+</div>
+<div id="opening-badge-pill" class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3.5 py-0.5 rounded-full mono-font text-[9px] md:text-[10px] font-semibold uppercase tracking-widest shadow-lg border" style="background-color: var(--accent-color-2, #E11D48); color: #ffffff; border-color: rgba(255,255,255,0.4);">
+PROT. SPACE
+</div>
+</div>
+<div class="space-y-1.5">
+<span class="text-[10px] md:text-xs mono-font uppercase tracking-[0.3em] opacity-80 font-medium block" style="color: var(--accent-color-2);">A DEDICATED SANCTUARY</span>
+<h1 id="opening-display-title" class="serif-title text-3xl md:text-5xl font-light italic tracking-tight drop-shadow-md">For My Solace</h1>
+<p id="opening-display-subtext" class="text-xs md:text-sm opacity-80 max-w-xs md:max-w-sm mx-auto font-light leading-relaxed">
+Collection of letters, songs, and stories compiled with you in mind.
+</p>
+</div>
+<div class="bg-stone-900/95 backdrop-blur-xl border rounded-3xl p-5 md:p-6 shadow-2xl space-y-3 max-w-[260px] md:max-w-[290px] mx-auto text-stone-100" style="border-color: var(--accent-color-2, #E11D48);">
+<div class="space-y-0.5">
+<h3 class="serif-title text-xs md:text-sm font-medium tracking-wide">Enter passcode</h3>
+</div>
+<div class="flex items-center justify-center gap-3 py-1.5">
+<div id="dot-0" class="passcode-heart">
+  <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+</div>
+<div id="dot-1" class="passcode-heart">
+  <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+</div>
+<div id="dot-2" class="passcode-heart">
+  <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+</div>
+<div id="dot-3" class="passcode-heart">
+  <svg viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+</div>
+</div>
+<div id="iphone-passcode-error" class="min-h-[28px] flex flex-col items-center justify-center text-[10px] transition-all opacity-0 leading-tight">
+  <span id="passcode-error-msg" class="text-rose-400 font-semibold"></span>
+</div>
+<div class="grid grid-cols-3 gap-1.5 max-w-[180px] mx-auto">
+<div onclick="pressPasscodeNum('1')" class="passcode-pad-btn">1</div>
+<div onclick="pressPasscodeNum('2')" class="passcode-pad-btn">2</div>
+<div onclick="pressPasscodeNum('3')" class="passcode-pad-btn">3</div>
+<div onclick="pressPasscodeNum('4')" class="passcode-pad-btn">4</div>
+<div onclick="pressPasscodeNum('5')" class="passcode-pad-btn">5</div>
+<div onclick="pressPasscodeNum('6')" class="passcode-pad-btn">6</div>
+<div onclick="pressPasscodeNum('7')" class="passcode-pad-btn">7</div>
+<div onclick="pressPasscodeNum('8')" class="passcode-pad-btn">8</div>
+<div onclick="pressPasscodeNum('9')" class="passcode-pad-btn">9</div>
+<div></div>
+<div onclick="pressPasscodeNum('0')" class="passcode-pad-btn">0</div>
+<div onclick="deletePasscodeNum()" class="passcode-pad-btn flex items-center justify-center text-sm">
+<i data-lucide="delete" class="w-4 h-4"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="assistive-dock" class="assistive-touch-float" onclick="toggleAssistiveTouchMenu(event)" title="AssistiveTouch Menu">
+<i id="assistive-dock-icon" data-lucide="heart" class="w-5 h-5" style="color: var(--accent-color-2);"></i>
+</div>
+
+<div id="assistive-menu-popup" class="fixed z-[110] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-3 border border-stone-200/85 space-y-2 w-56 opacity-0 scale-95 pointer-events-none transition-all duration-200 transform origin-bottom-right">
+<div class="text-[10px] uppercase tracking-widest mono-font font-bold text-stone-400 px-2 pb-1 border-b">Quick Navigation</div>
+<button onclick="switchTab('intro'); closeAssistiveMenu();" class="w-full text-left px-3 py-2 rounded-xl hover:bg-rose-50 text-xs font-medium text-stone-700 flex items-center gap-2.5 transition-colors">
+<span>💌</span>
+<span>Letters & Thoughts</span>
+</button>
+<button onclick="switchTab('songs'); closeAssistiveMenu();" class="w-full text-left px-3 py-2 rounded-xl hover:bg-rose-50 text-xs font-medium text-stone-700 flex items-center gap-2.5 transition-colors">
+<span>💖</span>
+<span>Songs for You</span>
+</button>
+<button onclick="switchTab('spotify'); closeAssistiveMenu();" class="w-full text-left px-3 py-2 rounded-xl hover:bg-stone-100 text-xs font-medium text-stone-700 flex items-center gap-2.5 transition-colors">
+<span>🎧</span>
+<span>Spotify</span>
+</button>
+<button onclick="switchTab('stories'); closeAssistiveMenu();" class="w-full text-left px-3 py-2 rounded-xl hover:bg-stone-100 text-xs font-medium text-stone-700 flex items-center gap-2.5 transition-colors">
+<span>🪶</span>
+<span>AU Stories</span>
+</button>
+<button onclick="switchTab('moons'); closeAssistiveMenu();" class="w-full text-left px-3 py-2 rounded-xl hover:bg-amber-50 text-xs font-medium text-stone-700 flex items-center gap-2.5 transition-colors">
+<span>🌙</span>
+<span>Pick Moon When</span>
+</button>
+<button onclick="handleCustomizeClick(); closeAssistiveMenu();" class="w-full text-left px-3 py-2 rounded-xl bg-purple-600 text-white text-xs font-semibold flex items-center gap-2.5 mt-1 hover:brightness-110 transition-all shadow-md">
+<i data-lucide="sparkles" class="w-3.5 h-3.5 text-purple-200"></i>
+<span>Customize Space</span>
+</button>
+</div>
+
+<div id="persistent-audio-wrapper" class="fixed bottom-3 left-3 z-[120] bg-stone-900/95 backdrop-blur-xl rounded-2xl p-2.5 shadow-2xl border border-white/20 hidden flex-col sm:flex-row items-center gap-3 text-white max-w-sm transition-all duration-300">
+<div id="persistent-iframe-host" class="w-full sm:w-36 h-24 sm:h-20 rounded-xl overflow-hidden bg-black shrink-0 relative shadow-md"></div>
+<div class="overflow-hidden flex-1 space-y-1 text-left w-full sm:w-auto">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full animate-pulse" style="background-color: var(--accent-color-2);"></span>
+<span class="text-[9px] mono-font uppercase tracking-widest font-bold block" style="color: var(--accent-color-2);">Now Playing Tape</span>
+</div>
+<p id="persistent-song-title" class="text-xs font-bold truncate">Mixtape Track</p>
+<div class="flex items-center gap-2 pt-1 flex-wrap">
+<button id="persistent-play-pause-btn" onclick="togglePlayPauseAudio()" class="text-[10px] bg-amber-500 hover:bg-amber-600 text-stone-950 px-2.5 py-1 rounded-lg transition-colors flex items-center gap-1 mono-font font-bold">
+<i data-lucide="pause" class="w-3 h-3"></i>
+<span id="persistent-play-pause-label">Pause</span>
+</button>
+<button onclick="togglePersistentAudioPlayer()" class="text-[10px] bg-white/10 hover:bg-white/20 px-2.5 py-1 rounded-lg text-stone-200 transition-colors flex items-center gap-1 mono-font">
+<i data-lucide="minimize-2" class="w-3 h-3"></i>
+<span id="persistent-minimize-label">Minimize</span>
+</button>
+<button onclick="stopPersistentAudioPlayer()" class="text-[10px] bg-rose-500/30 hover:bg-rose-500/50 text-rose-200 px-2.5 py-1 rounded-lg transition-colors flex items-center gap-1 mono-font">
+<i data-lucide="x" class="w-3 h-3"></i>
+<span>Stop</span>
+</button>
+</div>
+</div>
+</div>
+
+<div id="main-site-content" class="opacity-0 pointer-events-none transition-opacity duration-500 min-h-screen flex flex-col justify-between w-full">
+<header id="main-header" class="pt-8 pb-5 px-4 sticky top-0 z-30 header-styled-bg backdrop-blur-md transition-all relative overflow-hidden">
+<div class="max-w-4xl mx-auto space-y-4 text-center relative z-10">
+<div class="inline-flex items-center justify-center gap-3 md:gap-5 group cursor-pointer relative" onclick="switchTab('intro')">
+<div id="header-icon-left" class="animate-floating-heart" style="color: var(--accent-color-2, #E11D48);">
+<i data-lucide="mail" class="w-7 h-7 md:w-9 md:h-9"></i>
+</div>
+<div class="flex flex-col items-center">
+<span class="text-[9px] md:text-[10px] mono-font uppercase tracking-[0.3em] opacity-80 font-bold -mb-1" style="color: var(--accent-color-2);">
+Dedicated Space
+</span>
+<h1 id="header-title" class="serif-title text-3xl md:text-5xl font-medium tracking-tight">
+For My Solace
+</h1>
+</div>
+<div id="header-icon-right" class="animate-floating-heart-rev" style="color: var(--accent-color-2, #E11D48);">
+<i data-lucide="mail" class="w-7 h-7 md:w-9 md:h-9"></i>
+</div>
+</div>
+<nav class="flex items-center justify-center overflow-x-auto pb-1 no-scrollbar">
+<div id="nav-container" class="inline-flex p-1.5 rounded-2xl bg-stone-100/90 border border-stone-200/70 text-xs font-medium gap-1 max-w-full shadow-inner backdrop-blur-md">
+<button id="tab-btn-intro" onclick="switchTab('intro')" class="nav-tab-btn px-3.5 md:px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 whitespace-nowrap text-stone-600 hover:text-stone-900 font-medium text-xs md:text-sm">
+<i data-lucide="mail-open" class="w-4 h-4" style="color: var(--accent-color-2);"></i>
+<span>My Letters and Thoughts</span>
+</button>
+<button id="tab-btn-songs" onclick="switchTab('songs')" class="nav-tab-btn px-3.5 md:px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 whitespace-nowrap text-stone-600 hover:text-stone-900 font-medium text-xs md:text-sm">
+<i data-lucide="heart" class="w-4 h-4" style="color: var(--accent-color-2);"></i>
+<span>Songs for You</span>
+</button>
+<button id="tab-btn-spotify" onclick="switchTab('spotify')" class="nav-tab-btn px-3.5 md:px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 whitespace-nowrap text-stone-600 hover:text-stone-900 font-medium text-xs md:text-sm">
+<i data-lucide="headphones" class="w-4 h-4" style="color: var(--accent-color-2);"></i>
+<span>Spotify</span>
+</button>
+<button id="tab-btn-stories" onclick="switchTab('stories')" class="nav-tab-btn px-3.5 md:px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 whitespace-nowrap text-stone-600 hover:text-stone-900 font-medium text-xs md:text-sm">
+<i data-lucide="feather" class="w-4 h-4" style="color: var(--accent-color-2);"></i>
+<span>AU Stories</span>
+</button>
+<button id="tab-btn-moons" onclick="switchTab('moons')" class="nav-tab-btn px-3.5 md:px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 whitespace-nowrap text-stone-600 hover:text-stone-900 font-medium text-xs md:text-sm">
+<i data-lucide="moon" class="w-4 h-4" style="color: var(--moon-tab-accent-1);"></i>
+<span>Pick Moon When</span>
+</button>
+<button id="tab-btn-customize" onclick="handleCustomizeClick()" class="nav-tab-btn coquette-ribbon-border px-4 py-2.5 text-purple-900 transition-all flex items-center gap-2 whitespace-nowrap font-medium text-xs md:text-sm">
+<svg class="w-3.5 h-3.5 stroke-purple-600 fill-none" viewBox="0 0 24 24" stroke-width="2"><path d="M12 21a9 9 0 0 1 0-18c2 0 4 .8 5.5 2.2L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9"/></svg>
+<span>Customize</span>
+</button>
+</div>
+</nav>
+</div>
+</header>
+
+<main class="w-full flex-grow max-w-4xl mx-auto px-4 md:px-6 py-10 relative z-10">
+<!-- TAB 1: INTRO -->
+<section id="tab-intro" class="tab-content active space-y-10">
+<div id="letters-container" class="space-y-8"></div>
+</section>
+
+<!-- TAB 2: SONGS -->
+<section id="tab-songs" class="tab-content">
+<div class="space-y-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b pb-6" style="border-color: var(--border-color);">
+<div>
+<div class="flex items-center gap-2 mb-1" style="color: var(--accent-color-2);">
+<i data-lucide="heart" class="w-4 h-4 fill-current"></i>
+<span class="text-xs tracking-widest uppercase mono-font font-semibold">DEDICATED TRACKS & NOTES</span>
+</div>
+<h2 class="serif-title text-3xl md:text-5xl font-medium tracking-wide">Songs for You</h2>
+<p class="text-xs md:text-sm opacity-80 mt-1 font-light italic">Press play on any track while you read—each one holds a note meant only for you.</p>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2 pt-2">
+<button id="song-cat-btn-all" onclick="filterSongsCategory('all')" class="song-cat-pill active px-4 py-2 rounded-xl text-xs font-medium">
+All Tracks
+</button>
+<button id="song-cat-btn-favorite" onclick="filterSongsCategory('Favorite')" class="song-cat-pill bg-white/80 text-stone-700 px-4 py-2 rounded-xl text-xs font-medium">
+Favorite
+</button>
+<button id="song-cat-btn-reminds" onclick="filterSongsCategory('Reminds Me of You')" class="song-cat-pill bg-white/80 text-stone-700 px-4 py-2 rounded-xl text-xs font-medium">
+Reminds Me of You
+</button>
+<button id="song-cat-btn-heart" onclick="filterSongsCategory('My Little Heart')" class="song-cat-pill bg-white/80 text-stone-700 px-4 py-2 rounded-xl text-xs font-medium">
+My Little Heart
+</button>
+</div>
+<div id="songs-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4"></div>
+</div>
+</section>
+
+<!-- TAB 3: SPOTIFY -->
+<section id="tab-spotify" class="tab-content">
+<div class="space-y-8">
+<div class="border-b pb-4 border-stone-200">
+<div class="flex items-center gap-2 mb-1" style="color: var(--accent-color-2);">
+<i data-lucide="headphones" class="w-5 h-5 animate-spin-slow"></i>
+<span class="text-xs uppercase tracking-widest mono-font font-semibold">CURATED SOUNDS</span>
+</div>
+<h2 class="serif-title text-3xl md:text-5xl font-medium tracking-wide">Spotify</h2>
+<p class="text-xs md:text-sm opacity-80 mt-1 font-light italic">A personal collection of tracks saved and compiled with you in mind.</p>
+</div>
+<div id="spotify-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+</div>
+</section>
+
+<!-- TAB 4: STORIES -->
+<section id="tab-stories" class="tab-content">
+<div class="space-y-8">
+<div class="border-b pb-4" style="border-color: var(--border-color);">
+<div class="flex items-center gap-2 mb-1" style="color: var(--accent-color-2);">
+<i data-lucide="feather" class="w-4 h-4"></i>
+<span class="text-xs uppercase tracking-widest mono-font font-semibold">MY MUSE</span>
+</div>
+<h2 class="serif-title text-3xl md:text-5xl font-medium tracking-wide">Stories</h2>
+<p class="text-xs md:text-sm opacity-80 mt-1 font-light italic">A collection of written works where you remain the inspiration behind every line.</p>
+</div>
+<div id="au-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+</div>
+</section>
+
+<!-- TAB 5: MOONS (WITH SEPARATE MOON TAB THEME) -->
+<section id="tab-moons" class="tab-content">
+<div class="space-y-8 p-6 md:p-10 rounded-3xl jar-dark-glow-backdrop border shadow-2xl relative overflow-hidden" style="color: var(--moon-tab-text); border-color: var(--moon-tab-accent-1);">
+<div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(circle at center, var(--moon-tab-glow) 0%, transparent 70%);"></div>
+<div class="border-b pb-6 text-center md:text-left relative z-10" style="border-color: var(--moon-tab-glow);">
+<div class="flex items-center justify-center md:justify-start gap-2 mb-1">
+<i data-lucide="sparkles" class="w-4 h-4 animate-pulse" style="color: var(--moon-tab-accent-1);"></i>
+<span class="serif-title text-sm md:text-base font-semibold tracking-wide" style="color: var(--moon-tab-accent-1);">Mayari’s Reminder</span>
+</div>
+<h2 class="serif-title text-3xl md:text-5xl font-medium tracking-wide drop-shadow-[0_0_12px_rgba(251,191,36,0.3)]" style="color: var(--moon-tab-accent-1);">Pick a Moon When</h2>
+</div>
+<div class="relative max-w-lg mx-auto pt-6 pb-2">
+<div class="w-48 h-8 mx-auto jar-cork-lid relative z-20 flex items-center justify-center shadow-2xl">
+<div class="w-40 h-1 rounded-full shadow-[0_0_8px_rgba(251,191,36,0.5)]" style="background-color: var(--moon-tab-accent-1);"></div>
+</div>
+<div class="w-56 h-4 mx-auto bg-white/10 rounded-sm relative z-10 -mt-1 backdrop-blur-md" style="border-left: 2px solid var(--moon-tab-accent-1); border-right: 2px solid var(--moon-tab-accent-1);"></div>
+<div id="transparent-jar-container" class="transparent-glass-jar p-6 md:p-8 text-center space-y-4 overflow-hidden min-h-[420px] flex flex-col justify-between relative z-10">
+<div class="jar-glass-shine"></div>
+<div class="relative z-10 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs mono-font uppercase tracking-widest mx-auto backdrop-blur-md shadow-[0_0_15px_rgba(251,191,36,0.2)] font-medium" style="background-color: var(--moon-tab-glow); border: 1px solid var(--moon-tab-accent-1); color: var(--moon-tab-accent-1);">
+<i data-lucide="moon" class="w-3.5 h-3.5" style="color: var(--moon-tab-accent-1);"></i>
+<span>Glowing Glass Jar of Moons</span>
+</div>
+<div id="jar-moons-grid" class="flex flex-wrap items-end justify-center gap-2 md:gap-3 relative z-10 my-auto max-w-md mx-auto pt-6 pb-2 px-2"></div>
+<div class="relative z-10 pt-2 flex items-center justify-center gap-2 text-xs md:text-sm text-center opacity-90 font-light italic" style="color: var(--moon-tab-text);">
+<span>Tap any moon inside the jar,<br>or choose one from below.</span>
+</div>
+</div>
+</div>
+<div class="space-y-3 max-w-2xl mx-auto pt-4 relative z-10">
+<div class="flex items-center gap-2 pb-2 border-b" style="color: var(--moon-tab-accent-1); border-color: var(--moon-tab-glow);">
+<i data-lucide="moon" class="w-4 h-4" style="color: var(--moon-tab-accent-1);"></i>
+<span class="serif-title text-base md:text-lg font-medium">Choose a moon below</span>
+</div>
+<div id="moon-prompt-list" class="grid grid-cols-1 md:grid-cols-3 gap-3"></div>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="py-10 text-center border-t border-stone-200/60 text-xs text-stone-500 font-light relative z-10 space-y-1">
+<p class="font-medium text-stone-700">Curated with careful thought.</p>
+<p class="serif-title text-sm italic text-stone-500">In a world that rarely slows down, simply knowing you is my solace.</p>
+</footer>
+</div>
+
+<div id="moon-modal" class="fixed inset-0 z-50 bg-stone-950/50 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-300 opacity-0 pointer-events-none">
+<!-- CUTE BORDERLESS MOON LOADING SCREEN -->
+<div id="moon-loading-view" class="flex flex-col items-center justify-center space-y-4 text-center max-w-sm p-8 bg-transparent border-none shadow-none">
+<div class="relative">
+<div class="absolute -inset-8 rounded-full blur-2xl animate-pulse" style="background-color: var(--moon-tab-glow);"></div>
+<span class="moon-loading-icon text-7xl md:text-8xl">🌙</span>
+</div>
+<p class="moon-loading-text serif-title text-lg md:text-xl font-medium tracking-wide italic drop-shadow-[0_0_12px_rgba(251,191,36,0.8)]" style="color: var(--moon-tab-accent-1);">
+“A little moonbeam is bringing Mayari’s message…”
+</p>
+</div>
+<div id="moon-message-popup" class="hidden bg-stone-900 rounded-3xl max-w-lg w-full p-6 md:p-8 space-y-6 shadow-2xl relative border-2 max-h-[85vh] flex flex-col justify-between overflow-hidden" style="border-color: var(--moon-tab-accent-1); color: var(--moon-tab-text);">
+<div class="flex items-start justify-between border-b pb-4 shrink-0" style="border-color: var(--moon-tab-glow);">
+<div class="flex items-center gap-3">
+<span id="moon-modal-emoji" class="text-4xl">🌙</span>
+<div>
+<span id="moon-modal-title" class="serif-title text-xl md:text-2xl font-semibold tracking-wide block" style="color: var(--moon-tab-accent-1);">
+Letting go
+</span>
+<span class="text-[10px] mono-font uppercase tracking-widest block font-medium mt-0.5 opacity-80" style="color: var(--moon-tab-text);">
+READ ME WHEN…
+</span>
+<p id="moon-modal-prompt" class="serif-title text-sm md:text-base font-light italic tracking-wide mt-0.5 opacity-90">
+you’re holding on to something that hurts.
+</p>
+</div>
+</div>
+<button onclick="closeMoonModal()" class="p-2 rounded-full hover:bg-white/10 transition-colors" style="color: var(--moon-tab-accent-1);">
+<i data-lucide="x" class="w-5 h-5"></i>
+</button>
+</div>
+<div id="moon-modal-content-wrapper" class="overflow-y-auto pr-2 text-stone-200 text-sm md:text-base leading-relaxed space-y-4 font-light whitespace-pre-line flex-1 bg-stone-950/60 p-4 rounded-2xl border" style="border-color: var(--moon-tab-glow);">
+<div id="moon-modal-content" class="serif-title text-base md:text-lg font-light italic"></div>
+</div>
+<div class="pt-4 border-t flex items-center justify-between shrink-0 gap-2" style="border-color: var(--moon-tab-glow);">
+<div class="flex items-center gap-1.5 text-xs mono-font" style="color: var(--moon-tab-accent-1);">
+<i data-lucide="sparkles" class="w-3.5 h-3.5" style="color: var(--moon-tab-accent-1);"></i>
+<span id="moon-modal-footer-note-display">Always here for you</span>
+</div>
+<button onclick="closeMoonModal()" class="px-5 py-2.5 text-xs font-medium uppercase mono-font tracking-wider rounded-xl transition-all shadow-md" style="background-color: var(--moon-tab-accent-1); color: #120e24;">
+Close Message
+</button>
+</div>
+</div>
+</div>
+
+<div id="password-modal" class="fixed inset-0 z-50 bg-stone-950/50 backdrop-blur-sm flex items-center justify-center p-4 transition-all duration-300 opacity-0 pointer-events-none">
+<div class="bg-white rounded-3xl max-w-sm w-full p-6 space-y-4 shadow-2xl relative border border-purple-200 text-center">
+<div class="w-12 h-12 rounded-full bg-purple-100 border border-purple-200 flex items-center justify-center text-purple-700 mx-auto">
+<i data-lucide="sparkles" class="w-5 h-5 text-purple-600"></i>
+</div>
+<div>
+<h3 class="serif-title text-xl font-medium text-purple-950">Mayari’s Customization Space 🎀</h3>
+<p class="text-xs text-purple-700/80 mt-1 font-light">Enter your passcode to manage letters, songs, stories, and theme colors.</p>
+</div>
+<div class="space-y-2">
+<input type="password" id="passcode-input" placeholder="Enter Passcode" class="w-full px-4 py-2.5 rounded-xl border border-purple-200 text-center text-sm mono-font tracking-widest focus:outline-none focus:border-purple-600 bg-purple-50/50">
+<p id="passcode-error" class="text-xs text-red-600 hidden font-medium">Space only for me, Bubba. Sorry HAHAHAHAHA.</p>
+</div>
+<div class="flex gap-2 pt-2">
+<button onclick="closePasswordModal()" class="w-1/2 py-2.5 bg-purple-100 hover:bg-purple-200 text-purple-800 text-xs font-medium rounded-xl transition-colors">
+Cancel
+</button>
+<button onclick="verifyPasscode()" class="w-1/2 py-2.5 bg-purple-600 hover:bg-purple-700 text-white text-xs font-medium rounded-xl shadow-md transition-colors">
+Unlock Space ✨
+</button>
+</div>
+</div>
+</div>
+
+<!-- MACOS FINDER-STYLE CUSTOMIZATION MODAL WITH FOLDERS & SUBTABS -->
+<div id="edit-modal" class="fixed inset-0 z-50 bg-stone-950/50 backdrop-blur-sm flex items-center justify-center p-3 md:p-6 transition-all duration-300 opacity-0 pointer-events-none">
+  <div class="finder-modal-window max-w-4xl w-full h-[85vh] flex flex-col shadow-2xl relative text-purple-950">
+    <!-- macOS Window Bar -->
+    <div class="bg-purple-100/90 px-4 py-3 border-b border-purple-200 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-2">
+        <div class="w-3 h-3 rounded-full bg-rose-400 cursor-pointer" onclick="toggleEditModal()"></div>
+        <div class="w-3 h-3 rounded-full bg-amber-400"></div>
+        <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+        <span class="text-xs font-medium text-purple-900 ml-2 mono-font">Mayari's Space / Customization</span>
+      </div>
+      <button onclick="toggleEditModal()" class="text-purple-700 hover:text-purple-950 p-1">
+        <i data-lucide="x" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <!-- macOS Sidebar + Content Pane -->
+    <div class="flex flex-1 overflow-hidden">
+      <!-- Left Sidebar Folder Navigation -->
+      <div class="w-48 md:w-56 finder-sidebar p-3 space-y-4 shrink-0 flex flex-col justify-between overflow-y-auto">
+        <div class="space-y-1">
+          <div class="text-[10px] uppercase mono-font font-bold tracking-wider text-purple-400 px-3 py-1">Folders & Spaces</div>
+          <div onclick="switchCustomizeSubTab('general')" id="cust-subtab-btn-general" class="finder-sidebar-item active">
+            <i data-lucide="folder" class="w-4 h-4 text-purple-600"></i>
+            <span>Opening & Theme</span>
+          </div>
+          <div onclick="switchCustomizeSubTab('moontab')" id="cust-subtab-btn-moontab" class="finder-sidebar-item">
+            <i data-lucide="moon" class="w-4 h-4 text-amber-500"></i>
+            <span>Moon Tab Theme ✨</span>
+          </div>
+          <div onclick="switchCustomizeSubTab('letters')" id="cust-subtab-btn-letters" class="finder-sidebar-item">
+            <i data-lucide="folder" class="w-4 h-4 text-purple-600"></i>
+            <span>Letters</span>
+          </div>
+          <div onclick="switchCustomizeSubTab('songs')" id="cust-subtab-btn-songs" class="finder-sidebar-item">
+            <i data-lucide="folder" class="w-4 h-4 text-purple-600"></i>
+            <span>Songs</span>
+          </div>
+          <div onclick="switchCustomizeSubTab('spotify')" id="cust-subtab-btn-spotify" class="finder-sidebar-item">
+            <i data-lucide="folder" class="w-4 h-4 text-purple-600"></i>
+            <span>Spotify Playlists</span>
+          </div>
+          <div onclick="switchCustomizeSubTab('stories')" id="cust-subtab-btn-stories" class="finder-sidebar-item">
+            <i data-lucide="folder" class="w-4 h-4 text-purple-600"></i>
+            <span>Stories</span>
+          </div>
+          <div onclick="switchCustomizeSubTab('moons')" id="cust-subtab-btn-moons" class="finder-sidebar-item">
+            <i data-lucide="folder" class="w-4 h-4 text-amber-500"></i>
+            <span>Moon Messages</span>
+          </div>
+          <div onclick="switchCustomizeSubTab('discord')" id="cust-subtab-btn-discord" class="finder-sidebar-item">
+            <i data-lucide="folder" class="w-4 h-4 text-sky-500"></i>
+            <span>Discord Alerts</span>
+          </div>
+        </div>
+
+        <div class="pt-3 border-t border-purple-200/80 space-y-2">
+          <button onclick="downloadUpdatedWebsiteFile()" class="w-full py-2.5 px-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-medium flex items-center justify-center gap-2 shadow-sm transition-all">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span>Export index.html</span>
+          </button>
+          <button onclick="saveChanges()" class="w-full py-2.5 px-3 bg-purple-900 hover:bg-purple-950 text-white rounded-xl text-xs font-medium flex items-center justify-center gap-2 shadow-sm transition-all">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+            <span>Save Changes</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Panel Content -->
+      <div class="flex-1 p-4 md:p-6 overflow-y-auto finder-right-panel">
+        <!-- SUBTAB 1: GENERAL & THEME -->
+        <div id="cust-subtab-general" class="space-y-5">
+          <div class="space-y-3 bg-white/90 p-4 rounded-2xl border border-purple-200 shadow-sm">
+            <h4 class="text-xs uppercase tracking-wider mono-font font-bold text-purple-900 border-b border-purple-100 pb-2">Opening Screen</h4>
+            <div class="grid grid-cols-1 gap-2">
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-1">Badge Text</label>
+                <input type="text" id="opening-badge-input" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-white">
+              </div>
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-1">Title</label>
+                <input type="text" id="opening-title-input" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-white">
+              </div>
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-1">Subtext</label>
+                <input type="text" id="opening-subtext-input" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-white">
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-3 bg-white/90 p-4 rounded-2xl border border-purple-200 shadow-sm">
+            <h4 class="text-xs uppercase tracking-wider mono-font font-bold text-purple-900 border-b border-purple-100 pb-2">Theme Palettes & Custom Dual-HEX Colors</h4>
+            
+            <!-- DUAL-HEX / 2 FAVORITE COLORS HARMONY OPTION -->
+            <div class="p-3.5 bg-purple-50 rounded-xl border border-purple-200 space-y-2.5">
+              <label class="text-[11px] font-medium text-purple-900 block flex items-center justify-between">
+                <span>✨ Dual-HEX Harmony Generator (2 Favorite Colors)</span>
+                <span class="text-[9px] mono-font bg-purple-200 text-purple-800 px-2 py-0.5 rounded-full font-medium">Active</span>
+              </label>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="text-[9px] font-medium text-purple-700 block mb-1">Color 1 (Primary Accent)</label>
+                  <div class="flex items-center gap-1.5">
+                    <input type="color" id="dual-hex-picker-1" onchange="syncDualHexText(1)" value="#B82C38" class="w-8 h-8 rounded-lg cursor-pointer border border-purple-300 p-0.5 bg-white">
+                    <input type="text" id="dual-hex-text-1" onchange="syncDualHexPicker(1)" placeholder="#B82C38" class="flex-1 px-2.5 py-1.5 rounded-lg border border-purple-200 text-xs mono-font bg-white">
+                  </div>
+                </div>
+                <div>
+                  <label class="text-[9px] font-medium text-purple-700 block mb-1">Color 2 (Secondary Accent)</label>
+                  <div class="flex items-center gap-1.5">
+                    <input type="color" id="dual-hex-picker-2" onchange="syncDualHexText(2)" value="#E11D48" class="w-8 h-8 rounded-lg cursor-pointer border border-purple-300 p-0.5 bg-white">
+                    <input type="text" id="dual-hex-text-2" onchange="syncDualHexPicker(2)" placeholder="#E11D48" class="flex-1 px-2.5 py-1.5 rounded-lg border border-purple-200 text-xs mono-font bg-white">
+                  </div>
+                </div>
+              </div>
+              <button onclick="applyDualHexColors()" class="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-xs font-medium shadow-sm transition-all flex items-center justify-center gap-1.5 mt-1">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Generate & Apply Dual-HEX Theme Palette</span>
+              </button>
+            </div>
+
+            <!-- SAVE CURRENT PALETTE OPTION -->
+            <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 space-y-2">
+              <label class="text-[11px] font-medium text-amber-900 block">💾 Save Current Palette</label>
+              <div class="flex items-center gap-2">
+                <input type="text" id="save-palette-name-input" placeholder="Palette Name (e.g. My Favorite Vibe)" class="flex-1 px-3 py-2 rounded-xl border border-amber-300 text-xs bg-white">
+                <button onclick="saveCurrentCustomPalette()" class="px-4 py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-medium shrink-0 shadow-sm transition-all">Save</button>
+              </div>
+              <p class="text-[10px] text-amber-800 font-light">Saves your current color palette to your custom preset list so you can re-apply it anytime.</p>
+            </div>
+
+            <div class="space-y-1.5 pt-1">
+              <label class="text-[10px] font-medium text-purple-800 block">Preset & Saved Palettes (Click to apply)</label>
+              <div id="palette-buttons-container" class="flex flex-wrap gap-2 pt-1"></div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-2 pt-2">
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-0.5">Background</label>
+                <input type="text" id="theme-intro-bg-hex" onchange="updateCustomColorsFromHexInput()" class="w-full px-2.5 py-1.5 rounded-lg border border-purple-200 text-xs mono-font bg-white">
+              </div>
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-0.5">Primary Text</label>
+                <input type="text" id="theme-text-primary-hex" onchange="updateCustomColorsFromHexInput()" class="w-full px-2.5 py-1.5 rounded-lg border border-purple-200 text-xs mono-font bg-white">
+              </div>
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-0.5">Accent Color 1</label>
+                <input type="text" id="theme-accent-color-hex" onchange="updateCustomColorsFromHexInput()" class="w-full px-2.5 py-1.5 rounded-lg border border-purple-200 text-xs mono-font bg-white">
+              </div>
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-0.5">Accent Color 2</label>
+                <input type="text" id="theme-accent-color-2-hex" onchange="updateCustomColorsFromHexInput()" class="w-full px-2.5 py-1.5 rounded-lg border border-purple-200 text-xs mono-font bg-white">
+              </div>
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-0.5">Header BG</label>
+                <input type="text" id="theme-header-bg-hex" onchange="updateCustomColorsFromHexInput()" class="w-full px-2.5 py-1.5 rounded-lg border border-purple-200 text-xs mono-font bg-white">
+              </div>
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-0.5">Opening BG</label>
+                <input type="text" id="theme-opening-bg-hex" onchange="updateCustomColorsFromHexInput()" class="w-full px-2.5 py-1.5 rounded-lg border border-purple-200 text-xs mono-font bg-white">
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-2 bg-white/90 p-4 rounded-2xl border border-purple-200 shadow-sm">
+            <label class="text-xs uppercase tracking-wider mono-font font-bold text-purple-900 block">Passcode Settings</label>
+            <input type="text" id="edit-passcode" placeholder="Change Passcode" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs mono-font bg-white">
+          </div>
+        </div>
+
+        <!-- SUBTAB 1.5: SEPARATE MOON TAB THEME WITH PRESETS -->
+        <div id="cust-subtab-moontab" class="space-y-4 hidden">
+          <div class="p-4 bg-white/90 rounded-2xl border border-purple-200 space-y-3 shadow-sm">
+            <div class="flex items-center gap-2 border-b border-purple-100 pb-2">
+              <i data-lucide="moon" class="w-4 h-4 text-amber-500"></i>
+              <h4 class="text-xs uppercase tracking-wider mono-font font-bold text-purple-900">Dedicated Moon Tab Theme Picker ✨</h4>
+            </div>
+            <p class="text-[11px] text-purple-800 font-light">Configure colors exclusively for the **Pick Moon When** tab, completely separate from the rest of the website.</p>
+            
+            <!-- READY-TO-USE MOON TAB PRESETS -->
+            <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 space-y-2">
+              <label class="text-[11px] font-medium text-amber-900 block flex items-center gap-1.5">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-600"></i>
+                <span>Ready-to-Use Moon Tab Theme Presets</span>
+              </label>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-2 pt-1">
+                <button onclick="applyMoonPreset('midnightGold')" class="p-2 rounded-lg bg-[#07060d] text-[#fbbf24] border border-amber-400/40 text-[10px] font-medium hover:scale-102 transition-transform">Midnight Gold 🌙</button>
+                <button onclick="applyMoonPreset('roseGalaxy')" class="p-2 rounded-lg bg-[#180814] text-[#f472b6] border border-pink-400/40 text-[10px] font-medium hover:scale-102 transition-transform">Rose Galaxy 💖</button>
+                <button onclick="applyMoonPreset('emeraldNight')" class="p-2 rounded-lg bg-[#041510] text-[#34d399] border border-emerald-400/40 text-[10px] font-medium hover:scale-102 transition-transform">Emerald Night 🌿</button>
+                <button onclick="applyMoonPreset('lavenderDream')" class="p-2 rounded-lg bg-[#0f0c1b] text-[#c084fc] border border-purple-400/40 text-[10px] font-medium hover:scale-102 transition-transform">Lavender Dream ✨</button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 pt-1">
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-1">Moon Tab Background</label>
+                <div class="flex items-center gap-1.5">
+                  <input type="color" id="moontab-bg-picker" onchange="syncMoonTabPickerText('bg')" value="#07060d" class="w-8 h-8 rounded-lg cursor-pointer border border-purple-300 p-0.5 bg-white">
+                  <input type="text" id="moontab-bg-text" onchange="syncMoonTabPickerText('bgText')" placeholder="#07060d" class="flex-1 px-2.5 py-1.5 rounded-lg border border-purple-200 text-xs mono-font bg-white">
+                </div>
+              </div>
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-1">Moon Tab Card Backdrop</label>
+                <div class="flex items-center gap-1.5">
+                  <input type="color" id="moontab-card-picker" onchange="syncMoonTabPickerText('card')" value="#120e24" class="w-8 h-8 rounded-lg cursor-pointer border border-purple-300 p-0.5 bg-white">
+                  <input type="text" id="moontab-card-text" onchange="syncMoonTabPickerText('cardText')" placeholder="#120e24" class="flex-1 px-2.5 py-1.5 rounded-lg border border-purple-200 text-xs mono-font bg-white">
+                </div>
+              </div>
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-1">Moon Tab Main Text Color</label>
+                <div class="flex items-center gap-1.5">
+                  <input type="color" id="moontab-text-picker" onchange="syncMoonTabPickerText('text')" value="#fef3c7" class="w-8 h-8 rounded-lg cursor-pointer border border-purple-300 p-0.5 bg-white">
+                  <input type="text" id="moontab-text-hex" onchange="syncMoonTabPickerText('textHex')" placeholder="#fef3c7" class="flex-1 px-2.5 py-1.5 rounded-lg border border-purple-200 text-xs mono-font bg-white">
+                </div>
+              </div>
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-1">Moon Accent 1 (Gold/Glow)</label>
+                <div class="flex items-center gap-1.5">
+                  <input type="color" id="moontab-accent1-picker" onchange="syncMoonTabPickerText('acc1')" value="#fbbf24" class="w-8 h-8 rounded-lg cursor-pointer border border-purple-300 p-0.5 bg-white">
+                  <input type="text" id="moontab-accent1-text" onchange="syncMoonTabPickerText('acc1Text')" placeholder="#fbbf24" class="flex-1 px-2.5 py-1.5 rounded-lg border border-purple-200 text-xs mono-font bg-white">
+                </div>
+              </div>
+              <div class="col-span-2">
+                <label class="text-[10px] font-medium text-purple-800 block mb-1">Moon Accent 2 (Shade / Inner Glow)</label>
+                <div class="flex items-center gap-1.5">
+                  <input type="color" id="moontab-accent2-picker" onchange="syncMoonTabPickerText('acc2')" value="#f59e0b" class="w-8 h-8 rounded-lg cursor-pointer border border-purple-300 p-0.5 bg-white">
+                  <input type="text" id="moontab-accent2-text" onchange="syncMoonTabPickerText('acc2Text')" placeholder="#f59e0b" class="flex-1 px-2.5 py-1.5 rounded-lg border border-purple-200 text-xs mono-font bg-white">
+                </div>
+              </div>
+            </div>
+
+            <button onclick="applyMoonTabCustomTheme()" class="w-full py-2 bg-amber-600 hover:bg-amber-700 text-white rounded-xl text-xs font-medium shadow-sm transition-all flex items-center justify-center gap-1.5 mt-2">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              <span>Apply Separate Moon Tab Theme</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- SUBTAB 2: LETTERS -->
+        <div id="cust-subtab-letters" class="space-y-4 hidden">
+          <div class="p-4 bg-white/90 rounded-2xl border border-purple-200 space-y-3 shadow-sm">
+            <span id="letter-editor-mode-label" class="text-xs uppercase tracking-wider mono-font font-bold text-purple-900 block">Add Letter</span>
+            <input type="hidden" id="editing-letter-index" value="-1">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <input type="text" id="new-letter-badge" placeholder="Badge (POSTAL LETTER #1)" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-white">
+              <input type="text" id="new-letter-heading" placeholder="Title" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-white">
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <input type="text" id="new-letter-date" placeholder="Tag / Date" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-white">
+              <input type="text" id="new-letter-greeting" placeholder="Greeting" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-white">
+            </div>
+            <textarea id="new-letter-body" rows="4" placeholder="Body text..." class="w-full p-3 rounded-xl border border-purple-200 text-xs bg-white"></textarea>
+            <input type="text" id="new-letter-signature" placeholder="Signature" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-white">
+            <div class="flex gap-2">
+              <button id="add-letter-btn" onclick="addNewLetter()" class="flex-1 py-2 bg-purple-700 text-white text-xs font-medium rounded-xl">Add Letter</button>
+              <button id="cancel-letter-edit-btn" onclick="clearLetterForm()" class="hidden px-4 py-2 bg-purple-100 text-purple-800 text-xs font-medium rounded-xl">Cancel</button>
+            </div>
+          </div>
+          <div id="modal-letters-list" class="space-y-1.5 max-h-48 overflow-y-auto"></div>
+        </div>
+
+        <!-- SUBTAB 3: SONGS -->
+        <div id="cust-subtab-songs" class="space-y-4 hidden">
+          <div class="p-4 bg-white/90 rounded-2xl border border-purple-200 space-y-3 shadow-sm">
+            <span id="song-editor-mode-label" class="text-xs uppercase tracking-wider mono-font font-bold text-purple-900 block">Add Song</span>
+            <input type="hidden" id="editing-song-index" value="-1">
+            <select id="new-song-category" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs font-medium bg-white">
+              <option value="Favorite">Favorite</option>
+              <option value="Reminds Me of You">Reminds Me of You</option>
+              <option value="My Little Heart">My Little Heart</option>
+            </select>
+            <div>
+              <label class="text-[10px] font-medium text-purple-800 block mb-1">YouTube Link (Pasting automatically auto-fills Title & Artist)</label>
+              <input type="text" id="new-song-yt" oninput="autoFetchYouTubeMetadata()" onpaste="setTimeout(autoFetchYouTubeMetadata, 50)" onchange="autoFetchYouTubeMetadata()" placeholder="Paste YouTube Link (e.g. https://youtu.be/...)" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-white mono-font">
+              <div id="yt-autofetch-status" class="text-[10px] font-medium block mt-1 min-h-[16px]"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-0.5">Song Title (Auto-Filled)</label>
+                <input type="text" id="new-song-title" placeholder="Title will appear automatically..." class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-purple-50/50">
+              </div>
+              <div>
+                <label class="text-[10px] font-medium text-purple-800 block mb-0.5">Artist (Auto-Filled)</label>
+                <input type="text" id="new-song-artist" placeholder="Artist will appear automatically..." class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-purple-50/50">
+              </div>
+            </div>
+            <textarea id="new-song-meaning" rows="2" placeholder="Note on tape..." class="w-full p-2.5 rounded-xl border border-purple-200 text-xs bg-white"></textarea>
+            <div class="flex gap-2">
+              <button id="add-song-btn" onclick="addNewSong()" class="flex-1 py-2 bg-purple-700 text-white text-xs font-medium rounded-xl">Add Song</button>
+              <button id="cancel-song-edit-btn" onclick="clearSongForm()" class="hidden px-4 py-2 bg-purple-100 text-purple-800 text-xs font-medium rounded-xl">Cancel</button>
+            </div>
+          </div>
+          <div id="modal-songs-list" class="space-y-1.5 max-h-36 overflow-y-auto"></div>
+        </div>
+
+        <!-- SUBTAB 4: SPOTIFY -->
+        <div id="cust-subtab-spotify" class="space-y-4 hidden">
+          <div class="p-4 bg-white/90 rounded-2xl border border-purple-200 space-y-3 shadow-sm">
+            <span id="spotify-editor-mode-label" class="text-xs uppercase tracking-wider mono-font font-bold text-purple-900 block">Add / Edit Spotify Playlist</span>
+            <input type="hidden" id="editing-spotify-index" value="-1">
+            <div>
+              <label class="text-[10px] font-medium text-purple-800 block mb-1">Album Sleeve Title (Displays on Record Cover)</label>
+              <input type="text" id="new-spotify-title" placeholder="Album Sleeve Title (e.g. hello / playlist title)" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-white">
+            </div>
+            <div>
+              <label class="text-[10px] font-medium text-purple-800 block mb-1">Spotify Playlist or Track Link</label>
+              <input type="text" id="new-spotify-url" placeholder="https://open.spotify.com/playlist/..." class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-white">
+            </div>
+            <div class="flex gap-2">
+              <button id="add-spotify-btn" onclick="addNewSpotifyTrack()" class="flex-1 py-2 bg-purple-700 text-white text-xs font-medium rounded-xl">Add Spotify Playlist</button>
+              <button id="cancel-spotify-edit-btn" onclick="clearSpotifyForm()" class="hidden px-4 py-2 bg-purple-100 text-purple-800 text-xs font-medium rounded-xl">Cancel</button>
+            </div>
+          </div>
+          <div id="modal-spotify-list" class="space-y-1.5 max-h-36 overflow-y-auto"></div>
+        </div>
+
+        <!-- SUBTAB 5: STORIES -->
+        <div id="cust-subtab-stories" class="space-y-4 hidden">
+          <div class="p-4 bg-white/90 rounded-2xl border border-purple-200 space-y-3 shadow-sm">
+            <span id="story-editor-mode-label" class="text-xs uppercase tracking-wider mono-font font-bold text-purple-900 block">Add AU Story</span>
+            <input type="hidden" id="editing-story-index" value="-1">
+            <input type="text" id="new-au-title" placeholder="Title" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-white">
+            <textarea id="new-au-content" rows="4" placeholder="Story excerpt..." class="w-full p-2.5 rounded-xl border border-purple-200 text-xs bg-white"></textarea>
+            <input type="text" id="new-au-link" placeholder="External Story Link" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs bg-white">
+            <div class="flex gap-2">
+              <button id="add-story-btn" onclick="addNewAUStory()" class="flex-1 py-2 bg-purple-700 text-white text-xs font-medium rounded-xl">Add Story</button>
+              <button id="cancel-story-edit-btn" onclick="clearStoryForm()" class="hidden px-4 py-2 bg-purple-100 text-purple-800 text-xs font-medium rounded-xl">Cancel</button>
+            </div>
+          </div>
+          <div id="modal-stories-list" class="space-y-1.5 max-h-36 overflow-y-auto"></div>
+        </div>
+
+        <!-- SUBTAB 6: MOONS -->
+        <div id="cust-subtab-moons" class="space-y-5 hidden">
+          <div class="p-3.5 bg-white/90 rounded-2xl border border-purple-200 space-y-3 shadow-sm">
+            <div>
+              <label class="text-[10px] font-bold text-purple-800 uppercase block mb-1">Moon Modal Footer Note (Customizable)</label>
+              <input type="text" id="moon-footer-note-input" placeholder="Always here for you" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs font-medium focus:outline-none focus:border-purple-500 bg-white">
+            </div>
+            <div class="flex items-center justify-between border-t border-purple-100 pt-2">
+              <h4 class="text-xs uppercase tracking-wider mono-font font-bold text-purple-900 flex items-center gap-1.5">
+                <i data-lucide="moon" class="w-4 h-4 text-purple-600"></i>
+                <span>Opened Moon History:</span>
+              </h4>
+              <span id="history-count-badge" class="text-[10px] mono-font px-2 py-0.5 rounded-full bg-purple-200 text-purple-900 font-bold">0 opened</span>
+            </div>
+            <div id="opened-moon-history-list" class="space-y-2 max-h-36 overflow-y-auto text-xs"></div>
+          </div>
+          <div id="moon-editor-container" class="space-y-4 max-h-64 overflow-y-auto"></div>
+        </div>
+
+        <!-- SUBTAB 7: DISCORD -->
+        <div id="cust-subtab-discord" class="space-y-4 hidden">
+          <div class="bg-white/90 p-4 rounded-2xl border border-purple-200 space-y-3 shadow-sm">
+            <h4 class="text-xs uppercase tracking-wider mono-font font-bold text-purple-900 border-b border-purple-100 pb-2">Discord Notifications</h4>
+            <p class="text-xs text-purple-800 font-light">Receive real-time Discord phone alerts when she opens your site.</p>
+            <div>
+              <label class="text-[10px] font-medium text-purple-800 block mb-1">Webhook URL</label>
+              <input type="text" id="discord-webhook-input" placeholder="https://discord.com/api/webhooks/..." class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs mono-font bg-white">
+            </div>
+            <div class="flex items-center justify-between pt-1">
+              <button onclick="sendTestDiscordAlert()" class="px-3.5 py-2 bg-purple-800 text-white text-xs font-medium rounded-xl transition-colors">Send Test Alert</button>
+              <span id="discord-test-status" class="text-xs"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const defaultInitialData = {
+passcode: "0825",
+customizePasscode: "1109",
+discordWebhookUrl: "",
+moonFooterNote: "Always here for you",
+opening: {
+badgeText: "PROT. SPACE",
+title: "For My Solace",
+subtext: "Collection of letters, songs, and stories compiled with you in mind."
+},
+theme: {
+introBg: "#FFF8F6",
+songsBg: "#FFF8F6",
+spotifyBg: "#FFF8F6",
+storiesBg: "#FFF8F6",
+cardBg: "#FFFFFF",
+textPrimary: "#3A1B20",
+accentColor: "#B82C38",
+accentColor2: "#E11D48",
+openingBg: "#1c1917",
+openingText: "#fff8f6",
+headerBg: "#ffffff",
+headerText: "#1c1917"
+},
+moonTabTheme: {
+moonsBg: "#07060d",
+cardBg: "#120e24",
+text: "#fef3c7",
+accent1: "#fbbf24",
+accent2: "#f59e0b"
+},
+savedCustomPalettes: [],
+letters: [
+{
+badge: "POSTAL LETTER #1",
+heading: "Letter 01 — Dedicated Thoughts",
+date: "Special Note",
+greeting: "Dearest Solace,",
+body: "Knowing you is like finding a quiet room in a noisy world. Thank you for simply being yourself.",
+signature: "With warmth & care,"
+}
+],
+songs: [
+{
+title: "Special Dedicated Track",
+artist: "Favorite Artist",
+category: "Favorite",
+ytUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+meaning: "This song always reminds me of moments when everything feels peaceful and bright."
+},
+{
+title: "A Song That Echoes You",
+artist: "Artist Two",
+category: "Reminds Me of You",
+ytUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+meaning: "Whenever this melody plays, I find myself thinking of our conversations."
+},
+{
+title: "Melody for My Little Heart",
+artist: "Artist Three",
+category: "My Little Heart",
+ytUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+meaning: "A gentle tune holding all the quiet fondness tucked inside my heart."
+}
+],
+spotifyTracks: [
+{
+title: "hello",
+url: "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M"
+}
+],
+auStories: [
+{
+title: "Dedication Writing",
+content: "Under the warm glow of evening light, stories unfold softly like pages turning in a favorite book.",
+link: "#"
+}
+],
+moonMessages: [
+{
+emoji: "🌑",
+title: "New beginnings",
+prompt: "you’re starting over.",
+messages: ["Every ending carries the gentle seed of a brand new start."]
+},
+{
+emoji: "🌒",
+title: "Hope & growth",
+prompt: "you need a little hope.",
+messages: ["Even the smallest sliver of light can brighten the dark."]
+},
+{
+emoji: "🌓",
+title: "Courage",
+prompt: "you’re facing something difficult.",
+messages: ["You possess a quiet strength that carries you through every wave."]
+},
+{
+emoji: "🌔",
+title: "Almost there",
+prompt: "you feel like giving up.",
+messages: ["Take a step back and breathe. You are closer than you think."]
+},
+{
+emoji: "🌕",
+title: "Love & fullness",
+prompt: "you want to know how much you mean to me.",
+messages: ["You bring so much light and joy into the world around you."]
+},
+{
+emoji: "🌖",
+title: "Gratitude",
+prompt: "you need to remember how special you are.",
+messages: ["Never forget how irreplaceable your presence truly is."]
+},
+{
+emoji: "🌗",
+title: "Letting go",
+prompt: "you’re holding on to something that hurts.",
+messages: ["Release what you cannot control. Peace is waiting for you."]
+},
+{
+emoji: "🌘",
+title: "Rest & reassurance",
+prompt: "you’re exhausted.",
+messages: ["It is okay to rest your heart today. You have done enough."]
+}
+],
+moonHistory: [],
+moonCategoryPointers: {}
+};
+
+let appData = {};
+try {
+const saved = localStorage.getItem('dedicated_solace_site_data');
+if (saved) {
+appData = JSON.parse(saved);
+if (!appData.moonHistory) appData.moonHistory = [];
+if (!appData.moonCategoryPointers) appData.moonCategoryPointers = {};
+if (!appData.customizePasscode) appData.customizePasscode = "1109";
+if (!appData.moonFooterNote) appData.moonFooterNote = "Always here for you";
+if (!appData.savedCustomPalettes) appData.savedCustomPalettes = [];
+if (!appData.moonTabTheme) {
+appData.moonTabTheme = { moonsBg: "#07060d", cardBg: "#120e24", text: "#fef3c7", accent1: "#fbbf24", accent2: "#f59e0b" };
+}
+if (appData.theme && !appData.theme.accentColor2) appData.theme.accentColor2 = appData.theme.accentColor || '#E11D48';
+if (appData.opening && !appData.opening.badgeText) appData.opening.badgeText = "PROT. SPACE";
+} else {
+appData = JSON.parse(JSON.stringify(defaultInitialData));
+}
+} catch (e) {
+appData = JSON.parse(JSON.stringify(defaultInitialData));
+}
+
+let activeTab = 'intro';
+let activeSongCategory = 'all';
+let vinylPinInserted = {};
+let passcodeBuffer = "";
+let isAudioPlaying = false;
+
+function pressPasscodeNum(digit) {
+if (passcodeBuffer.length < 4) {
+passcodeBuffer += digit;
+updatePasscodeDots();
+if (passcodeBuffer.length === 4) {
+setTimeout(verifyIphonePasscode, 200);
+}
+}
+}
+
+function deletePasscodeNum() {
+if (passcodeBuffer.length > 0) {
+passcodeBuffer = passcodeBuffer.slice(0, -1);
+updatePasscodeDots();
+}
+}
+
+function updatePasscodeDots() {
+for (let i = 0; i < 4; i++) {
+const dot = document.getElementById(`dot-${i}`);
+if (dot) {
+if (i < passcodeBuffer.length) {
+dot.classList.add('filled');
+} else {
+dot.classList.remove('filled');
+}
+}
+}
+ updatePasscodeThemeColor();
+}
+
+function updatePasscodeThemeColor() {
+  const themeAccent2 = appData.theme?.accentColor2 || '#E11D48';
+  for (let i = 0; i < 4; i++) {
+    const dot = document.getElementById(`dot-${i}`);
+    if (dot) dot.style.setProperty('--accent-color', themeAccent2);
+  }
+}
+
+function verifyIphonePasscode() {
+const correct = appData.passcode || "0825";
+if (passcodeBuffer === correct) {
+openEnvelopeAnimation();
+} else {
+const err = document.getElementById('iphone-passcode-error');
+const msgEl = document.getElementById('passcode-error-msg');
+
+for (let i = 0; i < 4; i++) {
+  const dot = document.getElementById(`dot-${i}`);
+  if (dot) dot.classList.add('heart-broken');
+}
+
+if (err && msgEl) {
+  msgEl.innerHTML = `💔 Incorrect! <span class="text-amber-300 font-bold block mt-0.5">Hint: Your Birthday (MMDD)</span>`;
+  err.classList.remove('opacity-0');
+}
+
+setTimeout(() => {
+  passcodeBuffer = "";
+  for (let i = 0; i < 4; i++) {
+    const dot = document.getElementById(`dot-${i}`);
+    if (dot) dot.classList.remove('heart-broken');
+  }
+  updatePasscodeDots();
+}, 1000);
+}
+}
+
+function triggerDiscordVisitorNotification() {
+if (localStorage.getItem('is_owner') === 'true') return;
+const webhookUrl = appData.discordWebhookUrl;
+if (!webhookUrl || !webhookUrl.startsWith('http')) return;
+
+const lastSent = sessionStorage.getItem('discord_alert_sent');
+if (lastSent) return;
+sessionStorage.setItem('discord_alert_sent', 'true');
+
+fetch(webhookUrl, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({
+embeds: [{
+title: "💖 Someone just opened For My Solace!",
+description: "Your dedicated sanctuary website was unlocked and opened.",
+color: 12070008,
+timestamp: new Date().toISOString()
+}]
+})
+}).catch(e => console.log('Discord notification error:', e));
+}
+
+function sendTestDiscordAlert() {
+const urlInput = document.getElementById('discord-webhook-input').value.trim();
+const statusEl = document.getElementById('discord-test-status');
+if (!urlInput) {
+if (statusEl) { statusEl.innerText = "❌ Enter Webhook URL first."; statusEl.className = "text-xs text-rose-500 font-semibold"; }
+return;
+}
+fetch(urlInput, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({
+embeds: [{
+title: "🔔 Discord Notification Test Successful!",
+description: "Your website is connected to Discord. You will receive real-time alerts whenever she opens your site!",
+color: 5763719,
+timestamp: new Date().toISOString()
+}]
+})
+}).then(res => {
+if (res.ok) {
+if (statusEl) { statusEl.innerText = "✅ Test alert sent! Check Discord."; statusEl.className = "text-xs text-emerald-600 font-semibold"; }
+} else {
+if (statusEl) { statusEl.innerText = "❌ Webhook error. Check URL."; statusEl.className = "text-xs text-rose-500 font-semibold"; }
+}
+}).catch(() => {
+if (statusEl) { statusEl.innerText = "❌ Failed. Check URL."; statusEl.className = "text-xs text-rose-500 font-semibold"; }
+});
+}
+
+function openEnvelopeAnimation() {
+const openingScreen = document.getElementById('heart-opening-screen');
+const mainContent = document.getElementById('main-site-content');
+triggerDiscordVisitorNotification();
+spawnTabParticles('intro', 8.0);
+if (openingScreen) {
+openingScreen.classList.add('opacity-0', 'pointer-events-none');
+setTimeout(() => {
+openingScreen.style.display = 'none';
+}, 500);
+}
+if (mainContent) {
+mainContent.classList.remove('opacity-0', 'pointer-events-none');
+mainContent.classList.add('opacity-100');
+}
+document.body.classList.remove('overflow-hidden');
+if (window.lucide) lucide.createIcons();
+}
+window.openEnvelopeAnimation = openEnvelopeAnimation;
+
+function getOutlinedIconSvg(type) {
+const pastelColors = ['#f43f5e', '#ec4899', '#a855f7', '#3b82f6', '#10b981', '#f59e0b', '#e11d48', '#8b5cf6'];
+const strokeColor = pastelColors[Math.floor(Math.random() * pastelColors.length)];
+if (type === 'heart') {
+return `<svg class="w-full h-full fill-none stroke-2" style="stroke: ${strokeColor};" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`;
+} else if (type === 'mail') {
+return `<svg class="w-full h-full fill-none stroke-2" style="stroke: ${strokeColor};" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`;
+} else if (type === 'moon') {
+return `<svg class="w-full h-full fill-none stroke-2" style="stroke: var(--moon-tab-accent-1);" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
+} else if (type === 'headphones') {
+return `<svg class="w-full h-full fill-none stroke-2" style="stroke: ${strokeColor};" viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>`;
+} else if (type === 'feather') {
+return `<svg class="w-full h-full fill-none stroke-2" style="stroke: ${strokeColor};" viewBox="0 0 24 24"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L3 13v5h5l9.24-9.24Z"/><path d="M16 8 2 22"/></svg>`;
+} else if (type === 'star') {
+return `<svg class="w-full h-full fill-none stroke-2" style="stroke: ${strokeColor};" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+} else if (type === 'sparkles') {
+return `<svg class="w-full h-full fill-none stroke-2" style="stroke: ${strokeColor};" viewBox="0 0 24 24"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>`;
+} else if (type === 'music') {
+return `<svg class="w-full h-full fill-none stroke-2" style="stroke: ${strokeColor};" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`;
+} else if (type === 'disc') {
+return `<svg class="w-full h-full fill-none stroke-2" style="stroke: ${strokeColor};" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>`;
+}
+return `<svg class="w-full h-full fill-none stroke-2" style="stroke: ${strokeColor};" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`;
+}
+
+function spawnTabParticles(tabName, customDurationSeconds = 8.0) {
+let iconTypes = ['mail', 'heart', 'sparkles'];
+if (tabName === 'songs') iconTypes = ['heart', 'heart', 'star', 'music'];
+else if (tabName === 'spotify') iconTypes = ['headphones', 'music', 'disc', 'star'];
+else if (tabName === 'stories') iconTypes = ['feather', 'sparkles', 'star'];
+else if (tabName === 'moons') iconTypes = ['moon', 'sparkles', 'star'];
+for (let i = 0; i < 20; i++) {
+const particle = document.createElement('div');
+particle.className = 'tab-heart-particle';
+const leftPos = Math.random() * 92 + 4;
+const tx = (Math.random() - 0.5) * 220;
+const size = Math.floor(Math.random() * 10) + 10;
+const rot = (Math.random() - 0.5) * 120;
+const duration = customDurationSeconds;
+const delay = (Math.random() * 1.0).toFixed(2);
+particle.style.left = `${leftPos}%`;
+particle.style.width = `${size}px`;
+particle.style.height = `${size}px`;
+particle.style.setProperty('--tx', `${tx}px`);
+particle.style.setProperty('--rot', `${rot}deg`);
+particle.style.animationDuration = `${duration}s`;
+particle.style.animationDelay = `${delay}s`;
+const iconType = iconTypes[Math.floor(Math.random() * iconTypes.length)];
+particle.innerHTML = getOutlinedIconSvg(iconType);
+document.body.appendChild(particle);
+setTimeout(() => { particle.remove(); }, (duration + parseFloat(delay) + 0.5) * 1000);
+}
+}
+
+function updateHeaderIconsForTab(tabName) {
+const leftIcon = document.getElementById('header-icon-left');
+const rightIcon = document.getElementById('header-icon-right');
+const dockIcon = document.getElementById('assistive-dock-icon');
+if (!leftIcon || !rightIcon) return;
+let iconName = 'mail';
+if (tabName === 'intro') iconName = 'mail';
+else if (tabName === 'songs') iconName = 'heart';
+else if (tabName === 'spotify') iconName = 'headphones';
+else if (tabName === 'stories') iconName = 'feather';
+else if (tabName === 'moons') iconName = 'moon';
+leftIcon.className = `animate-floating-heart`;
+rightIcon.className = `animate-floating-heart-rev`;
+leftIcon.style.color = 'var(--accent-color-2, #E11D48)';
+rightIcon.style.color = 'var(--accent-color-2, #E11D48)';
+leftIcon.innerHTML = `<i data-lucide="${iconName}" class="w-7 h-7 md:w-9 md:h-9"></i>`;
+rightIcon.innerHTML = `<i data-lucide="${iconName}" class="w-7 h-7 md:w-9 md:h-9"></i>`;
+if (dockIcon) dockIcon.setAttribute('data-lucide', 'heart');
+if (window.lucide) lucide.createIcons();
+}
+
+function applyThemeColors() {
+const theme = appData.theme || defaultInitialData.theme;
+const moonTheme = appData.moonTabTheme || defaultInitialData.moonTabTheme;
+
+document.documentElement.style.setProperty('--accent-color', theme.accentColor || '#B82C38');
+document.documentElement.style.setProperty('--accent-color-2', theme.accentColor2 || theme.accentColor || '#E11D48');
+document.documentElement.style.setProperty('--text-primary', theme.textPrimary || '#3A1B20');
+document.documentElement.style.setProperty('--card-bg', theme.cardBg || '#FFFFFF');
+document.documentElement.style.setProperty('--bg-primary', theme.introBg || '#FFF8F6');
+document.documentElement.style.setProperty('--border-color', (theme.accentColor2 || theme.accentColor || '#E11D48') + '33');
+document.documentElement.style.setProperty('--opening-bg', theme.openingBg || '#1c1917');
+document.documentElement.style.setProperty('--opening-text', theme.openingText || '#fff8f6');
+
+// Separate Moon Tab CSS Variables
+document.documentElement.style.setProperty('--moon-tab-bg', moonTheme.moonsBg || '#07060d');
+document.documentElement.style.setProperty('--moon-tab-card-bg', moonTheme.cardBg || '#120e24');
+document.documentElement.style.setProperty('--moon-tab-text', moonTheme.text || '#fef3c7');
+document.documentElement.style.setProperty('--moon-tab-accent-1', moonTheme.accent1 || '#fbbf24');
+document.documentElement.style.setProperty('--moon-tab-accent-2', moonTheme.accent2 || '#f59e0b');
+
+let glowHex = moonTheme.accent1 || '#fbbf24';
+glowHex = glowHex.replace('#', '');
+if (glowHex.length === 3) glowHex = glowHex.split('').map(c => c + c).join('');
+let num = parseInt(glowHex, 16);
+let r = (num >> 16) & 255;
+let g = (num >> 8) & 255;
+let b = num & 255;
+document.documentElement.style.setProperty('--moon-tab-glow', `rgba(${r}, ${g}, ${b}, 0.28)`);
+
+updatePasscodeThemeColor();
+
+if (activeTab === 'moons') {
+document.body.style.backgroundColor = moonTheme.moonsBg || '#07060d';
+document.body.style.color = moonTheme.text || '#fef3c7';
+const header = document.getElementById('main-header');
+if (header) {
+header.style.backgroundColor = 'rgba(12, 10, 24, 0.95)';
+header.style.color = moonTheme.text || '#fef3c7';
+}
+return;
+}
+let tabBg = theme.introBg || '#FFF8F6';
+document.body.style.backgroundColor = tabBg;
+document.body.style.color = theme.textPrimary || '#3A1B20';
+const header = document.getElementById('main-header');
+if (header) {
+header.style.backgroundColor = theme.headerBg || '#FFFFFF';
+header.style.color = theme.headerText || '#1c1917';
+}
+const openingScreen = document.getElementById('heart-opening-screen');
+if (openingScreen) {
+openingScreen.style.backgroundColor = theme.openingBg || '#1c1917';
+openingScreen.style.color = theme.openingText || '#fff8f6';
+}
+const openingBadge = document.getElementById('opening-badge-pill');
+if (openingBadge && appData.opening) {
+openingBadge.innerText = appData.opening.badgeText || "PROT. SPACE";
+openingBadge.style.backgroundColor = theme.accentColor2 || "#E11D48";
+}
+const openingTitle = document.getElementById('opening-display-title');
+if (openingTitle && appData.opening) openingTitle.innerText = appData.opening.title || "For My Solace";
+const openingSubtext = document.getElementById('opening-display-subtext');
+if (openingSubtext && appData.opening) openingSubtext.innerText = appData.opening.subtext || "Collection of letters, songs, and stories compiled with you in mind.";
+const headerTitle = document.getElementById('header-title');
+if (headerTitle && appData.opening) headerTitle.innerText = appData.opening.title || "For My Solace";
+}
+
+function switchTab(tabName) {
+activeTab = tabName;
+const tabs = ['intro', 'songs', 'spotify', 'stories', 'moons'];
+tabs.forEach(t => {
+const content = document.getElementById(`tab-${t}`);
+const btn = document.getElementById(`tab-btn-${t}`);
+if (content) content.classList.remove('active');
+if (btn && t !== 'customize') btn.className = `nav-tab-btn px-3.5 md:px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 whitespace-nowrap text-stone-600 hover:text-stone-900 font-medium text-xs md:text-sm`;
+});
+const activeContent = document.getElementById(`tab-${tabName}`);
+const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+if (activeContent) activeContent.classList.add('active');
+if (activeBtn && tabName !== 'customize') activeBtn.classList.add(`tab-active-${tabName}`);
+applyThemeColors();
+updateHeaderIconsForTab(tabName);
+spawnTabParticles(tabName, 8.0);
+window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleAssistiveTouchMenu(e) {
+e.stopPropagation();
+const menu = document.getElementById('assistive-menu-popup');
+const dock = document.getElementById('assistive-dock');
+if (!menu || !dock) return;
+if (menu.classList.contains('opacity-0')) {
+const rect = dock.getBoundingClientRect();
+menu.style.bottom = `${window.innerHeight - rect.top + 10}px`;
+menu.style.right = `${window.innerWidth - rect.right}px`;
+menu.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+menu.classList.add('opacity-100', 'scale-100');
+} else {
+closeAssistiveMenu();
+}
+}
+
+function closeAssistiveMenu() {
+const menu = document.getElementById('assistive-menu-popup');
+if (menu) {
+menu.classList.remove('opacity-100', 'scale-100');
+menu.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+}
+}
+
+window.addEventListener('click', (e) => {
+const menu = document.getElementById('assistive-menu-popup');
+const dock = document.getElementById('assistive-dock');
+if (menu && dock && !menu.contains(e.target) && !dock.contains(e.target)) {
+closeAssistiveMenu();
+}
+});
+
+let isDragging = false;
+let dragStartX, dragStartY, initialX, initialY;
+const dock = document.getElementById('assistive-dock');
+if (dock) {
+dock.addEventListener('pointerdown', (e) => {
+isDragging = false;
+dragStartX = e.clientX;
+dragStartY = e.clientY;
+const rect = dock.getBoundingClientRect();
+initialX = rect.left;
+initialY = rect.top;
+dock.setPointerCapture(e.pointerId);
+});
+dock.addEventListener('pointermove', (e) => {
+if (e.buttons === 0) return;
+const dx = e.clientX - dragStartX;
+const dy = e.clientY - dragStartY;
+if (Math.hypot(dx, dy) > 5) isDragging = true;
+if (isDragging) {
+dock.style.left = `${initialX + dx}px`;
+dock.style.top = `${initialY + dy}px`;
+dock.style.right = 'auto';
+dock.style.bottom = 'auto';
+dock.style.transform = 'none';
+}
+});
+dock.addEventListener('pointerup', (e) => {
+if (!isDragging) toggleAssistiveTouchMenu(e);
+});
+}
+
+function flipMixtape(cardId) {
+const card = document.getElementById(cardId);
+if (card) card.classList.toggle('flipped');
+}
+
+function renderIntro() {
+const container = document.getElementById('letters-container');
+if (!container) return;
+const letters = appData.letters || [];
+if (letters.length === 0) {
+container.innerHTML = `<div class="text-center py-10 text-stone-400 text-xs font-light">No letters created yet.</div>`;
+return;
+}
+container.innerHTML = letters.map((letter, idx) => {
+const badgeText = letter.badge !== undefined && letter.badge !== '' ? letter.badge : `POSTAL LETTER #${idx + 1}`;
+const greetingText = letter.greeting !== undefined && letter.greeting !== '' ? letter.greeting : "Dearest Solace,";
+return `<div class="envelope-card p-4 md:p-8 space-y-6">
+<div class="envelope-airmail-border -mx-4 -mt-4 md:-mx-8 md:-mt-8 mb-4"></div>
+${(badgeText || letter.heading || letter.date) ?
+`<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b pb-4" style="border-color: var(--border-color);">
+<div class="space-y-1">
+${badgeText ? `<span class="mono-font font-medium uppercase text-[10px] tracking-[1.25px] block" style="color: var(--accent-color-2);">${escapeHtml(badgeText)}</span>` : ''}
+<h2 class="serif-title text-2xl md:text-3xl font-medium tracking-tight">${escapeHtml(letter.heading || '')}</h2>
+</div>
+${letter.date ? `<span class="mono-font font-semibold text-[11px] px-3 py-1 rounded-full bg-stone-100/80 text-stone-600 border border-stone-200/60 self-start sm:self-center">${escapeHtml(letter.date)}</span>` : ''}
+</div>` : ''}
+<div class="letter-stationery-paper p-6 md:p-8 rounded-2xl space-y-4 shadow-sm">
+${greetingText ? `<p class="serif-title text-lg md:text-xl font-semibold italic text-stone-800">${escapeHtml(greetingText)}</p>` : ''}
+<div class="text-xs md:text-sm leading-relaxed text-stone-700 space-y-3 font-normal whitespace-pre-line">
+<p class="serif-title text-base md:text-lg font-normal leading-relaxed">${escapeHtml(letter.body || '')}</p>
+</div>
+${letter.signature ? `
+<div class="pt-2">
+<p class="serif-title text-lg md:text-xl font-normal italic text-stone-800">${escapeHtml(letter.signature)}</p>
+</div>` : ''} </div> </div>`;
+}).join('');
+if (window.lucide) lucide.createIcons();
+}
+
+function filterSongsCategory(cat) {
+activeSongCategory = cat;
+const btnAll = document.getElementById('song-cat-btn-all');
+const btnFav = document.getElementById('song-cat-btn-favorite');
+const btnRem = document.getElementById('song-cat-btn-reminds');
+const btnHrt = document.getElementById('song-cat-btn-heart');
+[btnAll, btnFav, btnRem, btnHrt].forEach(btn => {
+if (btn) btn.className = 'song-cat-pill bg-white/80 text-stone-700 px-4 py-2 rounded-xl text-xs font-medium';
+});
+if (cat === 'all' && btnAll) btnAll.className = 'song-cat-pill active px-4 py-2 rounded-xl text-xs font-medium';
+if (cat === 'Favorite' && btnFav) btnFav.className = 'song-cat-pill active px-4 py-2 rounded-xl text-xs font-medium';
+if (cat === 'Reminds Me of You' && btnRem) btnRem.className = 'song-cat-pill active px-4 py-2 rounded-xl text-xs font-medium';
+if (cat === 'My Little Heart' && btnHrt) btnHrt.className = 'song-cat-pill active px-4 py-2 rounded-xl text-xs font-medium';
+renderSongs();
+}
+
+function getCategoryBadgeLetter(cat) {
+if (cat === 'Reminds Me of You') return 'U';
+if (cat === 'My Little Heart') return 'H';
+return 'F';
+}
+
+function getSongCategoryCardStyle(category, accent1, accent2) {
+  let baseColor = accent1 || '#B82C38';
+  let altColor = accent2 || accent1 || '#E11D48';
+  
+  if (category === 'Reminds Me of You') {
+    return `background-color: ${altColor}; border-color: rgba(255,255,255,0.35);`;
+  } else if (category === 'My Little Heart') {
+    return `background: linear-gradient(135deg, ${baseColor} 0%, ${altColor} 100%); border-color: rgba(255,255,255,0.4);`;
+  } else {
+    return `background-color: ${baseColor}; border-color: rgba(255,255,255,0.35);`;
+  }
+}
+
+function renderSongs() {
+const grid = document.getElementById('songs-grid');
+if (!grid) return;
+let songs = appData.songs || [];
+if (activeSongCategory !== 'all') {
+songs = songs.filter(s => s.category === activeSongCategory);
+}
+if (songs.length === 0) {
+grid.innerHTML = `<div class="col-span-full text-center py-12 bg-white/60 rounded-3xl border border-stone-200 text-xs text-stone-400 font-light">No songs found in this category.</div>`;
+return;
+}
+const accent1 = appData.theme?.accentColor || '#B82C38';
+const accent2 = appData.theme?.accentColor2 || '#E11D48';
+
+grid.innerHTML = songs.map((song, idx) => {
+const cardId = `mixtape-${idx}`;
+const catLetter = getCategoryBadgeLetter(song.category);
+const cardStyle = getSongCategoryCardStyle(song.category || 'Favorite', accent1, accent2);
+const badgeBg = song.category === 'My Little Heart' ? `background: linear-gradient(135deg, ${accent1}, ${accent2});` : `background-color: ${song.category === 'Reminds Me of You' ? accent2 : accent1};`;
+const badgeTextColor = song.category === 'My Little Heart' ? accent2 : (song.category === 'Reminds Me of You' ? accent2 : accent1);
+
+return `
+<div id="${cardId}" class="mixtape-card perspective-1000 w-full h-[320px]">
+<div class="mixtape-card-inner">
+<div class="mixtape-front rounded-3xl p-5 md:p-6 flex flex-col justify-between shadow-xl space-y-4 relative overflow-hidden border-2" style="${cardStyle}">
+<div class="absolute -top-6 -right-6 w-20 h-20 rounded-full bg-white/10 pointer-events-none"></div>
+<div class="cassette-label-sticker p-4 text-stone-900 shadow-inner relative space-y-2.5 mt-2">
+<div class="absolute top-2 right-3 text-[9px] mono-font text-stone-400 uppercase tracking-widest font-semibold">SIDE A</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full text-white font-semibold text-sm flex items-center justify-center shadow-md shrink-0 border border-white/40" style="${badgeBg}">
+${catLetter}
+</div>
+<div class="overflow-hidden">
+<span class="text-[9px] mono-font text-stone-500 uppercase tracking-wider font-medium block">${escapeHtml(song.category || 'Favorite')}</span>
+<h3 class="serif-title text-lg md:text-xl font-medium truncate text-stone-900">"${escapeHtml(song.title)}"</h3>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-stone-600 mono-font pt-0.5 border-t border-stone-200/60">
+<span class="truncate font-medium">Artist: ${escapeHtml(song.artist)}</span>
+<span class="font-semibold shrink-0" style="color: ${badgeTextColor};">♥ MIXTAPE</span>
+</div>
+</div>
+<div class="bg-stone-950/95 rounded-2xl p-3 border border-white/20 flex items-center justify-between gap-3 shadow-inner relative">
+<div class="cassette-reel-hole animate-spin-slow shrink-0">
+<div class="w-3 h-3 rounded-full bg-stone-400 border border-stone-600"></div>
+</div>
+<div class="flex-1 bg-stone-900 border border-stone-800 rounded-lg px-3 py-1.5 text-center mono-font text-[10px] text-amber-300 tracking-widest flex items-center justify-between shadow-inner">
+<span>● REC</span>
+<div class="w-12 h-2.5 bg-stone-800 rounded-full overflow-hidden flex items-center px-0.5">
+<div class="w-3/4 h-1.5 rounded-full" style="${badgeBg}"></div>
+</div>
+<span>STEREO</span>
+</div>
+<div class="cassette-reel-hole animate-spin-slow shrink-0">
+<div class="w-3 h-3 rounded-full bg-stone-400 border border-stone-600"></div>
+</div>
+</div>
+<div class="flex items-center gap-2.5 pt-1">
+<button onclick="playPersistentAudio('${escapeHtml(song.ytUrl)}', '${escapeHtml(song.title).replace(/'/g, "\\'")}')" class="flex-1 py-3 bg-white hover:bg-stone-100 text-stone-900 font-medium text-xs uppercase tracking-wider rounded-2xl transition-all flex items-center justify-center gap-2 shadow-lg hover:scale-102">
+<i data-lucide="play" class="w-4 h-4 fill-current" style="color: ${badgeTextColor};"></i>
+<span>Play Tape</span>
+</button>
+<button onclick="flipMixtape('${cardId}')" class="px-4 py-3 bg-stone-900/90 hover:bg-black text-white font-medium text-xs rounded-2xl border border-white/20 flex items-center gap-1.5 shadow-md hover:scale-102">
+<i data-lucide="rotate-cw" class="w-4 h-4 text-amber-300"></i>
+<span>Read Note</span>
+</button>
+</div>
+</div>
+<div class="mixtape-back rounded-3xl p-5 md:p-6 flex flex-col justify-between text-stone-900 shadow-2xl space-y-3" style="background-color: var(--card-bg, #ffffff); border: 2px solid ${badgeTextColor};">
+<div class="flex items-center justify-between border-b pb-2.5" style="border-color: var(--border-color);">
+<div class="flex items-center gap-1.5">
+<i data-lucide="heart" class="w-3.5 h-3.5 fill-current" style="color: ${badgeTextColor};"></i>
+<span class="text-[10px] mono-font tracking-widest font-semibold uppercase" style="color: ${badgeTextColor};">DEDICATED NOTE</span>
+</div>
+<button onclick="flipMixtape('${cardId}')" class="text-[10px] mono-font text-stone-500 hover:text-stone-900 flex items-center gap-1 bg-stone-100 px-2.5 py-1 rounded-lg">
+<i data-lucide="rotate-ccw" class="w-3 h-3"></i>
+<span>Flip Front</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto pr-1 text-xs md:text-sm leading-relaxed text-stone-800 space-y-2 font-light italic bg-stone-50/90 p-4 rounded-2xl border border-stone-200 shadow-inner">
+<p class="whitespace-pre-line">${escapeHtml(song.meaning || 'Dedicated note content...')}</p>
+</div>
+<button onclick="playPersistentAudio('${escapeHtml(song.ytUrl)}', '${escapeHtml(song.title).replace(/'/g, "\\'")}')" class="w-full py-2.5 bg-stone-900 hover:bg-black text-white font-medium text-xs uppercase tracking-wider rounded-2xl transition-colors flex items-center justify-center gap-2 shadow">
+<i data-lucide="play" class="w-3.5 h-3.5 fill-current" style="color: ${badgeTextColor};"></i>
+<span>Play Track</span>
+</button>
+</div>
+</div>
+</div>`;
+}).join('');
+renderModalSongsList();
+if (window.lucide) lucide.createIcons();
+}
+
+function toggleVinylPin(idx) {
+vinylPinInserted[idx] = !vinylPinInserted[idx];
+renderSpotifyTracks();
+}
+
+function getSpotifyEmbedUrl(url) {
+if (!url) return "https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M";
+let clean = url.trim();
+if (clean.includes('/embed/')) return clean;
+clean = clean.replace('open.spotify.com/', 'open.spotify.com/embed/');
+return clean;
+}
+
+function renderSpotifyTracks() {
+const grid = document.getElementById('spotify-grid');
+if (!grid) return;
+const tracks = appData.spotifyTracks || [];
+
+if (tracks.length === 0) {
+grid.innerHTML = `<div class="col-span-full text-center py-10 text-stone-400 text-xs font-light">No Spotify playlists added yet.</div>`;
+return;
+}
+
+grid.innerHTML = tracks.map((track, idx) => {
+const isInserted = !!vinylPinInserted[idx];
+const cardId = `vinyl-card-${idx}`;
+const embedUrl = getSpotifyEmbedUrl(track.url);
+
+const cardBgColor = isInserted ? '#120f24' : 'var(--card-bg, #ffffff)';
+const cardTextColor = isInserted ? '#fef3c7' : 'var(--text-primary, #3A1B20)';
+const sleeveBg = isInserted ? 'background: linear-gradient(135deg, #1e1b2e 0%, #0d0b14 100%); color: #fef3c7; border-color: var(--accent-color-2); box-shadow: 0 0 25px var(--accent-color-2);' : 'background-color: var(--card-bg, #ffffff); color: var(--text-primary, #3A1B20); border-color: var(--accent-color);';
+
+return `<div id="${cardId}" class="p-6 rounded-3xl shadow-2xl relative overflow-hidden flex flex-col justify-between space-y-5 border-2 ${isInserted ? 'vinyl-glowing-active' : ''}" style="background-color: ${cardBgColor}; color: ${cardTextColor}; border-color: ${isInserted ? 'var(--accent-color-2)' : 'var(--border-color, rgba(0,0,0,0.1))'};"> 
+<div class="flex items-center justify-between border-b pb-3 border-stone-200/60"> 
+<div class="flex items-center gap-2" style="color: var(--accent-color-2);"> 
+<i data-lucide="headphones" class="w-5 h-5 ${isInserted ? 'animate-spin-slow' : ''}" style="color: var(--accent-color-2);"></i> 
+<span class="text-xs mono-font uppercase tracking-widest font-semibold">PLAYLIST #${idx + 1}</span> 
+</div> 
+<div class="flex items-center gap-2"> 
+<span class="text-[10px] mono-font uppercase tracking-wider font-semibold" style="color: ${isInserted ? 'var(--accent-color-2)' : 'inherit'}; opacity: ${isInserted ? '1' : '0.6'};">${isInserted ? 'Playing' : 'Standby'}</span> 
+<div class="w-3 h-3 rounded-full ${isInserted ? 'animate-pulse' : 'bg-stone-300'}" style="${isInserted ? 'background-color: var(--accent-color-2);' : ''}" title="Status"></div> 
+</div> 
+</div> 
+<div class="relative ${isInserted ? 'bg-[#0a0712]' : 'bg-stone-900'} rounded-2xl p-4 md:p-5 border-4 border-stone-800 shadow-2xl overflow-hidden flex flex-col md:flex-row items-center justify-between gap-4 transition-colors duration-300"> 
+<div class="w-full md:w-5/12 rounded-xl p-4 border-2 shadow-md relative transform -rotate-2 hover:rotate-0 transition-all" style="${sleeveBg}"> 
+<span class="text-[9px] mono-font tracking-widest uppercase font-semibold block" style="color: var(--accent-color-2);">ALBUM SLEEVE</span> 
+<h3 class="serif-title text-xl md:text-2xl font-medium truncate mt-1">${escapeHtml(track.title || 'hello')}</h3> 
+</div> 
+<div class="relative w-44 h-44 shrink-0 flex items-center justify-center my-2 cursor-pointer group" onclick="toggleVinylPin(${idx})" title="Click to insert/pull pin"> 
+${isInserted ?
+`<div class="floating-music-note text-base top-2 left-6" style="color: var(--accent-color-2);">🎵</div>
+<div class="floating-music-note text-lg top-8 right-4" style="animation-delay: 0.9s; color: var(--accent-color);">🎶</div>
+<div class="floating-music-note text-sm bottom-4 left-4" style="animation-delay: 1.6s; color: var(--accent-color-2);">✨</div>`
+: ''} 
+<div class="w-40 h-40 rounded-full ${isInserted ? 'animate-spin-slow' : ''} flex items-center justify-center shadow-2xl relative" style="background: radial-gradient(circle, #2b2b2b 20%, #111111 35%, #222222 55%, #050505 80%, #1a1a1a 100%); border: 3px solid #444;"> 
+<div class="w-14 h-14 rounded-full border-2 border-white flex items-center justify-center text-white shadow-inner" style="background: linear-gradient(135deg, var(--accent-color), var(--accent-color-2));"> 
+<i data-lucide="headphones" class="w-6 h-6 text-white"></i> 
+</div> 
+</div> 
+<div class="absolute top-2 right-1 w-16 h-20 pointer-events-none transform transition-transform ${isInserted ? 'translate-x-1 translate-y-1' : '-translate-x-3 -translate-y-2 opacity-60'}"> 
+<div class="w-5 h-5 rounded-full bg-stone-400 border-2 border-stone-600 absolute top-0 right-0 shadow"></div> 
+<div class="w-1 h-14 bg-stone-300 absolute top-3 right-2 origin-top transform rotate-[25deg] shadow"></div> 
+<div class="w-3 h-4 bg-stone-200 border border-stone-500 absolute top-14 right-8 transform rotate-[25deg] shadow-md"></div> 
+</div> 
+</div> 
+</div> 
+<div class="w-full rounded-2xl overflow-hidden bg-black/5 shadow-inner border border-stone-200/40">
+<iframe src="${escapeHtml(embedUrl)}" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</div>
+<a href="${escapeHtml(track.url)}" target="_blank" class="w-full py-3 text-white font-medium text-xs uppercase mono-font tracking-wider rounded-2xl flex items-center justify-center gap-2 shadow-lg transition-all hover:scale-102" style="background: linear-gradient(135deg, var(--accent-color), var(--accent-color-2));"><i data-lucide="external-link" class="w-4 h-4"></i><span>Open Full Playlist on Spotify</span></a> </div>`;
+}).join('');
+
+renderModalSpotifyList();
+if (window.lucide) lucide.createIcons();
+}
+
+function renderAUStories() {
+const grid = document.getElementById('au-grid');
+if (!grid) return;
+const stories = appData.auStories || [];
+if (stories.length === 0) {
+grid.innerHTML = `<div class="col-span-full text-center py-10 text-stone-400 text-xs font-light">No story entries added yet.</div>`;
+return;
+}
+grid.innerHTML = stories.map((s, idx) => ` <div class="book-card-container p-6 md:p-8 space-y-5 flex flex-col justify-between"> <div class="book-bookmark-ribbon" style="background: linear-gradient(135deg, var(--accent-color), var(--accent-color-2));"></div> <div class="space-y-3 pt-2"> <span class="text-[10px] mono-font tracking-widest uppercase font-semibold block" style="color: var(--accent-color-2);">ENTRY #${idx + 1}</span> <h3 class="serif-title text-xl md:text-3xl font-medium tracking-wide text-stone-100">${escapeHtml(s.title || 'Untitled Story')}</h3> <p class="text-xs md:text-sm text-stone-300 leading-relaxed font-light line-clamp-4 whitespace-pre-line bg-black/40 p-4 rounded-xl border border-white/10"> ${escapeHtml(s.content || '')} </p> </div> <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-2"> <a href="${escapeHtml(s.link || '#')}" target="_blank" class="w-full py-3 text-white font-medium text-xs uppercase mono-font tracking-wider rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all hover:scale-102" style="background: linear-gradient(135deg, var(--accent-color), var(--accent-color-2));"> <span>Read Full Story</span> <i data-lucide="external-link" class="w-4 h-4"></i> </a> </div> </div>`).join('');
+renderModalStoriesList();
+if (window.lucide) lucide.createIcons();
+}
+
+function sanitizeMoonData(moonsList) {
+if (!Array.isArray(moonsList) || moonsList.length === 0) {
+return defaultInitialData.moonMessages;
+}
+return moonsList.map(m => {
+let msgs = m.messages;
+if (!Array.isArray(msgs)) {
+msgs = typeof msgs === 'string' ? [msgs] : ["Example note"];
+}
+return {
+emoji: m.emoji || "🌙",
+title: m.title || "Letting go",
+prompt: m.prompt || "you’re holding on to something that hurts.",
+messages: msgs.length > 0 ? msgs : ["Example note"]
+};
+});
+}
+
+function renderMoonSection() {
+const jarContainer = document.getElementById('jar-moons-grid');
+const promptGrid = document.getElementById('moon-prompt-list');
+if (!jarContainer || !promptGrid) return;
+const moons = sanitizeMoonData(appData.moonMessages);
+let stackedMoonsHtml = '';
+for (let i = 0; i < 24; i++) {
+const m = moons[i % moons.length];
+const sizes = ['text-3xl', 'text-4xl', 'text-5xl'];
+const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
+stackedMoonsHtml += `<button onclick="openMoonModal(${i % moons.length})" class="raw-moon-pile-btn ${randomSize} active:scale-125" title="Tap Moon Phase">${m.emoji}</button>`;
+}
+jarContainer.innerHTML = stackedMoonsHtml;
+promptGrid.innerHTML = moons.map((m, idx) => ` <button onclick="openMoonModal(${idx})" class="p-3.5 rounded-2xl border text-left transition-all group flex items-start gap-3 backdrop-blur-md" style="background-color: var(--moon-tab-glow); border-color: var(--moon-tab-accent-1);"> <span class="text-3xl shrink-0 group-hover:scale-110 transition-transform">${m.emoji}</span> <div class="space-y-0.5 overflow-hidden"> <span class="serif-title text-base md:text-lg font-medium block tracking-wide" style="color: var(--moon-tab-accent-1);">${escapeHtml(m.title)}</span> <span class="text-[10px] mono-font uppercase tracking-widest block font-medium opacity-85" style="color: var(--moon-tab-text);">Read me when…</span> <p class="serif-title text-sm md:text-base font-light italic leading-tight" style="color: var(--moon-tab-text);">${escapeHtml(m.prompt)}</p> </div> </button>`).join('');
+renderMoonEditorList();
+renderOpenedMoonHistory();
+if (window.lucide) lucide.createIcons();
+}
+
+function openMoonModal(moonIdx) {
+const modal = document.getElementById('moon-modal');
+const loadingView = document.getElementById('moon-loading-view');
+const messagePopup = document.getElementById('moon-message-popup');
+if (!modal || !loadingView || !messagePopup) return;
+
+loadingView.classList.remove('hidden');
+messagePopup.classList.add('hidden');
+modal.classList.remove('opacity-0', 'pointer-events-none');
+
+const moons = sanitizeMoonData(appData.moonMessages);
+const moonObj = moons[moonIdx] || moons[0];
+let messageList = moonObj.messages || ["Example note"];
+if (!appData.moonCategoryPointers) appData.moonCategoryPointers = {};
+if (appData.moonCategoryPointers[moonIdx] === undefined) {
+appData.moonCategoryPointers[moonIdx] = 0;
+}
+let ptr = appData.moonCategoryPointers[moonIdx];
+if (ptr >= messageList.length) {
+ptr = 0;
+}
+const selectedMessage = messageList[ptr];
+appData.moonCategoryPointers[moonIdx] = ptr + 1;
+if (!appData.moonHistory) appData.moonHistory = [];
+appData.moonHistory.unshift({
+title: moonObj.title,
+emoji: moonObj.emoji,
+prompt: moonObj.prompt,
+message: selectedMessage,
+time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+});
+saveToStorage();
+renderOpenedMoonHistory();
+
+document.getElementById('moon-modal-emoji').innerText = moonObj.emoji;
+document.getElementById('moon-modal-title').innerText = moonObj.title;
+document.getElementById('moon-modal-prompt').innerText = moonObj.prompt;
+document.getElementById('moon-modal-content').innerText = selectedMessage;
+const footerNoteEl = document.getElementById('moon-modal-footer-note-display');
+if (footerNoteEl) footerNoteEl.innerText = appData.moonFooterNote || "Always here for you";
+
+setTimeout(() => {
+loadingView.classList.add('hidden');
+messagePopup.classList.remove('hidden');
+}, 1600);
+}
+
+function closeMoonModal() {
+const modal = document.getElementById('moon-modal');
+if (modal) modal.classList.add('opacity-0', 'pointer-events-none');
+}
+
+function renderOpenedMoonHistory() {
+const list = document.getElementById('opened-moon-history-list');
+const badge = document.getElementById('history-count-badge');
+if (!list || !badge) return;
+const history = appData.moonHistory || [];
+badge.innerText = `${history.length} opened`;
+if (history.length === 0) {
+list.innerHTML = `<p class="text-purple-600/70 italic text-[11px]">No moon messages opened yet.</p>`;
+return;
+}
+list.innerHTML = history.map((item) => ` <div class="p-2.5 rounded-xl bg-white border border-purple-200 shadow-sm space-y-1"> <div class="flex items-center justify-between text-[10px] text-purple-900 font-bold uppercase"> <span>${item.emoji} ${escapeHtml(item.title)}</span> <span class="mono-font text-purple-500">${item.time}</span> </div> <p class="text-stone-700 text-xs font-light">${escapeHtml(item.message)}</p> </div>`).join('');
+}
+
+function playPersistentAudio(ytUrl, songTitle) {
+const host = document.getElementById('persistent-iframe-host');
+const wrapper = document.getElementById('persistent-audio-wrapper');
+const titleEl = document.getElementById('persistent-song-title');
+const videoId = extractVideoId(ytUrl);
+if (host && videoId) {
+host.innerHTML = `<iframe id="persistent-yt-iframe" class="w-full h-full rounded-xl pointer-events-auto" src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&enablejsapi=1&rel=0&playsinline=1&modestbranding=1" title="${escapeHtml(songTitle)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+if (wrapper) {
+wrapper.classList.remove('hidden');
+wrapper.style.display = 'flex';
+}
+if (titleEl) titleEl.innerText = songTitle || "Dedicated Track";
+isAudioPlaying = true;
+updatePlayPauseButtonUI(true);
+if (window.lucide) lucide.createIcons();
+}
+}
+
+function togglePlayPauseAudio() {
+const iframe = document.getElementById('persistent-yt-iframe');
+if (!iframe || !iframe.contentWindow) return;
+if (isAudioPlaying) {
+iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+isAudioPlaying = false;
+updatePlayPauseButtonUI(false);
+} else {
+iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+isAudioPlaying = true;
+updatePlayPauseButtonUI(true);
+}
+}
+
+function updatePlayPauseButtonUI(playing) {
+const btn = document.getElementById('persistent-play-pause-btn');
+if (!btn) return;
+if (playing) {
+btn.className = "text-[10px] bg-amber-500 hover:bg-amber-600 text-stone-950 px-2.5 py-1 rounded-lg transition-colors flex items-center gap-1 mono-font font-bold";
+btn.innerHTML = `<i data-lucide="pause" class="w-3 h-3"></i><span id="persistent-play-pause-label">Pause</span>`;
+} else {
+btn.className = "text-[10px] bg-emerald-500 hover:bg-emerald-600 text-white px-2.5 py-1 rounded-lg transition-colors flex items-center gap-1 mono-font font-bold";
+btn.innerHTML = `<i data-lucide="play" class="w-3 h-3"></i><span id="persistent-play-pause-label">Play</span>`;
+}
+if (window.lucide) lucide.createIcons();
+}
+
+function togglePersistentAudioPlayer() {
+const host = document.getElementById('persistent-iframe-host');
+const label = document.getElementById('persistent-minimize-label');
+if (host) {
+if (host.classList.contains('hidden')) {
+host.classList.remove('hidden');
+if (label) label.innerText = "Minimize";
+} else {
+host.classList.add('hidden');
+if (label) label.innerText = "Expand";
+}
+}
+}
+
+function stopPersistentAudioPlayer() {
+const host = document.getElementById('persistent-iframe-host');
+const wrapper = document.getElementById('persistent-audio-wrapper');
+if (host) host.innerHTML = '';
+if (wrapper) {
+wrapper.classList.add('hidden');
+wrapper.style.display = 'none';
+}
+isAudioPlaying = false;
+}
+
+function handleCustomizeClick() {
+const passModal = document.getElementById('password-modal');
+if (passModal) {
+document.getElementById('passcode-input').value = '';
+document.getElementById('passcode-error').classList.add('hidden');
+passModal.classList.remove('opacity-0', 'pointer-events-none');
+}
+}
+
+function closePasswordModal() {
+const passModal = document.getElementById('password-modal');
+if (passModal) passModal.classList.add('opacity-0', 'pointer-events-none');
+}
+
+function verifyPasscode() {
+const input = document.getElementById('passcode-input').value.trim();
+const correctPass = appData.customizePasscode || '1109';
+if (input === correctPass) {
+localStorage.setItem('is_owner', 'true');
+closePasswordModal();
+toggleEditModal();
+} else {
+document.getElementById('passcode-error').classList.remove('hidden');
+}
+}
+
+function switchCustomizeSubTab(subTabName) {
+const subtabs = ['general', 'moontab', 'letters', 'songs', 'spotify', 'stories', 'moons', 'discord'];
+subtabs.forEach(st => {
+const el = document.getElementById(`cust-subtab-${st}`);
+const btn = document.getElementById(`cust-subtab-btn-${st}`);
+if (el) el.classList.add('hidden');
+if (btn) btn.className = "finder-sidebar-item";
+});
+const activeEl = document.getElementById(`cust-subtab-${subTabName}`);
+const activeBtn = document.getElementById(`cust-subtab-btn-${subTabName}`);
+if (activeEl) activeEl.classList.remove('hidden');
+if (activeBtn) activeBtn.className = "finder-sidebar-item active";
+}
+
+function toggleEditModal() {
+const modal = document.getElementById('edit-modal');
+if (!modal) return;
+if (modal.classList.contains('opacity-0')) {
+const theme = appData.theme || defaultInitialData.theme;
+const moonTheme = appData.moonTabTheme || defaultInitialData.moonTabTheme;
+
+document.getElementById('theme-intro-bg-hex').value = theme.introBg || '#FFF8F6';
+document.getElementById('theme-text-primary-hex').value = theme.textPrimary || '#3A1B20';
+document.getElementById('theme-accent-color-hex').value = theme.accentColor || '#B82C38';
+document.getElementById('theme-accent-color-2-hex').value = theme.accentColor2 || '#E11D48';
+document.getElementById('theme-header-bg-hex').value = theme.headerBg || '#FFFFFF';
+document.getElementById('theme-opening-bg-hex').value = theme.openingBg || '#1c1917';
+
+const dualPicker1 = document.getElementById('dual-hex-picker-1');
+const dualText1 = document.getElementById('dual-hex-text-1');
+const dualPicker2 = document.getElementById('dual-hex-picker-2');
+const dualText2 = document.getElementById('dual-hex-text-2');
+if (dualPicker1) dualPicker1.value = theme.accentColor || '#B82C38';
+if (dualText1) dualText1.value = theme.accentColor || '#B82C38';
+if (dualPicker2) dualPicker2.value = theme.accentColor2 || '#E11D48';
+if (dualText2) dualText2.value = theme.accentColor2 || '#E11D48';
+
+// Populate Moon Tab inputs
+document.getElementById('moontab-bg-picker').value = moonTheme.moonsBg || '#07060d';
+document.getElementById('moontab-bg-text').value = moonTheme.moonsBg || '#07060d';
+document.getElementById('moontab-card-picker').value = moonTheme.cardBg || '#120e24';
+document.getElementById('moontab-card-text').value = moonTheme.cardBg || '#120e24';
+document.getElementById('moontab-text-picker').value = moonTheme.text || '#fef3c7';
+document.getElementById('moontab-text-hex').value = moonTheme.text || '#fef3c7';
+document.getElementById('moontab-accent1-picker').value = moonTheme.accent1 || '#fbbf24';
+document.getElementById('moontab-accent1-text').value = moonTheme.accent1 || '#fbbf24';
+document.getElementById('moontab-accent2-picker').value = moonTheme.accent2 || '#f59e0b';
+document.getElementById('moontab-accent2-text').value = moonTheme.accent2 || '#f59e0b';
+
+if (appData.opening) {
+document.getElementById('opening-badge-input').value = appData.opening.badgeText || "PROT. SPACE";
+document.getElementById('opening-title-input').value = appData.opening.title || "For My Solace";
+document.getElementById('opening-subtext-input').value = appData.opening.subtext || "Collection of letters, songs, and stories compiled with you in mind.";
+}
+const webhookInput = document.getElementById('discord-webhook-input');
+if (webhookInput) webhookInput.value = appData.discordWebhookUrl || '';
+
+const moonFooterInput = document.getElementById('moon-footer-note-input');
+if (moonFooterInput) moonFooterInput.value = appData.moonFooterNote || 'Always here for you';
+
+document.getElementById('edit-passcode').value = appData.customizePasscode || '1109';
+switchCustomizeSubTab('general');
+clearLetterForm();
+clearSongForm();
+clearSpotifyForm();
+clearStoryForm();
+renderModalLettersList();
+renderModalSongsList();
+renderModalSpotifyList();
+renderModalStoriesList();
+renderMoonEditorList();
+renderOpenedMoonHistory();
+renderCustomPaletteButtons();
+modal.classList.remove('opacity-0', 'pointer-events-none');
+} else {
+modal.classList.add('opacity-0', 'pointer-events-none');
+}
+}
+
+const moonPresets = {
+midnightGold: { moonsBg: '#07060d', cardBg: '#120e24', text: '#fef3c7', accent1: '#fbbf24', accent2: '#f59e0b' },
+roseGalaxy: { moonsBg: '#180814', cardBg: '#2a0d22', text: '#fbcfe8', accent1: '#f472b6', accent2: '#db2777' },
+emeraldNight: { moonsBg: '#041510', cardBg: '#08251c', text: '#a7f3d0', accent1: '#34d399', accent2: '#059669' },
+lavenderDream: { moonsBg: '#0f0c1b', cardBg: '#1b1432', text: '#e9d5ff', accent1: '#c084fc', accent2: '#9333ea' }
+};
+
+function applyMoonPreset(presetName) {
+const p = moonPresets[presetName];
+if (!p) return;
+document.getElementById('moontab-bg-picker').value = p.moonsBg;
+document.getElementById('moontab-bg-text').value = p.moonsBg;
+document.getElementById('moontab-card-picker').value = p.cardBg;
+document.getElementById('moontab-card-text').value = p.cardBg;
+document.getElementById('moontab-text-picker').value = p.text;
+document.getElementById('moontab-text-hex').value = p.text;
+document.getElementById('moontab-accent1-picker').value = p.accent1;
+document.getElementById('moontab-accent1-text').value = p.accent1;
+document.getElementById('moontab-accent2-picker').value = p.accent2;
+document.getElementById('moontab-accent2-text').value = p.accent2;
+
+appData.moonTabTheme = { ...p };
+saveToStorage();
+applyThemeColors();
+renderMoonSection();
+}
+
+function syncMoonTabPickerText(type) {
+const map = {
+bg: ['moontab-bg-picker', 'moontab-bg-text'],
+bgText: ['moontab-bg-text', 'moontab-bg-picker'],
+card: ['moontab-card-picker', 'moontab-card-text'],
+cardText: ['moontab-card-text', 'moontab-card-picker'],
+text: ['moontab-text-picker', 'moontab-text-hex'],
+textHex: ['moontab-text-hex', 'moontab-text-picker'],
+acc1: ['moontab-accent1-picker', 'moontab-accent1-text'],
+acc1Text: ['moontab-accent1-text', 'moontab-accent1-picker'],
+acc2: ['moontab-accent2-picker', 'moontab-accent2-text'],
+acc2Text: ['moontab-accent2-text', 'moontab-accent2-picker']
+};
+const pair = map[type];
+if (!pair) return;
+const el1 = document.getElementById(pair[0]);
+const el2 = document.getElementById(pair[1]);
+if (el1 && el2) {
+if (type.endsWith('Text') || type === 'textHex') {
+let val = el1.value.trim();
+if (!val.startsWith('#') && (val.length === 3 || val.length === 6)) val = '#' + val;
+if (/^#[0-9A-Fa-f]{3}$|^#[0-9A-Fa-f]{6}$/.test(val)) el2.value = val;
+} else {
+el2.value = el1.value;
+}
+}
+}
+
+function applyMoonTabCustomTheme() {
+const moonsBg = document.getElementById('moontab-bg-text').value || document.getElementById('moontab-bg-picker').value || '#07060d';
+const cardBg = document.getElementById('moontab-card-text').value || document.getElementById('moontab-card-picker').value || '#120e24';
+const text = document.getElementById('moontab-text-hex').value || document.getElementById('moontab-text-picker').value || '#fef3c7';
+const accent1 = document.getElementById('moontab-accent1-text').value || document.getElementById('moontab-accent1-picker').value || '#fbbf24';
+const accent2 = document.getElementById('moontab-accent2-text').value || document.getElementById('moontab-accent2-picker').value || '#f59e0b';
+
+appData.moonTabTheme = { moonsBg, cardBg, text, accent1, accent2 };
+saveToStorage();
+applyThemeColors();
+renderMoonSection();
+alert('✨ Moon Tab Theme updated successfully!');
+}
+
+async function autoFetchYouTubeMetadata() {
+  const urlInput = document.getElementById('new-song-yt');
+  const statusEl = document.getElementById('yt-autofetch-status');
+  if (!urlInput) return;
+  const url = urlInput.value.trim();
+  const videoId = extractVideoId(url);
+  
+  if (!videoId || videoId.length !== 11) {
+    if (statusEl) statusEl.innerHTML = '';
+    return;
+  }
+  
+  if (statusEl) statusEl.innerHTML = '<span class="text-purple-600 font-semibold animate-pulse">✨ Auto-fetching title & artist details...</span>';
+  
+  try {
+    const res = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${videoId}`);
+    const data = await res.json();
+    if (data && data.title) {
+      let rawTitle = data.title;
+      let author = data.author_name || "YouTube Artist";
+      let cleanTitle = rawTitle;
+      let cleanArtist = author;
+      
+      rawTitle = rawTitle.replace(/\[.*?\]|\(Official.*?\)/gi, '').replace(/\(MV\)|\(HD\)|\(Audio\)|\(Lyrics\)/gi, '').trim();
+      
+      if (rawTitle.includes('-')) {
+        const parts = rawTitle.split('-');
+        cleanArtist = parts[0].trim();
+        cleanTitle = parts.slice(1).join('-').trim();
+      } else if (rawTitle.includes('—')) {
+        const parts = rawTitle.split('—');
+        cleanArtist = parts[0].trim();
+        cleanTitle = parts.slice(1).join('—').trim();
+      } else {
+        cleanTitle = rawTitle;
+        cleanArtist = author.replace(/VEVO|Official|Topic/gi, '').trim() || author;
+      }
+      
+      document.getElementById('new-song-title').value = cleanTitle;
+      document.getElementById('new-song-artist').value = cleanArtist;
+      if (statusEl) statusEl.innerHTML = '<span class="text-emerald-600 font-bold">✅ Title & Artist auto-filled!</span>';
+      return;
+    }
+  } catch (e) {
+    console.error("Auto-fetch error:", e);
+  }
+  
+  document.getElementById('new-song-title').value = `Dedicated Track (${videoId.substring(0, 4)})`;
+  document.getElementById('new-song-artist').value = "YouTube Artist";
+  if (statusEl) statusEl.innerHTML = '<span class="text-amber-600 font-medium">✨ Title & Artist auto-populated</span>';
+}
+
+function renderModalLettersList() {
+const list = document.getElementById('modal-letters-list');
+if (!list) return;
+const letters = appData.letters || [];
+if (letters.length === 0) {
+list.innerHTML = `<div class="text-xs text-purple-600 p-2 text-center font-light">No letters yet.</div>`;
+return;
+}
+list.innerHTML = letters.map((l, i) => ` <div class="flex items-center justify-between p-2.5 rounded-xl bg-white border border-purple-200 text-xs gap-2"> <div class="truncate flex-1"> <span class="font-bold text-purple-950 block truncate">${escapeHtml(l.heading || l.badge || 'Letter #' + (i + 1))}</span> <span class="text-[10px] text-purple-700 truncate block">${escapeHtml(l.body ? l.body.substring(0, 35) + '...' : 'No body')}</span> </div> <div class="flex items-center gap-1 shrink-0"> <button onclick="editLetter(${i})" class="px-2 py-1 bg-purple-100 hover:bg-purple-200 text-purple-800 font-medium text-[10px] rounded-lg transition-colors">Edit</button> <button onclick="deleteLetter(${i})" class="p-1 text-red-600 hover:bg-red-50 rounded-lg transition-colors" title="Delete"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button> </div> </div>`).join('');
+if (window.lucide) lucide.createIcons();
+}
+
+function clearLetterForm() {
+document.getElementById('editing-letter-index').value = "-1";
+document.getElementById('letter-editor-mode-label').innerText = "Add New Letter";
+document.getElementById('new-letter-badge').value = '';
+document.getElementById('new-letter-heading').value = '';
+document.getElementById('new-letter-date').value = '';
+document.getElementById('new-letter-greeting').value = '';
+document.getElementById('new-letter-body').value = '';
+document.getElementById('new-letter-signature').value = '';
+document.getElementById('add-letter-btn').innerText = "Add Letter";
+document.getElementById('cancel-letter-edit-btn').classList.add('hidden');
+}
+
+function editLetter(idx) {
+const letter = appData.letters[idx];
+if (!letter) return;
+document.getElementById('editing-letter-index').value = idx;
+document.getElementById('letter-editor-mode-label').innerText = `Edit Letter #${idx + 1}`;
+document.getElementById('new-letter-badge').value = letter.badge !== undefined ? letter.badge : `POSTAL LETTER #${idx + 1}`;
+document.getElementById('new-letter-heading').value = letter.heading || '';
+document.getElementById('new-letter-date').value = letter.date || '';
+document.getElementById('new-letter-greeting').value = letter.greeting !== undefined ? letter.greeting : "Dearest Solace,";
+document.getElementById('new-letter-body').value = letter.body || '';
+document.getElementById('new-letter-signature').value = letter.signature || '';
+document.getElementById('add-letter-btn').innerText = "Save Letter Changes";
+document.getElementById('cancel-letter-edit-btn').classList.remove('hidden');
+}
+
+function addNewLetter() {
+const editIdx = parseInt(document.getElementById('editing-letter-index').value, 10);
+const badge = document.getElementById('new-letter-badge').value.trim();
+const heading = document.getElementById('new-letter-heading').value.trim();
+const date = document.getElementById('new-letter-date').value.trim();
+const greeting = document.getElementById('new-letter-greeting').value.trim();
+const body = document.getElementById('new-letter-body').value.trim();
+const signature = document.getElementById('new-letter-signature').value.trim();
+if (!body) return;
+const letterObj = { badge, heading, date, greeting, body, signature };
+if (editIdx >= 0 && editIdx < appData.letters.length) {
+appData.letters[editIdx] = letterObj;
+} else {
+appData.letters.push(letterObj);
+}
+clearLetterForm();
+saveToStorage();
+renderIntro();
+renderModalLettersList();
+}
+
+function deleteLetter(idx) {
+appData.letters.splice(idx, 1);
+clearLetterForm();
+saveToStorage();
+renderIntro();
+renderModalLettersList();
+}
+
+function renderModalSongsList() {
+const list = document.getElementById('modal-songs-list');
+if (!list) return;
+const songs = appData.songs || [];
+list.innerHTML = songs.map((s, i) => ` <div class="flex items-center justify-between p-2 rounded-xl bg-white border border-purple-200 text-xs"> <span class="truncate font-semibold text-purple-950">${escapeHtml(s.title)} — ${escapeHtml(s.artist)} (${escapeHtml(s.category || 'Favorite')})</span> <div class="flex items-center gap-1 shrink-0"><button onclick="editSong(${i})" class="px-2 py-1 bg-purple-100 hover:bg-purple-200 text-purple-800 font-medium text-[10px] rounded-lg transition-colors">Edit</button><button onclick="deleteSong(${i})" class="text-red-600 hover:text-red-800 p-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button></div> </div>`).join('');
+if (window.lucide) lucide.createIcons();
+}
+
+function clearSongForm() {
+document.getElementById('editing-song-index').value = "-1";
+document.getElementById('song-editor-mode-label').innerText = "Add Song";
+document.getElementById('new-song-title').value = '';
+document.getElementById('new-song-artist').value = '';
+document.getElementById('new-song-category').value = 'Favorite';
+document.getElementById('new-song-yt').value = '';
+document.getElementById('new-song-meaning').value = '';
+document.getElementById('add-song-btn').innerText = "Add Song";
+document.getElementById('cancel-song-edit-btn').classList.add('hidden');
+}
+
+function editSong(idx) {
+const s = appData.songs[idx];
+if (!s) return;
+document.getElementById('editing-song-index').value = idx;
+document.getElementById('song-editor-mode-label').innerText = `Edit Song #${idx + 1}`;
+document.getElementById('new-song-title').value = s.title || '';
+document.getElementById('new-song-artist').value = s.artist || '';
+document.getElementById('new-song-category').value = s.category || 'Favorite';
+document.getElementById('new-song-yt').value = s.ytUrl || '';
+document.getElementById('new-song-meaning').value = s.meaning || '';
+document.getElementById('add-song-btn').innerText = "Save Song Changes";
+document.getElementById('cancel-song-edit-btn').classList.remove('hidden');
+}
+
+function addNewSong() {
+const editIdx = parseInt(document.getElementById('editing-song-index').value, 10);
+const title = document.getElementById('new-song-title').value.trim();
+const artist = document.getElementById('new-song-artist').value.trim();
+const category = document.getElementById('new-song-category').value;
+const ytUrl = document.getElementById('new-song-yt').value.trim();
+const meaning = document.getElementById('new-song-meaning').value.trim();
+if (!title || !ytUrl) return;
+const songObj = { title, artist, category, ytUrl, meaning };
+if (editIdx >= 0 && editIdx < appData.songs.length) {
+appData.songs[editIdx] = songObj;
+} else {
+appData.songs.push(songObj);
+}
+clearSongForm();
+saveToStorage();
+renderSongs();
+renderModalSongsList();
+}
+
+function deleteSong(idx) {
+appData.songs.splice(idx, 1);
+clearSongForm();
+saveToStorage();
+renderSongs();
+renderModalSongsList();
+}
+
+function renderModalSpotifyList() {
+const list = document.getElementById('modal-spotify-list');
+if (!list) return;
+const tracks = appData.spotifyTracks || [];
+list.innerHTML = tracks.map((t, i) => ` <div class="flex items-center justify-between p-2 rounded-xl bg-white border border-purple-200 text-xs"> <span class="truncate font-semibold text-purple-950">${escapeHtml(t.title)}</span> <div class="flex items-center gap-1 shrink-0"><button onclick="editSpotifyTrack(${i})" class="px-2 py-1 bg-purple-100 hover:bg-purple-200 text-purple-800 font-medium text-[10px] rounded-lg transition-colors">Edit</button><button onclick="deleteSpotifyTrack(${i})" class="text-red-600 hover:text-red-800 p-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button></div> </div>`).join('');
+if (window.lucide) lucide.createIcons();
+}
+
+function clearSpotifyForm() {
+document.getElementById('editing-spotify-index').value = "-1";
+document.getElementById('spotify-editor-mode-label').innerText = "Add / Edit Spotify Playlist";
+document.getElementById('new-spotify-title').value = '';
+document.getElementById('new-spotify-url').value = '';
+document.getElementById('add-spotify-btn').innerText = "Add Spotify Playlist";
+document.getElementById('cancel-spotify-edit-btn').classList.add('hidden');
+}
+
+function editSpotifyTrack(idx) {
+const t = appData.spotifyTracks[idx];
+if (!t) return;
+document.getElementById('editing-spotify-index').value = idx;
+document.getElementById('spotify-editor-mode-label').innerText = `Edit Spotify Playlist #${idx + 1}`;
+document.getElementById('new-spotify-title').value = t.title || '';
+document.getElementById('new-spotify-url').value = t.url || '';
+document.getElementById('add-spotify-btn').innerText = "Save Spotify Changes";
+document.getElementById('cancel-spotify-edit-btn').classList.remove('hidden');
+}
+
+function addNewSpotifyTrack() {
+const editIdx = parseInt(document.getElementById('editing-spotify-index').value, 10);
+const title = document.getElementById('new-spotify-title').value.trim();
+const url = document.getElementById('new-spotify-url').value.trim();
+if (!title || !url) return;
+const spotObj = { title, url };
+if (editIdx >= 0 && editIdx < appData.spotifyTracks.length) {
+appData.spotifyTracks[editIdx] = spotObj;
+} else {
+appData.spotifyTracks.push(spotObj);
+}
+clearSpotifyForm();
+saveToStorage();
+renderSpotifyTracks();
+renderModalSpotifyList();
+}
+
+function deleteSpotifyTrack(idx) {
+appData.spotifyTracks.splice(idx, 1);
+clearSpotifyForm();
+saveToStorage();
+renderSpotifyTracks();
+renderModalSpotifyList();
+}
+
+function renderModalStoriesList() {
+const list = document.getElementById('modal-stories-list');
+if (!list) return;
+const stories = appData.auStories || [];
+list.innerHTML = stories.map((s, i) => ` <div class="flex items-center justify-between p-2 rounded-xl bg-white border border-purple-200 text-xs"> <span class="truncate font-semibold text-purple-950">${escapeHtml(s.title)}</span> <div class="flex items-center gap-1 shrink-0"><button onclick="editAUStory(${i})" class="px-2 py-1 bg-purple-100 hover:bg-purple-200 text-purple-800 font-medium text-[10px] rounded-lg transition-colors">Edit</button><button onclick="deleteAUStory(${i})" class="text-red-600 hover:text-red-800 p-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button></div> </div>`).join('');
+if (window.lucide) lucide.createIcons();
+}
+
+function clearStoryForm() {
+document.getElementById('editing-story-index').value = "-1";
+document.getElementById('story-editor-mode-label').innerText = "Add AU Story";
+document.getElementById('new-au-title').value = '';
+document.getElementById('new-au-content').value = '';
+document.getElementById('new-au-link').value = '';
+document.getElementById('add-story-btn').innerText = "Add Story";
+document.getElementById('cancel-story-edit-btn').classList.add('hidden');
+}
+
+function editAUStory(idx) {
+const s = appData.auStories[idx];
+if (!s) return;
+document.getElementById('editing-story-index').value = idx;
+document.getElementById('story-editor-mode-label').innerText = `Edit Story #${idx + 1}`;
+document.getElementById('new-au-title').value = s.title || '';
+document.getElementById('new-au-content').value = s.content || '';
+document.getElementById('new-au-link').value = s.link || '';
+document.getElementById('add-story-btn').innerText = "Save Story Changes";
+document.getElementById('cancel-story-edit-btn').classList.remove('hidden');
+}
+
+function addNewAUStory() {
+const editIdx = parseInt(document.getElementById('editing-story-index').value, 10);
+const title = document.getElementById('new-au-title').value.trim();
+const content = document.getElementById('new-au-content').value.trim();
+const link = document.getElementById('new-au-link').value.trim();
+if (!title || !content) return;
+const storyObj = { title, content, link };
+if (editIdx >= 0 && editIdx < appData.auStories.length) {
+appData.auStories[editIdx] = storyObj;
+} else {
+appData.auStories.push(storyObj);
+}
+clearStoryForm();
+saveToStorage();
+renderAUStories();
+renderModalStoriesList();
+}
+
+const colorPresets = {
+red: { introBg: '#FFF1F2', textPrimary: '#4C0519', accentColor: '#E11D48', accentColor2: '#BE123C', headerBg: '#FFFFFF', headerText: '#881337', openingBg: '#881337', cardBg: '#FFFFFF' },
+pastelRed: { introBg: '#FFF5F5', textPrimary: '#7F1D1D', accentColor: '#F87171', accentColor2: '#FCA5A5', headerBg: '#FFFFFF', headerText: '#7F1D1D', openingBg: '#991B1B', cardBg: '#FFFFFF' },
+pink: { introBg: '#FFF0F3', textPrimary: '#4A1D24', accentColor: '#DB2777', accentColor2: '#BE185D', headerBg: '#FFFFFF', headerText: '#831843', openingBg: '#591124', cardBg: '#FFFFFF' },
+pastelPink: { introBg: '#FFF0F5', textPrimary: '#701A33', accentColor: '#F472B6', accentColor2: '#F9A8D4', headerBg: '#FFFFFF', headerText: '#701A33', openingBg: '#831843', cardBg: '#FFFFFF' },
+violet: { introBg: '#F3E8FF', textPrimary: '#3B0764', accentColor: '#9333EA', accentColor2: '#7E22CE', headerBg: '#FFFFFF', headerText: '#3B0764', openingBg: '#3B0764', cardBg: '#FFFFFF' },
+pastelViolet: { introBg: '#FAF5FF', textPrimary: '#4C1D95', accentColor: '#C084FC', accentColor2: '#D8B4FE', headerBg: '#FFFFFF', headerText: '#4C1D95', openingBg: '#4C1D95', cardBg: '#FFFFFF' },
+blue: { introBg: '#EFF6FF', textPrimary: '#1E3A8A', accentColor: '#2563EB', accentColor2: '#1D4ED8', headerBg: '#FFFFFF', headerText: '#1E3A8A', openingBg: '#1E3A8A', cardBg: '#FFFFFF' },
+pastelBlue: { introBg: '#F0F9FF', textPrimary: '#0C4A6E', accentColor: '#38BDF8', accentColor2: '#7DD3FC', headerBg: '#FFFFFF', headerText: '#0C4A6E', openingBg: '#0C4A6E', cardBg: '#FFFFFF' },
+indigo: { introBg: '#EEF2FF', textPrimary: '#312E81', accentColor: '#4F46E5', accentColor2: '#4338CA', headerBg: '#FFFFFF', headerText: '#312E81', openingBg: '#312E81', cardBg: '#FFFFFF' },
+pastelIndigo: { introBg: '#EEF2FF', textPrimary: '#312E81', accentColor: '#818CF8', accentColor2: '#A5B4FC', headerBg: '#FFFFFF', headerText: '#312E81', openingBg: '#818CF8', cardBg: '#FFFFFF' },
+brown: { introBg: '#FEF3C7', textPrimary: '#451A03', accentColor: '#D97706', accentColor2: '#B45309', headerBg: '#FFFFFF', headerText: '#451A03', openingBg: '#451A03', cardBg: '#FFFFFF' },
+pastelBrown: { introBg: '#FFFBEB', textPrimary: '#78350F', accentColor: '#FBBF24', accentColor2: '#FDE68A', headerBg: '#FFFFFF', headerText: '#78350F', openingBg: '#78350F', cardBg: '#FFFFFF' },
+beige: { introBg: '#F5F5F4', textPrimary: '#292524', accentColor: '#78716C', accentColor2: '#57534E', headerBg: '#FFFFFF', headerText: '#292524', openingBg: '#44403C', cardBg: '#FFFFFF' },
+neutral: { introBg: '#FAFAFA', textPrimary: '#18181B', accentColor: '#3F3F46', accentColor2: '#27272A', headerBg: '#FFFFFF', headerText: '#18181B', openingBg: '#18181B', cardBg: '#FFFFFF' },
+orange: { introBg: '#FFF7ED', textPrimary: '#7C2D12', accentColor: '#EA580C', accentColor2: '#C2410C', headerBg: '#FFFFFF', headerText: '#7C2D12', openingBg: '#7C2D12', cardBg: '#FFFFFF' },
+pastelOrange: { introBg: '#FFFBEB', textPrimary: '#9A3412', accentColor: '#FB923C', accentColor2: '#FDBA74', headerBg: '#FFFFFF', headerText: '#9A3412', openingBg: '#9A3412', cardBg: '#FFFFFF' },
+yellow: { introBg: '#FEFCE8', textPrimary: '#713F12', accentColor: '#CA8A04', accentColor2: '#A16207', headerBg: '#FFFFFF', headerText: '#713F12', openingBg: '#713F12', cardBg: '#FFFFFF' },
+pastelYellow: { introBg: '#FEFDE8', textPrimary: '#854D0E', accentColor: '#FACC15', accentColor2: '#FEF08A', headerBg: '#FFFFFF', headerText: '#854D0E', openingBg: '#854D0E', cardBg: '#FFFFFF' },
+green: { introBg: '#ECFDF5', textPrimary: '#064E3B', accentColor: '#059669', accentColor2: '#047857', headerBg: '#FFFFFF', headerText: '#064E3B', openingBg: '#064E3B', cardBg: '#FFFFFF' },
+pastelGreen: { introBg: '#F0FDF4', textPrimary: '#14532D', accentColor: '#4ADE80', accentColor2: '#86EFAC', headerBg: '#FFFFFF', headerText: '#14532D', openingBg: '#14532D', cardBg: '#FFFFFF' },
+rainbow: { introBg: '#FFF8F6', textPrimary: '#3A1B20', accentColor: '#E11D48', accentColor2: '#2563EB', headerBg: '#FFFFFF', headerText: '#881337', openingBg: '#1C1917', cardBg: '#FFFFFF' },
+rainbowPastel: { introBg: '#FDF4FF', textPrimary: '#4A1D24', accentColor: '#EC4899', accentColor2: '#38BDF8', headerBg: '#FFFFFF', headerText: '#831843', openingBg: '#591124', cardBg: '#FFFFFF' }
+};
+
+function renderCustomPaletteButtons() {
+const container = document.getElementById('palette-buttons-container');
+if (!container) return;
+
+let html = '';
+for (const [key, p] of Object.entries(colorPresets)) {
+html += `<button onclick="applyPresetPalette('${key}')" class="palette-btn" style="background: linear-gradient(135deg, ${p.accentColor} 50%, ${p.accentColor2 || p.accentColor} 50%);" title="${key}"></button>`;
+}
+
+const savedPalettes = appData.savedCustomPalettes || [];
+savedPalettes.forEach((sp, idx) => {
+html += `<div class="relative group inline-block">
+<button onclick="applySavedCustomPalette(${idx})" class="palette-btn ring-2 ring-amber-400" style="background: linear-gradient(135deg, ${sp.accentColor} 50%, ${sp.accentColor2 || sp.accentColor} 50%);" title="Saved: ${escapeHtml(sp.name)}"></button>
+<button onclick="deleteSavedCustomPalette(${idx})" class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-red-600 text-white text-[8px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" title="Delete Saved Palette">×</button>
+</div>`;
+});
+
+container.innerHTML = html;
+}
+
+function applyPresetPalette(name) {
+if (colorPresets[name]) {
+appData.theme = { ...appData.theme, ...colorPresets[name] };
+if (!appData.theme.accentColor2) appData.theme.accentColor2 = appData.theme.accentColor;
+document.getElementById('theme-intro-bg-hex').value = appData.theme.introBg;
+document.getElementById('theme-text-primary-hex').value = appData.theme.textPrimary;
+document.getElementById('theme-accent-color-hex').value = appData.theme.accentColor;
+document.getElementById('theme-accent-color-2-hex').value = appData.theme.accentColor2;
+document.getElementById('theme-header-bg-hex').value = appData.theme.headerBg;
+document.getElementById('theme-opening-bg-hex').value = appData.theme.openingBg;
+
+const dualPicker1 = document.getElementById('dual-hex-picker-1');
+const dualText1 = document.getElementById('dual-hex-text-1');
+const dualPicker2 = document.getElementById('dual-hex-picker-2');
+const dualText2 = document.getElementById('dual-hex-text-2');
+if (dualPicker1) dualPicker1.value = appData.theme.accentColor;
+if (dualText1) dualText1.value = appData.theme.accentColor;
+if (dualPicker2) dualPicker2.value = appData.theme.accentColor2;
+if (dualText2) dualText2.value = appData.theme.accentColor2;
+
+saveToStorage();
+applyThemeColors();
+renderIntro();
+renderSongs();
+renderSpotifyTracks();
+renderAUStories();
+renderMoonSection();
+}
+}
+
+function applySavedCustomPalette(idx) {
+const saved = appData.savedCustomPalettes?.[idx];
+if (!saved) return;
+appData.theme = { ...appData.theme, ...saved };
+document.getElementById('theme-intro-bg-hex').value = appData.theme.introBg;
+document.getElementById('theme-text-primary-hex').value = appData.theme.textPrimary;
+document.getElementById('theme-accent-color-hex').value = appData.theme.accentColor;
+document.getElementById('theme-accent-color-2-hex').value = appData.theme.accentColor2 || saved.accentColor;
+document.getElementById('theme-header-bg-hex').value = appData.theme.headerBg;
+document.getElementById('theme-opening-bg-hex').value = appData.theme.openingBg;
+
+const dualPicker1 = document.getElementById('dual-hex-picker-1');
+const dualText1 = document.getElementById('dual-hex-text-1');
+const dualPicker2 = document.getElementById('dual-hex-picker-2');
+const dualText2 = document.getElementById('dual-hex-text-2');
+if (dualPicker1) dualPicker1.value = appData.theme.accentColor;
+if (dualText1) dualText1.value = appData.theme.accentColor;
+if (dualPicker2) dualPicker2.value = appData.theme.accentColor2;
+if (dualText2) dualText2.value = appData.theme.accentColor2;
+
+saveToStorage();
+applyThemeColors();
+renderIntro();
+renderSongs();
+renderSpotifyTracks();
+renderAUStories();
+renderMoonSection();
+}
+
+function deleteSavedCustomPalette(idx) {
+if (!appData.savedCustomPalettes) return;
+appData.savedCustomPalettes.splice(idx, 1);
+saveToStorage();
+renderCustomPaletteButtons();
+}
+
+function saveCurrentCustomPalette() {
+const nameInput = document.getElementById('save-palette-name-input');
+const name = nameInput ? nameInput.value.trim() : '';
+if (!name) {
+alert('Please enter a name for your saved palette.');
+return;
+}
+if (!appData.savedCustomPalettes) appData.savedCustomPalettes = [];
+appData.savedCustomPalettes.push({
+name: name,
+...appData.theme
+});
+if (nameInput) nameInput.value = '';
+saveToStorage();
+renderCustomPaletteButtons();
+alert(`Palette "${name}" saved successfully!`);
+}
+
+function syncDualHexText(which) {
+const picker = document.getElementById(`dual-hex-picker-${which}`);
+const text = document.getElementById(`dual-hex-text-${which}`);
+if (picker && text) {
+text.value = picker.value;
+}
+}
+
+function syncDualHexPicker(which) {
+const picker = document.getElementById(`dual-hex-picker-${which}`);
+const text = document.getElementById(`dual-hex-text-${which}`);
+if (picker && text) {
+let val = text.value.trim();
+if (!val.startsWith('#') && (val.length === 3 || val.length === 6)) {
+val = '#' + val;
+}
+if (/^#[0-9A-Fa-f]{3}$|^#[0-9A-Fa-f]{6}$/.test(val)) {
+picker.value = val;
+}
+}
+}
+
+function applyDualHexColors() {
+let hex1 = document.getElementById('dual-hex-text-1')?.value || document.getElementById('dual-hex-picker-1')?.value || '#B82C38';
+let hex2 = document.getElementById('dual-hex-text-2')?.value || document.getElementById('dual-hex-picker-2')?.value || '#E11D48';
+
+if (!hex1.startsWith('#')) hex1 = '#' + hex1;
+if (!hex2.startsWith('#')) hex2 = '#' + hex2;
+
+document.getElementById('dual-hex-picker-1').value = hex1;
+document.getElementById('dual-hex-text-1').value = hex1;
+document.getElementById('dual-hex-picker-2').value = hex2;
+document.getElementById('dual-hex-text-2').value = hex2;
+
+let cleanHex = hex1.replace('#', '');
+if (cleanHex.length === 3) cleanHex = cleanHex.split('').map(c => c + c).join('');
+let num = parseInt(cleanHex, 16);
+let r = (num >> 16) & 255;
+let g = (num >> 8) & 255;
+let b = num & 255;
+
+let bgR = Math.min(255, Math.floor(r + (255 - r) * 0.93));
+let bgG = Math.min(255, Math.floor(g + (255 - g) * 0.93));
+let bgB = Math.min(255, Math.floor(b + (255 - b) * 0.93));
+let softBg = `#${((1 << 24) + (bgR << 16) + (bgG << 8) + bgB).toString(16).slice(1)}`;
+
+let textR = Math.floor(r * 0.35);
+let textG = Math.floor(g * 0.35);
+let textB = Math.floor(b * 0.35);
+let deepText = `#${((1 << 24) + (textR << 16) + (textG << 8) + textB).toString(16).slice(1)}`;
+
+appData.theme = {
+introBg: softBg,
+songsBg: softBg,
+spotifyBg: softBg,
+storiesBg: softBg,
+cardBg: '#FFFFFF',
+textPrimary: deepText,
+accentColor: hex1,
+accentColor2: hex2,
+openingBg: deepText,
+openingText: '#FFF8F6',
+headerBg: '#FFFFFF',
+headerText: deepText
+};
+
+document.getElementById('theme-intro-bg-hex').value = softBg;
+document.getElementById('theme-text-primary-hex').value = deepText;
+document.getElementById('theme-accent-color-hex').value = hex1;
+document.getElementById('theme-accent-color-2-hex').value = hex2;
+document.getElementById('theme-header-bg-hex').value = '#FFFFFF';
+document.getElementById('theme-opening-bg-hex').value = deepText;
+
+saveToStorage();
+applyThemeColors();
+renderIntro();
+renderSongs();
+renderSpotifyTracks();
+renderAUStories();
+renderMoonSection();
+}
+
+function updateCustomColorsFromHexInput() {
+const mainBg = document.getElementById('theme-intro-bg-hex').value.trim() || '#FFF8F6';
+const textPrimary = document.getElementById('theme-text-primary-hex').value.trim() || '#3A1B20';
+const accentColor = document.getElementById('theme-accent-color-hex').value.trim() || '#B82C38';
+const accentColor2 = document.getElementById('theme-accent-color-2-hex').value.trim() || '#E11D48';
+const headerBg = document.getElementById('theme-header-bg-hex').value.trim() || '#FFFFFF';
+const openingBg = document.getElementById('theme-opening-bg-hex').value.trim() || '#1c1917';
+
+appData.theme = {
+introBg: mainBg,
+songsBg: mainBg,
+spotifyBg: mainBg,
+storiesBg: mainBg,
+cardBg: appData.theme?.cardBg || '#FFFFFF',
+textPrimary: textPrimary,
+accentColor: accentColor,
+accentColor2: accentColor2,
+openingBg: openingBg,
+openingText: appData.theme?.openingText || '#fff8f6',
+headerBg: headerBg,
+headerText: textPrimary
+};
+
+const dualPicker1 = document.getElementById('dual-hex-picker-1');
+const dualText1 = document.getElementById('dual-hex-text-1');
+const dualPicker2 = document.getElementById('dual-hex-picker-2');
+const dualText2 = document.getElementById('dual-hex-text-2');
+if (dualPicker1) dualPicker1.value = accentColor;
+if (dualText1) dualText1.value = accentColor;
+if (dualPicker2) dualPicker2.value = accentColor2;
+if (dualText2) dualText2.value = accentColor2;
+
+saveToStorage();
+applyThemeColors();
+renderIntro();
+renderSongs();
+renderSpotifyTracks();
+renderAUStories();
+renderMoonSection();
+}
+
+function deleteAUStory(idx) {
+appData.auStories.splice(idx, 1);
+clearStoryForm();
+saveToStorage();
+renderAUStories();
+renderModalStoriesList();
+}
+
+function renderMoonEditorList() {
+const container = document.getElementById('moon-editor-container');
+if (!container) return;
+const moons = sanitizeMoonData(appData.moonMessages);
+container.innerHTML = moons.map((m, mIdx) => `<div class="p-4 bg-white/90 rounded-2xl border border-purple-200 space-y-3 shadow-sm"> <div class="flex items-center gap-2 border-b border-purple-200 pb-2"> <span class="text-2xl">${m.emoji}</span> <span class="text-xs font-bold text-purple-950 uppercase">${escapeHtml(m.title)}</span> </div> <div class="grid grid-cols-1 md:grid-cols-2 gap-2"> <div> <label class="text-[10px] font-bold text-purple-800 uppercase block mb-1">Title</label> <input type="text" id="moon-title-input-${mIdx}" value="${escapeHtml(m.title)}" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs font-medium focus:outline-none focus:border-purple-500 bg-white"> </div> <div> <label class="text-[10px] font-bold text-purple-800 uppercase block mb-1">Prompt</label> <input type="text" id="moon-prompt-input-${mIdx}" value="${escapeHtml(m.prompt)}" class="w-full px-3 py-2 rounded-xl border border-purple-200 text-xs font-medium focus:outline-none focus:border-purple-500 bg-white"> </div> </div> <div class="space-y-2"> <label class="text-[10px] font-bold text-purple-800 uppercase block">Notes List</label> <div id="moon-msg-list-${mIdx}" class="space-y-2"> ${m.messages.map((msg, msgIdx) =>
+`<div class="flex items-start gap-2">
+<textarea id="moon-msg-input-${mIdx}-${msgIdx}" rows="2" class="w-full p-2.5 rounded-xl border border-purple-200 text-xs focus:outline-none focus:border-purple-500 font-light bg-white" placeholder="Write message note here...">${escapeHtml(msg)}</textarea>
+${m.messages.length > 1 ? `<button onclick="removeMoonMessageItem(${mIdx}, ${msgIdx})" class="p-2 rounded-lg text-red-600 hover:bg-red-100 transition-colors shrink-0" title="Delete Note"><i data-lucide="trash-2" class="w-4 h-4"></i></button>` : ''}
+</div>`).join('')} </div> <button onclick="addMoonMessageItem(${mIdx})" class="mt-2 w-full py-2 bg-purple-200 hover:bg-purple-300 text-purple-900 font-medium text-xs rounded-xl flex items-center justify-center gap-1.5 transition-colors border border-purple-300"> <i data-lucide="plus" class="w-3.5 h-3.5"></i> <span>Add Another Message</span> </button> </div> </div>`).join('');
+if (window.lucide) lucide.createIcons();
+}
+
+function addMoonMessageItem(mIdx) {
+const moons = sanitizeMoonData(appData.moonMessages);
+moons[mIdx].messages.push("New message note...");
+appData.moonMessages = moons;
+saveToStorage();
+renderMoonEditorList();
+}
+
+function removeMoonMessageItem(mIdx, msgIdx) {
+const moons = sanitizeMoonData(appData.moonMessages);
+if (moons[mIdx].messages.length > 1) {
+moons[mIdx].messages.splice(msgIdx, 1);
+appData.moonMessages = moons;
+saveToStorage();
+renderMoonEditorList();
+}
+}
+
+function saveChanges() {
+const passcode = document.getElementById('edit-passcode').value.trim();
+const openingBadge = document.getElementById('opening-badge-input').value.trim();
+const openingTitle = document.getElementById('opening-title-input').value.trim();
+const openingSubtext = document.getElementById('opening-subtext-input').value.trim();
+const webhookInput = document.getElementById('discord-webhook-input');
+const moonFooterInput = document.getElementById('moon-footer-note-input');
+
+if (passcode) appData.customizePasscode = passcode;
+if (webhookInput) appData.discordWebhookUrl = webhookInput.value.trim();
+if (moonFooterInput) appData.moonFooterNote = moonFooterInput.value.trim() || 'Always here for you';
+
+appData.opening = {
+badgeText: openingBadge || "PROT. SPACE",
+title: openingTitle || "For My Solace",
+subtext: openingSubtext || "Collection of letters, songs, and stories compiled with you in mind."
+};
+const moons = sanitizeMoonData(appData.moonMessages);
+moons.forEach((m, mIdx) => {
+const titleInput = document.getElementById(`moon-title-input-${mIdx}`);
+if (titleInput) m.title = titleInput.value.trim() || m.title;
+const promptInput = document.getElementById(`moon-prompt-input-${mIdx}`);
+if (promptInput) m.prompt = promptInput.value.trim() || m.prompt;
+const newMsgs = [];
+m.messages.forEach((_, msgIdx) => {
+const textarea = document.getElementById(`moon-msg-input-${mIdx}-${msgIdx}`);
+if (textarea) {
+const val = textarea.value.trim();
+if (val) newMsgs.push(val);
+}
+});
+m.messages = newMsgs.length > 0 ? newMsgs : m.messages;
+});
+appData.moonMessages = moons;
+saveToStorage();
+initApp();
+toggleEditModal();
+}
+
+function saveToStorage() {
+localStorage.setItem('dedicated_solace_site_data', JSON.stringify(appData));
+}
+
+function downloadUpdatedWebsiteFile() {
+const currentFullHtml = document.documentElement.outerHTML;
+const updatedDataJson = JSON.stringify(appData, null, 2);
+const regex = /const defaultInitialData = {[\s\S]*?};/;
+const newHtml = '<!DOCTYPE html>\n<html lang="en" class="scroll-smooth">\n' +
+currentFullHtml.replace(regex, `const defaultInitialData = ${updatedDataJson};`) +
+'\n</html>';
+const blob = new Blob([newHtml], { type: 'text/html' });
+const url = URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url;
+a.download = 'index.html';
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+URL.revokeObjectURL(url);
+}
+
+function extractVideoId(url) {
+if (!url) return '';
+let str = url.trim();
+if (/^[a-zA-Z0-9_-]{11}$/.test(str)) return str;
+const regExp = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?|shorts)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+const match = str.match(regExp);
+return match ? match[1] : str;
+}
+
+function escapeHtml(str) {
+if (!str) return '';
+return String(str)
+.replace(/&/g, '&amp;')
+.replace(/</g, '&lt;')
+.replace(/>/g, '&gt;')
+.replace(/"/g, '&quot;')
+.replace(/'/g, '&#039;');
+}
+
+function initApp() {
+applyThemeColors();
+renderIntro();
+renderSongs();
+renderSpotifyTracks();
+renderAUStories();
+renderMoonSection();
+if (!appData.customizePasscode) appData.customizePasscode = "1109";
+if (window.lucide) lucide.createIcons();
+}
+
+window.addEventListener('keydown', (e) => {
+if (e.key === 'Escape') {
+closeMoonModal();
+closePasswordModal();
+}
+});
+
+window.onload = function() {
+initApp();
+};
+</script>
+</body>
+</html>
