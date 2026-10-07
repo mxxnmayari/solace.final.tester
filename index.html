@@ -538,6 +538,19 @@ animation: moonBeamShimmer 1.8s ease-in-out infinite;
 <div class="absolute -bottom-32 -right-32 w-[450px] h-[450px] rounded-full blur-3xl animate-aura-2 pointer-events-none" style="background-color: var(--accent-color, #B82C38); opacity: 0.25;"></div>
 <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-purple-500/10 blur-3xl animate-pulse-glow pointer-events-none"></div>
 
+<!-- OPENING ASSISTIVE TOUCH DOCK -->
+<div id="opening-assistive-dock" class="assistive-touch-float" onclick="toggleOpeningAssistiveMenu(event)" title="Opening AssistiveTouch Menu">
+<i id="opening-assistive-dock-icon" data-lucide="heart" class="w-5 h-5" style="color: var(--accent-color-2);"></i>
+</div>
+
+<div id="opening-assistive-menu-popup" class="fixed z-[110] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-3 border border-stone-200/85 space-y-2 w-56 opacity-0 scale-95 pointer-events-none transition-all duration-200 transform origin-bottom-right">
+<div class="text-[10px] uppercase tracking-widest mono-font font-bold text-stone-400 px-2 pb-1 border-b">Opening Options</div>
+<button onclick="downloadUpdatedWebsiteFile(); closeOpeningAssistiveMenu();" class="w-full text-left px-3 py-2 rounded-xl bg-purple-600 text-white text-xs font-semibold flex items-center gap-2.5 hover:brightness-110 transition-all shadow-md">
+<i data-lucide="download" class="w-3.5 h-3.5 text-purple-200"></i>
+<span>Export index.html (Save)</span>
+</button>
+</div>
+
 <!-- RESTORED SMALL OPENING PAGE CLIPARTS -->
 <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
 <div class="absolute top-[10%] left-[12%] animate-floating-heart text-rose-300">
@@ -1584,6 +1597,69 @@ document.body.classList.remove('overflow-hidden');
 if (window.lucide) lucide.createIcons();
 }
 window.openEnvelopeAnimation = openEnvelopeAnimation;
+
+function toggleOpeningAssistiveMenu(e) {
+e.stopPropagation();
+const menu = document.getElementById('opening-assistive-menu-popup');
+const dock = document.getElementById('opening-assistive-dock');
+if (!menu || !dock) return;
+if (menu.classList.contains('opacity-0')) {
+const rect = dock.getBoundingClientRect();
+menu.style.bottom = `${window.innerHeight - rect.top + 10}px`;
+menu.style.right = `${window.innerWidth - rect.right}px`;
+menu.classList.remove('opacity-0', 'scale-95', 'pointer-events-none');
+menu.classList.add('opacity-100', 'scale-100');
+} else {
+closeOpeningAssistiveMenu();
+}
+}
+
+function closeOpeningAssistiveMenu() {
+const menu = document.getElementById('opening-assistive-menu-popup');
+if (menu) {
+menu.classList.remove('opacity-100', 'scale-100');
+menu.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+}
+}
+
+window.addEventListener('click', (e) => {
+const openMenu = document.getElementById('opening-assistive-menu-popup');
+const openDock = document.getElementById('opening-assistive-dock');
+if (openMenu && openDock && !openMenu.contains(e.target) && !openDock.contains(e.target)) {
+closeOpeningAssistiveMenu();
+}
+});
+
+let isOpeningDragging = false;
+let openStartX, openStartY, openInitX, openInitY;
+const openDock = document.getElementById('opening-assistive-dock');
+if (openDock) {
+openDock.addEventListener('pointerdown', (e) => {
+isOpeningDragging = false;
+openStartX = e.clientX;
+openStartY = e.clientY;
+const rect = openDock.getBoundingClientRect();
+openInitX = rect.left;
+openInitY = rect.top;
+openDock.setPointerCapture(e.pointerId);
+});
+openDock.addEventListener('pointermove', (e) => {
+if (e.buttons === 0) return;
+const dx = e.clientX - openStartX;
+const dy = e.clientY - openStartY;
+if (Math.hypot(dx, dy) > 5) isOpeningDragging = true;
+if (isOpeningDragging) {
+openDock.style.left = `${openInitX + dx}px`;
+openDock.style.top = `${openInitY + dy}px`;
+openDock.style.right = 'auto';
+openDock.style.bottom = 'auto';
+openDock.style.transform = 'none';
+}
+});
+openDock.addEventListener('pointerup', (e) => {
+if (!isOpeningDragging) toggleOpeningAssistiveMenu(e);
+});
+}
 
 function getOutlinedIconSvg(type) {
 const pastelColors = ['#f43f5e', '#ec4899', '#a855f7', '#3b82f6', '#10b981', '#f59e0b', '#e11d48', '#8b5cf6'];
