@@ -342,12 +342,6 @@ background: rgba(255, 255, 255, 0.85);
 display: block;
 animation: cardPopEntrance 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-.line-clamp-4 {
-display: -webkit-box;
--webkit-line-clamp: 4;
--webkit-box-orient: vertical;
-overflow: hidden;
-}
 .palette-btn {
 width: 24px;
 height: 24px;
@@ -1365,7 +1359,7 @@ url: "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M"
 auStories: [
 {
 title: "Dedication Writing",
-content: "Under the warm glow of evening light, stories unfold softly like pages turning in a favorite book.",
+content: "Under the warm glow of evening light, stories unfold softly like pages turning in a favorite book.\n\nEvery chapter brings a new warmth, a familiar comfort, and a gentle reminder of the moments we cherish most in this quiet sanctuary.",
 link: "#"
 }
 ],
@@ -2067,7 +2061,24 @@ if (stories.length === 0) {
 grid.innerHTML = `<div class="col-span-full text-center py-10 text-stone-400 text-xs font-light">No story entries added yet.</div>`;
 return;
 }
-grid.innerHTML = stories.map((s, idx) => ` <div class="book-card-container p-6 md:p-8 space-y-5 flex flex-col justify-between"> <div class="book-bookmark-ribbon" style="background: linear-gradient(135deg, var(--accent-color), var(--accent-color-2));"></div> <div class="space-y-3 pt-2"> <span class="text-[10px] mono-font tracking-widest uppercase font-semibold block" style="color: var(--accent-color-2);">ENTRY #${idx + 1}</span> <h3 class="serif-title text-xl md:text-3xl font-medium tracking-wide text-stone-100">${escapeHtml(s.title || 'Untitled Story')}</h3> <p class="text-xs md:text-sm text-stone-300 leading-relaxed font-light line-clamp-4 whitespace-pre-line bg-black/40 p-4 rounded-xl border border-white/10"> ${escapeHtml(s.content || '')} </p> </div> <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-2"> <a href="${escapeHtml(s.link || '#')}" target="_blank" class="w-full py-3 text-white font-medium text-xs uppercase mono-font tracking-wider rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all hover:scale-102" style="background: linear-gradient(135deg, var(--accent-color), var(--accent-color-2));"> <span>Read Full Story</span> <i data-lucide="external-link" class="w-4 h-4"></i> </a> </div> </div>`).join('');
+grid.innerHTML = stories.map((s, idx) => `
+<div class="book-card-container p-6 md:p-8 space-y-5 flex flex-col justify-between">
+  <div class="book-bookmark-ribbon" style="background: linear-gradient(135deg, var(--accent-color), var(--accent-color-2));"></div>
+  <div class="space-y-3 pt-2">
+    <span class="text-[10px] mono-font tracking-widest uppercase font-semibold block" style="color: var(--accent-color-2);">ENTRY #${idx + 1}</span>
+    <h3 class="serif-title text-xl md:text-3xl font-medium tracking-wide text-stone-100">${escapeHtml(s.title || 'Untitled Story')}</h3>
+    <!-- SCROLLABLE STORY CONTENT CONTAINER TO PREVENT CLIPPING -->
+    <div class="text-xs md:text-sm text-stone-300 leading-relaxed font-light max-h-48 overflow-y-auto pr-2 space-y-3 bg-black/40 p-4 rounded-xl border border-white/10 shadow-inner">
+      <p class="whitespace-pre-line">${escapeHtml(s.content || '')}</p>
+    </div>
+  </div>
+  <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-2">
+    <a href="${escapeHtml(s.link || '#')}" target="_blank" class="w-full py-3 text-white font-medium text-xs uppercase mono-font tracking-wider rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all hover:scale-102" style="background: linear-gradient(135deg, var(--accent-color), var(--accent-color-2));">
+      <span>Read Full Story</span>
+      <i data-lucide="external-link" class="w-4 h-4"></i>
+    </a>
+  </div>
+</div>`).join('');
 renderModalStoriesList();
 if (window.lucide) lucide.createIcons();
 }
