@@ -25,14 +25,6 @@
 --header-text: #1c1917;
 --border-color: rgba(184, 44, 56, 0.2);
 --accent-color-glow: rgba(225, 29, 72, 0.28);
-
-/* SEPARATE MOON TAB CUSTOM THEME VARIABLES */
---moon-tab-bg: #07060d;
---moon-tab-card-bg: #120e24;
---moon-tab-text: #fef3c7;
---moon-tab-accent-1: #fbbf24;
---moon-tab-accent-2: #f59e0b;
---moon-tab-glow: rgba(251, 191, 36, 0.28);
 }
 body {
 background-color: var(--bg-primary);
@@ -159,18 +151,18 @@ clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
 box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 .transparent-glass-jar {
-background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(15, 23, 42, 0.8) 40%, var(--moon-tab-glow, rgba(251, 191, 36, 0.15)) 100%);
+background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(15, 23, 42, 0.8) 40%, var(--accent-color-glow, rgba(251, 191, 36, 0.15)) 100%);
 backdrop-filter: blur(16px);
 -webkit-backdrop-filter: blur(16px);
-border: 2px solid var(--moon-tab-accent-1, #fbbf24);
+border: 2px solid var(--accent-color, #B82C38);
 border-radius: 40px 40px 60px 60px;
-box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), inset 0 0 35px var(--moon-tab-accent-2, #f59e0b);
+box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), inset 0 0 35px var(--accent-color-2, #E11D48);
 position: relative;
 }
 .jar-cork-lid {
 background: linear-gradient(to right, #451a03, #78350f, #92400e, #451a03);
 border-radius: 12px 12px 4px 4px;
-border: 1px solid var(--moon-tab-accent-1, #fbbf24);
+border: 1px solid var(--accent-color, #B82C38);
 box-shadow: 0 6px 16px rgba(0,0,0,0.6);
 }
 .jar-glass-shine {
@@ -184,9 +176,9 @@ border-radius: 30px 10px 10px 30px;
 pointer-events: none;
 }
 .jar-dark-glow-backdrop {
-background-color: var(--moon-tab-card-bg, #120e24);
-box-shadow: 0 0 70px var(--moon-tab-glow, rgba(251, 191, 36, 0.2)), inset 0 0 50px rgba(0, 0, 0, 0.95);
-border: 2px solid var(--moon-tab-accent-1, #fbbf24);
+background-color: #07060d;
+box-shadow: 0 0 70px var(--accent-color-glow, rgba(251, 191, 36, 0.2)), inset 0 0 50px rgba(0, 0, 0, 0.95);
+border: 2px solid var(--accent-color, #B82C38);
 }
 .raw-moon-pile-btn {
 background: transparent !important;
@@ -196,13 +188,13 @@ box-shadow: none !important;
 padding: 0 !important;
 margin: 0 !important;
 line-height: 1;
-filter: drop-shadow(0 0 12px var(--moon-tab-glow, rgba(251, 191, 36, 0.9)));
+filter: drop-shadow(0 0 12px var(--accent-color-glow, rgba(251, 191, 36, 0.9)));
 cursor: pointer;
 user-select: none;
 -webkit-tap-highlight-color: transparent !important;
 }
 .raw-moon-pile-btn:hover {
-filter: drop-shadow(0 0 28px var(--moon-tab-accent-1, rgba(251, 191, 36, 1))) drop-shadow(0 0 14px rgba(255, 255, 255, 1));
+filter: drop-shadow(0 0 28px var(--accent-color, rgba(251, 191, 36, 1))) drop-shadow(0 0 14px rgba(255, 255, 255, 1));
 transform: scale(1.3) translateY(-4px);
 z-index: 40;
 }
@@ -269,14 +261,10 @@ transition: all 0.2s ease;
 .nav-tab-btn.tab-active-intro,
 .nav-tab-btn.tab-active-songs,
 .nav-tab-btn.tab-active-spotify,
-.nav-tab-btn.tab-active-stories {
+.nav-tab-btn.tab-active-stories,
+.nav-tab-btn.tab-active-moons {
 background: linear-gradient(135deg, var(--accent-color, #B82C38), var(--accent-color-2, #E11D48)) !important;
 color: #ffffff !important;
-box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-}
-.nav-tab-btn.tab-active-moons {
-background: linear-gradient(135deg, var(--moon-tab-accent-1, #fbbf24), var(--moon-tab-accent-2, #f59e0b)) !important;
-color: #120e24 !important;
 box-shadow: 0 4px 14px rgba(0,0,0,0.2);
 }
 .song-cat-pill {
@@ -450,8 +438,8 @@ border-width: 2px !important;
 }
 
 @keyframes moonBeamPulse {
-0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 15px var(--moon-tab-glow, rgba(251, 191, 36, 0.8))); }
-50% { transform: scale(1.12) rotate(5deg); filter: drop-shadow(0 0 35px var(--moon-tab-accent-1, rgba(251, 191, 36, 1))); }
+0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 15px var(--accent-color-glow, rgba(251, 191, 36, 0.8))); }
+50% { transform: scale(1.12) rotate(5deg); filter: drop-shadow(0 0 35px var(--accent-color, rgba(251, 191, 36, 1))); }
 }
 .moon-loading-icon {
 animation: moonBeamPulse 2s ease-in-out infinite;
@@ -481,7 +469,6 @@ display: inline-block;
 <div class="absolute -top-32 -left-32 w-[450px] h-[450px] rounded-full blur-3xl animate-aura-1 pointer-events-none" style="background-color: var(--accent-color-2, #E11D48); opacity: 0.25;"></div>
 <div class="absolute -bottom-32 -right-32 w-[450px] h-[450px] rounded-full blur-3xl animate-aura-2 pointer-events-none" style="background-color: var(--accent-color, #B82C38); opacity: 0.25;"></div>
 
-<!-- RESTORED OPENING PAGE FLOATING CLIPARTS -->
 <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-60">
 <div class="absolute top-[10%] left-[12%] animate-floating-heart" style="color: var(--accent-color-2);"><i data-lucide="heart" class="w-4 h-4 fill-current opacity-30"></i></div>
 <div class="absolute top-[18%] right-[14%] animate-floating-heart-rev text-amber-200"><i data-lucide="sparkles" class="w-4 h-4"></i></div>
@@ -493,12 +480,11 @@ display: inline-block;
 <div class="absolute top-[22%] left-[30%] animate-floating-heart-rev text-pink-300"><i data-lucide="disc" class="w-3.5 h-3.5"></i></div>
 </div>
 
-<!-- OPENING ASSISTIVE TOUCH DOCK -->
+<!-- OPENING ASSISTIVE TOUCH DOCK (NO CUSTOMIZE HERE) -->
 <div id="opening-assistive-dock" class="assistive-touch-float" onclick="toggleOpeningAssistiveMenu(event)" title="AssistiveTouch Menu">
 <i id="opening-assistive-dock-icon" data-lucide="heart" class="w-5 h-5 fill-current" style="color: var(--accent-color-2);"></i>
 </div>
 
-<!-- OPENING ASSISTIVE MENU POPUP (NO CUSTOMIZE BUTTON HERE) -->
 <div id="opening-assistive-menu-popup" class="fixed z-[110] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-3 border border-stone-200 space-y-2 w-56 opacity-0 scale-95 pointer-events-none transition-all duration-150 transform origin-bottom-right">
 <div class="text-[10px] uppercase tracking-widest mono-font font-bold text-stone-400 px-2 pb-1 border-b">Menu Options</div>
 <button onclick="downloadUpdatedWebsiteFile(); closeOpeningAssistiveMenu();" class="w-full text-left px-3 py-2 rounded-xl bg-stone-900 text-white text-xs font-semibold flex items-center gap-2.5 shadow-md">
@@ -636,7 +622,7 @@ Collection of letters, songs, and stories compiled with you in mind.
 <span>AU Stories</span>
 </button>
 <button id="tab-btn-moons" onclick="switchTab('moons')" class="nav-tab-btn px-3.5 md:px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 whitespace-nowrap text-stone-600 hover:text-stone-900 font-medium text-xs md:text-sm">
-<i data-lucide="moon" class="w-4 h-4" style="color: var(--moon-tab-accent-1);"></i>
+<i data-lucide="moon" class="w-4 h-4" style="color: var(--accent-color-1);"></i>
 <span>Pick Moon When</span>
 </button>
 <button id="tab-btn-customize" onclick="handleCustomizeClick()" class="nav-tab-btn coquette-ribbon-border px-4 py-2.5 text-purple-900 transition-all flex items-center gap-2 whitespace-nowrap font-medium text-xs md:text-sm">
@@ -855,6 +841,7 @@ Collection of letters, songs, and stories compiled with you in mind.
 
           <div class="space-y-3 bg-white/90 p-4 rounded-2xl border border-purple-200 shadow-sm">
             <h4 class="text-xs uppercase tracking-wider mono-font font-bold text-purple-900 border-b border-purple-100 pb-2">Theme Palettes & Custom Colors</h4>
+            
             <div class="p-3.5 bg-purple-50 rounded-xl border border-purple-200 space-y-2.5">
               <label class="text-[11px] font-medium text-purple-900 block flex items-center justify-between">
                 <span>✨ Dual-HEX Harmony Generator (2 Favorite Colors)</span>
@@ -1066,7 +1053,7 @@ Collection of letters, songs, and stories compiled with you in mind.
 const defaultInitialData = {
 passcode: "0825",
 customizePasscode: "1109",
-discordWebhookUrl: "",
+discordWebhookUrl: "https://discord.com/api/webhooks/1557254995563380756/IOGTfOndnmaGnt85Hw-4iKKXl2Ff-TtXVseVPHsyDXojkwaRKH9xr7cEyxqsbai5Pz2w",
 moonFooterNote: "Always here for you",
 opening: {
 badgeText: "PROT. SPACE",
@@ -1205,6 +1192,7 @@ if (!appData.moonCategoryPointers) appData.moonCategoryPointers = {};
 if (!appData.customizePasscode) appData.customizePasscode = "1109";
 if (!appData.moonFooterNote) appData.moonFooterNote = "Always here for you";
 if (!appData.savedCustomPalettes) appData.savedCustomPalettes = [];
+if (!appData.discordWebhookUrl) appData.discordWebhookUrl = defaultInitialData.discordWebhookUrl;
 if (!appData.moonTabTheme) {
 appData.moonTabTheme = { moonsBg: "#07060d", cardBg: "#120e24", text: "#fef3c7", accent1: "#fbbf24", accent2: "#f59e0b" };
 }
@@ -1286,7 +1274,7 @@ updatePasscodeDots();
 }
 
 function triggerDiscordVisitorNotification() {
-const webhookUrl = appData.discordWebhookUrl;
+const webhookUrl = appData.discordWebhookUrl || defaultInitialData.discordWebhookUrl;
 if (!webhookUrl || !webhookUrl.startsWith('http')) return;
 
 fetch(webhookUrl, {
@@ -1810,7 +1798,7 @@ grid.innerHTML = stories.map((s, idx) => `
     </div>
   </div>
   <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-2">
-    <a href="${escapeHtml(s.link || '#')}" target="_blank" class="w-full py-3 text-white font-medium text-xs uppercase mono-font tracking-wider rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all hover:scale-102" style="background: linear-gradient(135deg, var(--accent-color), var(--accent-color-2));">
+    <a href="${escapeHtml(s.link || '#')}" target="_blank" class="w-full py-3 text-white font-medium text-xs uppercase mono-font tracking-wider rounded-2xl flex items-center justify-center gap-2 shadow-lg transition-all hover:scale-102" style="background: linear-gradient(135deg, var(--accent-color), var(--accent-color-2));">
       <span>Read Full Story</span><i data-lucide="external-link" class="w-4 h-4"></i>
     </a>
   </div>
@@ -2053,7 +2041,7 @@ document.getElementById('opening-title-input').value = appData.opening.title || 
 document.getElementById('opening-subtext-input').value = appData.opening.subtext || "Collection of letters, songs, and stories compiled with you in mind.";
 }
 const webhookInput = document.getElementById('discord-webhook-input');
-if (webhookInput) webhookInput.value = appData.discordWebhookUrl || '';
+if (webhookInput) webhookInput.value = appData.discordWebhookUrl || defaultInitialData.discordWebhookUrl;
 
 const moonFooterInput = document.getElementById('moon-footer-note-input');
 if (moonFooterInput) moonFooterInput.value = appData.moonFooterNote || 'Always here for you';
@@ -2632,7 +2620,7 @@ const webhookInput = document.getElementById('discord-webhook-input');
 const moonFooterInput = document.getElementById('moon-footer-note-input');
 
 if (passcode) appData.customizePasscode = passcode;
-if (webhookInput) appData.discordWebhookUrl = webhookInput.value.trim();
+if (webhookInput) appData.discordWebhookUrl = webhookInput.value.trim() || defaultInitialData.discordWebhookUrl;
 if (moonFooterInput) appData.moonFooterNote = moonFooterInput.value.trim() || 'Always here for you';
 
 appData.opening = {
