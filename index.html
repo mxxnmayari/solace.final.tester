@@ -10,6 +10,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Vector Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Firebase SDKs for cross-device sync -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
   <!-- Google Fonts: Cormorant Garamond, Poppins & DM Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1287,6 +1291,7 @@
       moonCategoryPointers: {}
     };
 
+    const hadLocalSavedDataAtStartup = !!localStorage.getItem('dedicated_solace_site_data');
     let appData = {};
     try {
       const saved = localStorage.getItem('dedicated_solace_site_data');
@@ -2117,15 +2122,34 @@
       if (passModal) passModal.classList.add('opacity-0', 'pointer-events-none');
     }
 
-    function verifyPasscode() {
+    async function verifyPasscode() {
       const input = document.getElementById('passcode-input').value.trim();
       const correctPass = appData.customizePasscode || '1109';
-      if (input === correctPass) {
+      if (input !== correctPass) {
+        document.getElementById('passcode-error').classList.remove('hidden');
+        return;
+      }
+      if (!window.solaceFirebaseAuth) {
+        alert('Firebase is not ready yet. Please refresh the page and try again.');
+        return;
+      }
+      const email = prompt('Owner sign-in: enter your Firebase email address.');
+      if (!email) return;
+      const password = prompt('Enter your Firebase password. It will not be saved by this website.');
+      if (!password) return;
+      try {
+        const credential = await window.solaceFirebaseAuth.signInWithEmailAndPassword(email.trim(), password);
+        if (!credential.user || credential.user.uid !== window.SOLACE_OWNER_UID) {
+          await window.solaceFirebaseAuth.signOut();
+          alert('This account is not authorized to edit For My Solace.');
+          return;
+        }
         localStorage.setItem('is_owner', 'true');
         closePasswordModal();
         toggleEditModal();
-      } else {
-        document.getElementById('passcode-error').classList.remove('hidden');
+      } catch (error) {
+        console.error('Owner sign-in failed:', error);
+        alert('Sign-in failed. Please check your Firebase email/password and try again.');
       }
     }
 
@@ -2790,6 +2814,54 @@
 
     function saveToStorage() {
       localStorage.setItem('dedicated_solace_site_data', JSON.stringify(appData));
+      if (!window.solaceFirebaseDb) return;
+      const user = window.solaceFirebaseAuth && window.solaceFirebaseAuth.currentUser;
+      if (!user || user.uid !== window.SOLACE_OWNER_UID) return;
+      if (!window.solaceCloudDocumentExists && !hadLocalSavedDataAtStartup) {
+        alert('Cloud data has not been initialized yet. Please open For My Solace on the original phone where your saved content exists, sign in as the owner, and save there first.');
+        return;
+      }
+      window.solaceCloudSaveQueue = (window.solaceCloudSaveQueue || Promise.resolve())
+        .then(() => window.solaceDocRef.set({ data: appData, updatedAt: firebase.firestore.FieldValue.serverTimestamp() }))
+        .then(() => { window.solaceCloudDocumentExists = true; })
+        .catch((error) => {
+          console.error('Cloud save failed:', error);
+          alert('Your changes were saved on this phone, but cloud sync failed. Please check your internet connection and Firebase rules.');
+        });
+    }
+
+    async function loadSolaceCloudDataBeforeRender() {
+      try {
+        const firebaseConfig = {
+          apiKey: "AIzaSyCWGjJoh17s1U1ki8bN-j24Y4hLHf1d7U",
+          authDomain: "for-my-solace.firebaseapp.com",
+          projectId: "for-my-solace",
+          storageBucket: "for-my-solace.firebasestorage.app",
+          messagingSenderId: "515491086498",
+          appId: "1:515491086498:web:bca7dfacb8f17bc9ec57fb",
+          measurementId: "G-9X2H6VGPYP"
+        };
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        window.solaceFirebaseAuth = firebase.auth();
+        window.solaceFirebaseDb = firebase.firestore();
+        window.SOLACE_OWNER_UID = "7FA8lKLjLlSOelG1l1VUSC4ihSy1";
+        window.solaceDocRef = window.solaceFirebaseDb.collection('siteData').doc('main');
+        window.solaceCloudSaveQueue = Promise.resolve();
+        const snapshot = await window.solaceDocRef.get();
+        window.solaceCloudDocumentExists = snapshot.exists;
+        if (snapshot.exists && snapshot.data() && snapshot.data().data) {
+          appData = snapshot.data().data;
+          localStorage.setItem('dedicated_solace_site_data', JSON.stringify(appData));
+          if (!appData.moonHistory) appData.moonHistory = [];
+          if (!appData.moonCategoryPointers) appData.moonCategoryPointers = {};
+          if (!appData.savedCustomPalettes) appData.savedCustomPalettes = [];
+          if (!appData.moonFooterNote) appData.moonFooterNote = 'Always here for you';
+          if (!appData.customizePasscode) appData.customizePasscode = '1109';
+        }
+      } catch (error) {
+        console.error('Could not load cloud data:', error);
+        // Keep the existing local/default data visible if the network is unavailable.
+      }
     }
 
     function downloadUpdatedWebsiteFile() {
@@ -2847,7 +2919,8 @@
       }
     });
 
-    window.onload = function() {
+    window.onload = async function() {
+      await loadSolaceCloudDataBeforeRender();
       initApp();
     };
   </script>
