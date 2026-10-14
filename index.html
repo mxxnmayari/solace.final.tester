@@ -682,7 +682,7 @@
               <span class="mono-font uppercase tracking-wider font-semibold">Listening order:</span>
               Favorite <span aria-hidden="true">→</span> Reminds Me of You <span aria-hidden="true">→</span> My Little Heart.
             </p>
-            <p class="text-[11px] md:text-xs leading-relaxed italic opacity-80" style="color: var(--text-primary);">If a track doesn’t start playing, tap the Play/Pause button once to try again.</p>
+            <p class="text-[11px] md:text-xs leading-relaxed italic opacity-80" style="color: var(--text-primary);">If the music doesn’t start playing, tap the Play/Pause button once or twice to try again. No need to refresh, Bubba.</p>
           </div>
           <div id="songs-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4"></div>
         </div>
@@ -1024,7 +1024,8 @@
                 <button id="cancel-song-edit-btn" onclick="clearSongForm()" class="hidden px-4 py-2 bg-purple-100 text-purple-800 text-xs font-medium rounded-xl">Cancel</button>
               </div>
             </div>
-            <div id="modal-songs-list" class="space-y-1.5 max-h-36 overflow-y-auto"></div>
+            <p class="text-[10px] leading-relaxed text-purple-700/80">Use the arrows to change the order. The sequence is saved and shown on the Songs for You page.</p>
+            <div id="modal-songs-list" class="space-y-1.5 max-h-56 overflow-y-auto"></div>
           </div>
 
           <div id="cust-subtab-spotify" class="space-y-4 hidden">
@@ -1834,8 +1835,7 @@
           </div>  
         </div>`;
       }).join('');
-      renderModalSongsList();
-      if (window.lucide) lucide.createIcons();
+      if (window.lucide) lucide.createIcons({ root: grid });
     }
 
     function toggleVinylPin(idx) {
@@ -2329,27 +2329,47 @@
       alert('✨ Moon Tab Theme updated successfully!');
     }
 
-    async function autoFetchYouTubeMetadata() {
+    let youtubeMetadataTimer = null;
+    let youtubeMetadataRequestId = 0;
+
+    function autoFetchYouTubeMetadata() {
+      if (youtubeMetadataTimer) clearTimeout(youtubeMetadataTimer);
+      const requestId = ++youtubeMetadataRequestId;
+      youtubeMetadataTimer = setTimeout(() => fetchYouTubeMetadata(requestId), 350);
+    }
+
+    async function fetchYouTubeMetadata(requestId) {
       const urlInput = document.getElementById('new-song-yt');
       const statusEl = document.getElementById('yt-autofetch-status');
       if (!urlInput) return;
       const videoId = extractVideoId(urlInput.value.trim());
-      if (!videoId || videoId.length !== 11) { if (statusEl) statusEl.innerHTML = ''; return; }
+      if (!videoId || videoId.length !== 11) {
+        if (statusEl) statusEl.innerHTML = '';
+        return;
+      }
       if (statusEl) statusEl.innerHTML = '<span class="text-purple-600 font-semibold animate-pulse">✨ Auto-fetching...</span>';
       try {
         const res = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${videoId}`);
         const data = await res.json();
+        // Ignore results from an older link if the user has already pasted another one.
+        if (requestId !== youtubeMetadataRequestId || extractVideoId(urlInput.value.trim()) !== videoId) return;
         if (data && data.title) {
-          let raw = data.title;
-          let cleanTitle = raw.replace(/\[.*?\]|\(Official.*?\)/gi, '').trim();
-          document.getElementById('new-song-title').value = cleanTitle;
-          document.getElementById('new-song-artist').value = data.author_name || "Artist";
+          const cleanTitle = data.title.replace(/\[.*?\]|\(Official.*?\)/gi, '').trim();
+          const titleInput = document.getElementById('new-song-title');
+          const artistInput = document.getElementById('new-song-artist');
+          if (titleInput) titleInput.value = cleanTitle;
+          if (artistInput) artistInput.value = data.author_name || 'Artist';
           if (statusEl) statusEl.innerHTML = '<span class="text-emerald-600 font-bold">✅ Auto-filled!</span>';
           return;
         }
-      } catch (e) {}
-      document.getElementById('new-song-title').value = `Track (${videoId.substring(0, 4)})`;
-      document.getElementById('new-song-artist').value = "Artist";
+      } catch (e) {
+        // Fall back to a usable title below if metadata lookup is unavailable.
+      }
+      if (requestId !== youtubeMetadataRequestId || extractVideoId(urlInput.value.trim()) !== videoId) return;
+      const titleInput = document.getElementById('new-song-title');
+      const artistInput = document.getElementById('new-song-artist');
+      if (titleInput) titleInput.value = `Track (${videoId.substring(0, 4)})`;
+      if (artistInput) artistInput.value = 'Artist';
       if (statusEl) statusEl.innerHTML = '<span class="text-amber-600 font-medium">✨ Populated</span>';
     }
 
@@ -2419,8 +2439,44 @@
       const list = document.getElementById('modal-songs-list');
       if (!list) return;
       const songs = appData.songs || [];
-      list.innerHTML = songs.map((s, i) => ` <div class="flex items-center justify-between p-2 rounded-xl bg-white border border-purple-200 text-xs"><span class="truncate font-semibold text-purple-950">${escapeHtml(s.title)} — ${escapeHtml(s.artist)}</span> <div class="flex items-center gap-1 shrink-0"><button onclick="editSong(${i})" class="px-2 py-1 bg-purple-100 text-purple-800 text-[10px] rounded-lg">Edit</button><button onclick="deleteSong(${i})" class="text-red-600 p-1"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button></div></div>`).join('');
-      if (window.lucide) lucide.createIcons();
+      if (!songs.length) {
+        list.innerHTML = '<p class="p-3 text-center text-[11px] text-purple-500">No songs added yet.</p>';
+        return;
+      }
+      list.innerHTML = songs.map((s, i) => `
+        <div class="flex items-center gap-2 p-2 rounded-xl bg-white border border-purple-200 text-xs">
+          <span class="w-5 shrink-0 text-center mono-font text-[10px] text-purple-500">${i + 1}</span>
+          <span class="min-w-0 flex-1 font-semibold text-purple-950 break-words">${escapeHtml(s.title || 'Untitled')} <span class="font-normal text-purple-500">— ${escapeHtml(s.artist || 'Unknown artist')}</span></span>
+          <div class="flex items-center gap-1 shrink-0">
+            <button type="button" onclick="moveSong(${i}, -1)" aria-label="Move ${escapeHtml(s.title || 'song')} up" title="Move up" ${i === 0 ? 'disabled' : ''} class="px-2 py-1 rounded-lg border border-purple-200 ${i === 0 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-purple-100'}">↑</button>
+            <button type="button" onclick="moveSong(${i}, 1)" aria-label="Move ${escapeHtml(s.title || 'song')} down" title="Move down" ${i === songs.length - 1 ? 'disabled' : ''} class="px-2 py-1 rounded-lg border border-purple-200 ${i === songs.length - 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-purple-100'}">↓</button>
+            <button type="button" onclick="editSong(${i})" class="px-2 py-1 bg-purple-100 hover:bg-purple-200 text-purple-800 text-[10px] rounded-lg">Edit</button>
+            <button type="button" onclick="deleteSong(${i})" aria-label="Delete song" class="text-red-600 p-1 hover:bg-red-50 rounded-lg"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i></button>
+          </div>
+        </div>`).join('');
+      if (window.lucide) lucide.createIcons({ root: list });
+    }
+
+    function moveSong(idx, direction) {
+      const songs = appData.songs || [];
+      const targetIdx = idx + direction;
+      if (idx < 0 || idx >= songs.length || targetIdx < 0 || targetIdx >= songs.length) return;
+
+      // Keep an in-progress edit attached to the same song when its position changes.
+      const editInput = document.getElementById('editing-song-index');
+      const editingIdx = editInput ? parseInt(editInput.value, 10) : -1;
+      [songs[idx], songs[targetIdx]] = [songs[targetIdx], songs[idx]];
+      if (editInput && Number.isInteger(editingIdx)) {
+        if (editingIdx === idx) editInput.value = String(targetIdx);
+        else if (editingIdx === targetIdx) editInput.value = String(idx);
+        const updatedEditingIdx = parseInt(editInput.value, 10);
+        const label = document.getElementById('song-editor-mode-label');
+        if (label && updatedEditingIdx >= 0) label.innerText = `Edit Song #${updatedEditingIdx + 1}`;
+      }
+      appData.songs = songs;
+      saveToStorage();
+      renderModalSongsList();
+      renderSongs();
     }
 
     function clearSongForm() {
