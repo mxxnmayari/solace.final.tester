@@ -21,17 +21,17 @@
 
   <style>
     :root {
-      --bg-primary: #FFF8F6;
-      --card-bg: #FFFFFF;
-      --text-primary: #3A1B20;
-      --accent-color: #B82C38;
-      --accent-color-2: #E11D48;
-      --opening-bg: #1c1917;
-      --opening-text: #fff8f6;
-      --header-bg: #ffffff;
-      --header-text: #1c1917;
-      --border-color: rgba(184, 44, 56, 0.2);
-      --accent-color-glow: rgba(225, 29, 72, 0.28);
+      --bg-primary: #F5F5F7;
+      --card-bg: #E5E5E7;
+      --text-primary: #1C1C1E;
+      --accent-color: #1C1C1E;
+      --accent-color-2: #AEAEB2;
+      --opening-bg: #1C1C1E;
+      --opening-text: #F5F5F7;
+      --header-bg: #E5E5E7;
+      --header-text: #1C1C1E;
+      --border-color: rgba(174, 174, 178, 0.45);
+      --accent-color-glow: rgba(174, 174, 178, 0.28);
     }
 
     body {
@@ -97,8 +97,8 @@
     }
 
     .letter-stationery-paper {
-      background-color: #FFFFFF !important;
-      color: #1f2937 !important;
+      background-color: #E5E5E7 !important;
+      color: #1C1C1E !important;
       box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.03), 0 4px 20px rgba(0, 0, 0, 0.06);
       border: 1px solid rgba(0, 0, 0, 0.08);
       position: relative;
@@ -131,7 +131,7 @@
     }
 
     .cassette-label-sticker {
-      background: #fffdf9;
+      background: #F5F5F7;
       border-top: 4px solid var(--accent-color, #B82C38);
       border-radius: 14px;
       box-shadow: inset 0 0 10px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
@@ -1092,25 +1092,25 @@
         subtext: "Collection of letters, songs, and stories compiled with you in mind."
       },
       theme: {
-        introBg: "#FFF8F6",
-        songsBg: "#FFF8F6",
-        spotifyBg: "#FFF8F6",
-        storiesBg: "#FFF8F6",
-        cardBg: "#FFFFFF",
-        textPrimary: "#3A1B20",
-        accentColor: "#B82C38",
-        accentColor2: "#E11D48",
-        openingBg: "#1c1917",
-        openingText: "#fff8f6",
-        headerBg: "#ffffff",
-        headerText: "#1c1917"
+        introBg: "#F5F5F7",
+        songsBg: "#F5F5F7",
+        spotifyBg: "#F5F5F7",
+        storiesBg: "#F5F5F7",
+        cardBg: "#E5E5E7",
+        textPrimary: "#1C1C1E",
+        accentColor: "#1C1C1E",
+        accentColor2: "#AEAEB2",
+        openingBg: "#1C1C1E",
+        openingText: "#F5F5F7",
+        headerBg: "#E5E5E7",
+        headerText: "#1C1C1E"
       },
       moonTabTheme: {
-        moonsBg: "#07060d",
-        cardBg: "#120e24",
-        text: "#fef3c7",
-        accent1: "#fbbf24",
-        accent2: "#f59e0b"
+        moonsBg: "#1C1C1E",
+        cardBg: "#3A3A3C",
+        text: "#F5F5F7",
+        accent1: "#AEAEB2",
+        accent2: "#6C6C70"
       },
       savedCustomPalettes: [],
       letters: [
@@ -1616,35 +1616,36 @@
       const theme = appData.theme || defaultInitialData.theme;
       const moonTheme = appData.moonTabTheme || defaultInitialData.moonTabTheme;
 
-      document.documentElement.style.setProperty('--accent-color', theme.accentColor || '#B82C38');
-      document.documentElement.style.setProperty('--accent-color-2', theme.accentColor2 || '#E11D48');
-      document.documentElement.style.setProperty('--text-primary', theme.textPrimary || '#3A1B20');
-      document.documentElement.style.setProperty('--card-bg', theme.cardBg || '#FFFFFF');
-      document.documentElement.style.setProperty('--bg-primary', theme.introBg || '#FFF8F6');
-      document.documentElement.style.setProperty('--border-color', (theme.accentColor2 || '#E11D48') + '33');
-      document.documentElement.style.setProperty('--opening-bg', theme.openingBg || '#1c1917');
-      document.documentElement.style.setProperty('--opening-text', theme.openingText || '#fff8f6');
+      document.documentElement.style.setProperty('--accent-color', theme.accentColor || '#1C1C1E');
+      document.documentElement.style.setProperty('--accent-color-2', theme.accentColor2 || '#AEAEB2');
+      document.documentElement.style.setProperty('--text-primary', theme.textPrimary || '#1C1C1E');
+      document.documentElement.style.setProperty('--card-bg', theme.cardBg || '#E5E5E7');
+      document.documentElement.style.setProperty('--bg-primary', theme.introBg || '#F5F5F7');
+      document.documentElement.style.setProperty('--border-color', (theme.accentColor2 || '#AEAEB2') + '73');
+      document.documentElement.style.setProperty('--accent-color-glow', 'rgba(174, 174, 178, 0.28)');
+      document.documentElement.style.setProperty('--opening-bg', theme.openingBg || '#1C1C1E');
+      document.documentElement.style.setProperty('--opening-text', theme.openingText || '#F5F5F7');
 
-      document.documentElement.style.setProperty('--moon-tab-bg', moonTheme.moonsBg || '#07060d');
-      document.documentElement.style.setProperty('--moon-tab-card-bg', moonTheme.cardBg || '#120e24');
-      document.documentElement.style.setProperty('--moon-tab-text', moonTheme.text || '#fef3c7');
-      document.documentElement.style.setProperty('--moon-tab-accent-1', moonTheme.accent1 || '#fbbf24');
-      document.documentElement.style.setProperty('--moon-tab-accent-2', moonTheme.accent2 || '#f59e0b');
+      document.documentElement.style.setProperty('--moon-tab-bg', moonTheme.moonsBg || '#1C1C1E');
+      document.documentElement.style.setProperty('--moon-tab-card-bg', moonTheme.cardBg || '#3A3A3C');
+      document.documentElement.style.setProperty('--moon-tab-text', moonTheme.text || '#F5F5F7');
+      document.documentElement.style.setProperty('--moon-tab-accent-1', moonTheme.accent1 || '#AEAEB2');
+      document.documentElement.style.setProperty('--moon-tab-accent-2', moonTheme.accent2 || '#6C6C70');
 
       updatePasscodeThemeColor();
 
       if (activeTab === 'moons') {
-        document.body.style.backgroundColor = moonTheme.moonsBg || '#07060d';
-        document.body.style.color = moonTheme.text || '#fef3c7';
+        document.body.style.backgroundColor = moonTheme.moonsBg || '#1C1C1E';
+        document.body.style.color = moonTheme.text || '#F5F5F7';
         const header = document.getElementById('main-header');
         if (header) {
           header.style.backgroundColor = 'rgba(12, 10, 24, 0.95)';
-          header.style.color = moonTheme.text || '#fef3c7';
+          header.style.color = moonTheme.text || '#F5F5F7';
         }
         return;
       }
-      document.body.style.backgroundColor = theme.introBg || '#FFF8F6';
-      document.body.style.color = theme.textPrimary || '#3A1B20';
+      document.body.style.backgroundColor = theme.introBg || '#F5F5F7';
+      document.body.style.color = theme.textPrimary || '#1C1C1E';
       const header = document.getElementById('main-header');
       if (header) {
         header.style.backgroundColor = theme.headerBg || '#FFFFFF';
@@ -1652,8 +1653,8 @@
       }
       const openingScreen = document.getElementById('heart-opening-screen');
       if (openingScreen) {
-        openingScreen.style.backgroundColor = theme.openingBg || '#1c1917';
-        openingScreen.style.color = theme.openingText || '#fff8f6';
+        openingScreen.style.backgroundColor = theme.openingBg || '#1C1C1E';
+        openingScreen.style.color = theme.openingText || '#F5F5F7';
       }
       const openingBadge = document.getElementById('opening-badge-pill');
       if (openingBadge && appData.opening) {
@@ -1715,7 +1716,7 @@
           <div class="letter-stationery-paper p-6 md:p-8 rounded-2xl space-y-4">
             <p class="serif-title text-lg md:text-xl font-semibold italic text-stone-800">${escapeHtml(greetingText)}</p>
             <div class="text-xs md:text-sm leading-relaxed text-stone-700 space-y-3 font-normal">
-              <p class="serif-title text-base md:text-lg font-normal leading-relaxed">${escapeHtml(letter.body || '')}</p>
+              <p class="serif-title text-base md:text-lg font-normal leading-relaxed whitespace-pre-line">${escapeHtml(letter.body || '')}</p>
             </div>
             ${letter.signature ? `<div class="pt-2"><p class="serif-title text-lg md:text-xl font-normal italic text-stone-800">${escapeHtml(letter.signature)}</p></div>` : ''}
           </div>
@@ -1764,15 +1765,15 @@
         grid.innerHTML = `<div class="col-span-full text-center py-12 bg-white/60 rounded-3xl border border-stone-200 text-xs text-stone-400 font-light">No songs found in this category.</div>`;
         return;
       }
-      const accent1 = appData.theme?.accentColor || '#B82C38';
-      const accent2 = appData.theme?.accentColor2 || '#E11D48';
+      const accent1 = appData.theme?.accentColor || '#1C1C1E';
+      const accent2 = appData.theme?.accentColor2 || '#AEAEB2';
 
       grid.innerHTML = songs.map((song, idx) => {
         const cardId = `mixtape-${idx}`;
         const catLetter = getCategoryBadgeLetter(song.category);
         const cardStyle = getSongCategoryCardStyle(song.category || 'Favorite', accent1, accent2);
         const badgeBg = song.category === 'My Little Heart' ? `background: linear-gradient(135deg, ${accent1}, ${accent2});` : `background-color: ${song.category === 'Reminds Me of You' ? accent2 : accent1};`;
-        const badgeTextColor = song.category === 'My Little Heart' ? accent2 : (song.category === 'Reminds Me of You' ? accent2 : accent1);
+        const badgeTextColor = (song.category === 'My Little Heart' || song.category === 'Reminds Me of You') ? '#3A3A3C' : '#1C1C1E';
 
         return `  
         <div id="${cardId}" class="mixtape-card perspective-1000 w-full h-[320px]">  
@@ -1855,9 +1856,9 @@
         const isInserted = !!vinylPinInserted[idx];
         const cardId = `vinyl-card-${idx}`;
         const embedUrl = getSpotifyEmbedUrl(track.url);
-        const cardBgColor = isInserted ? '#120f24' : 'var(--card-bg, #ffffff)';
-        const cardTextColor = isInserted ? '#fef3c7' : 'var(--text-primary, #3A1B20)';
-        const sleeveBg = isInserted ? 'background: linear-gradient(135deg, #1e1b2e 0%, #0d0b14 100%); color: #fef3c7; border-color: var(--accent-color-2); box-shadow: 0 0 25px var(--accent-color-2);' : 'background-color: var(--card-bg, #ffffff); color: var(--text-primary, #3A1B20); border-color: var(--accent-color);';
+        const cardBgColor = isInserted ? '#3A3A3C' : 'var(--card-bg, #E5E5E7)';
+        const cardTextColor = isInserted ? '#F5F5F7' : 'var(--text-primary, #1C1C1E)';
+        const sleeveBg = isInserted ? 'background: linear-gradient(135deg, #1C1C1E 0%, #3A3A3C 100%); color: #F5F5F7; border-color: var(--accent-color-2); box-shadow: 0 0 25px rgba(174,174,178,0.25);' : 'background-color: var(--card-bg, #E5E5E7); color: var(--text-primary, #1C1C1E); border-color: var(--accent-color);';
 
         return `<div id="${cardId}" class="p-6 rounded-3xl shadow-2xl relative overflow-hidden flex flex-col justify-between space-y-5 border-2 ${isInserted ? 'vinyl-glowing-active' : ''}" style="background-color: ${cardBgColor}; color: ${cardTextColor}; border-color: ${isInserted ? 'var(--accent-color-2)' : 'var(--border-color, rgba(0,0,0,0.1))'};">   
         <div class="flex items-center justify-between border-b pb-3 border-stone-200/60">   
@@ -1953,71 +1954,92 @@
       const messagePopup = document.getElementById('moon-message-popup');
       if (!modal || !loadingView || !messagePopup) return;
 
+      // Clear any previous opening timer so quick taps cannot leave the loader stuck.
+      if (window.solaceMoonModalTimer) {
+        clearTimeout(window.solaceMoonModalTimer);
+        window.solaceMoonModalTimer = null;
+      }
+
+      // Set display explicitly as well as toggling Tailwind classes; this is more
+      // reliable on mobile browsers if utility-class styles conflict.
       loadingView.classList.remove('hidden');
+      loadingView.style.display = 'flex';
       messagePopup.classList.add('hidden');
+      messagePopup.style.display = 'none';
       modal.classList.remove('opacity-0', 'pointer-events-none');
 
-      const moons = sanitizeMoonData(appData.moonMessages);
-      const moonObj = moons[moonIdx] || moons[0];
-      let messageList = moonObj.messages || [];
-      if (messageList.length === 0) {
-        messageList = ["New message note coming soon..."];
+      try {
+        const moons = sanitizeMoonData(appData.moonMessages);
+        const moonObj = moons[moonIdx] || moons[0];
+        let messageList = Array.isArray(moonObj.messages)
+          ? moonObj.messages.filter(message => message !== null && message !== undefined && String(message).trim() !== '')
+          : [];
+        if (messageList.length === 0) {
+          messageList = ["New message note coming soon..."];
+        }
+
+        if (!appData.moonCategoryPointers || typeof appData.moonCategoryPointers !== 'object') {
+          appData.moonCategoryPointers = {};
+        }
+        if (!Array.isArray(appData.moonCategoryPointers[moonIdx])) {
+          appData.moonCategoryPointers[moonIdx] = [];
+        }
+
+        let readIndices = appData.moonCategoryPointers[moonIdx];
+        let availableIndices = [];
+        for (let i = 0; i < messageList.length; i++) {
+          if (!readIndices.includes(i)) availableIndices.push(i);
+        }
+        if (availableIndices.length === 0) {
+          readIndices = [];
+          availableIndices = messageList.map((_, i) => i);
+        }
+
+        const chosenMsgIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)];
+        readIndices.push(chosenMsgIndex);
+        appData.moonCategoryPointers[moonIdx] = readIndices;
+        const selectedMessage = String(messageList[chosenMsgIndex] ?? "New message note coming soon...");
+
+        if (!Array.isArray(appData.moonHistory)) appData.moonHistory = [];
+        appData.moonHistory.unshift({
+          title: moonObj.title,
+          emoji: moonObj.emoji,
+          prompt: moonObj.prompt,
+          message: selectedMessage.replace(/<[^>]*>/g, ''),
+          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        });
+        saveToStorage();
+        renderOpenedMoonHistory();
+
+        document.getElementById('moon-modal-emoji').innerText = moonObj.emoji;
+        document.getElementById('moon-modal-title').innerText = moonObj.title;
+        document.getElementById('moon-modal-prompt').innerText = moonObj.prompt;
+        document.getElementById('moon-modal-content').innerText = selectedMessage;
+
+        const footerNoteEl = document.getElementById('moon-modal-footer-note-display');
+        if (footerNoteEl) footerNoteEl.innerText = appData.moonFooterNote || "Always here for you";
+      } catch (error) {
+        console.error('Could not open moon message:', error);
+        const contentEl = document.getElementById('moon-modal-content');
+        if (contentEl) contentEl.innerText = 'A little moonbeam got caught on its way. Please close this and tap the moon again.';
       }
 
-      if (!appData.moonCategoryPointers) {
-        appData.moonCategoryPointers = {};
-      }
-      if (!appData.moonCategoryPointers[moonIdx]) {
-        appData.moonCategoryPointers[moonIdx] = [];
-      }
-
-      let readIndices = appData.moonCategoryPointers[moonIdx];
-      let availableIndices = [];
-      for (let i = 0; i < messageList.length; i++) {
-        if (!readIndices.includes(i)) availableIndices.push(i);
-      }
-
-      if (availableIndices.length === 0) {
-        readIndices = [];
-        availableIndices = messageList.map((_, i) => i);
-      }
-
-      const randomAvailablePos = Math.floor(Math.random() * availableIndices.length);
-      const chosenMsgIndex = availableIndices[randomAvailablePos];
-
-      readIndices.push(chosenMsgIndex);
-      appData.moonCategoryPointers[moonIdx] = readIndices;
-
-      const selectedMessage = messageList[chosenMsgIndex];
-
-      if (!appData.moonHistory) appData.moonHistory = [];
-      appData.moonHistory.unshift({
-        title: moonObj.title,
-        emoji: moonObj.emoji,
-        prompt: moonObj.prompt,
-        message: selectedMessage.replace(/<[^>]*>/g, ''),
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-      });
-      saveToStorage();
-      renderOpenedMoonHistory();
-
-      document.getElementById('moon-modal-emoji').innerText = moonObj.emoji;
-      document.getElementById('moon-modal-title').innerText = moonObj.title;
-      document.getElementById('moon-modal-prompt').innerText = moonObj.prompt;
-      
-      document.getElementById('moon-modal-content').innerText = selectedMessage;
-      
-      const footerNoteEl = document.getElementById('moon-modal-footer-note-display');
-      if (footerNoteEl) footerNoteEl.innerText = appData.moonFooterNote || "Always here for you";
-
-      setTimeout(() => {
+      // Always reveal the message, even if some saved moon data is incomplete.
+      window.solaceMoonModalTimer = setTimeout(() => {
         loadingView.classList.add('hidden');
+        loadingView.style.display = 'none';
         messagePopup.classList.remove('hidden');
-      }, 5000);
+        messagePopup.style.display = 'flex';
+        window.solaceMoonModalTimer = null;
+      }, 1800);
     }
 
     function closeMoonModal() {
       const modal = document.getElementById('moon-modal');
+      if (window.solaceMoonModalTimer) {
+        clearTimeout(window.solaceMoonModalTimer);
+        window.solaceMoonModalTimer = null;
+      }
       if (modal) modal.classList.add('opacity-0', 'pointer-events-none');
     }
 
@@ -2149,7 +2171,7 @@
         toggleEditModal();
       } catch (error) {
         console.error('Owner sign-in failed:', error);
-        alert('Sign-in failed. Please check your Firebase email/password and try again.');
+        alert('Sign-in failed (' + ((error && error.code) ? error.code : 'unknown') + '): ' + ((error && error.message) ? error.message : 'No error details available.'));
       }
     }
 
@@ -2178,28 +2200,28 @@
         const dualText1 = document.getElementById('dual-hex-text-1');
         const dualPicker2 = document.getElementById('dual-hex-picker-2');
         const dualText2 = document.getElementById('dual-hex-text-2');
-        if (dualPicker1) dualPicker1.value = theme.accentColor || '#B82C38';
-        if (dualText1) dualText1.value = theme.accentColor || '#B82C38';
-        if (dualPicker2) dualPicker2.value = theme.accentColor2 || '#E11D48';
-        if (dualText2) dualText2.value = theme.accentColor2 || '#E11D48';
+        if (dualPicker1) dualPicker1.value = theme.accentColor || '#1C1C1E';
+        if (dualText1) dualText1.value = theme.accentColor || '#1C1C1E';
+        if (dualPicker2) dualPicker2.value = theme.accentColor2 || '#AEAEB2';
+        if (dualText2) dualText2.value = theme.accentColor2 || '#AEAEB2';
 
-        document.getElementById('theme-intro-bg-hex').value = theme.introBg || '#FFF8F6';
-        document.getElementById('theme-text-primary-hex').value = theme.textPrimary || '#3A1B20';
-        document.getElementById('theme-accent-color-hex').value = theme.accentColor || '#B82C38';
+        document.getElementById('theme-intro-bg-hex').value = theme.introBg || '#F5F5F7';
+        document.getElementById('theme-text-primary-hex').value = theme.textPrimary || '#1C1C1E';
+        document.getElementById('theme-accent-color-hex').value = theme.accentColor || '#1C1C1E';
         document.getElementById('theme-header-bg-hex').value = theme.headerBg || '#FFFFFF';
         document.getElementById('theme-header-text-hex').value = theme.headerText || '#1c1917';
-        document.getElementById('theme-opening-bg-hex').value = theme.openingBg || '#1c1917';
+        document.getElementById('theme-opening-bg-hex').value = theme.openingBg || '#1C1C1E';
 
-        document.getElementById('moontab-bg-picker').value = moonTheme.moonsBg || '#07060d';
-        document.getElementById('moontab-bg-text').value = moonTheme.moonsBg || '#07060d';
-        document.getElementById('moontab-card-picker').value = moonTheme.cardBg || '#120e24';
-        document.getElementById('moontab-card-text').value = moonTheme.cardBg || '#120e24';
-        document.getElementById('moontab-text-picker').value = moonTheme.text || '#fef3c7';
-        document.getElementById('moontab-text-hex').value = moonTheme.text || '#fef3c7';
-        document.getElementById('moontab-accent1-picker').value = moonTheme.accent1 || '#fbbf24';
-        document.getElementById('moontab-accent1-text').value = moonTheme.accent1 || '#fbbf24';
-        document.getElementById('moontab-accent2-picker').value = moonTheme.accent2 || '#f59e0b';
-        document.getElementById('moontab-accent2-text').value = moonTheme.accent2 || '#f59e0b';
+        document.getElementById('moontab-bg-picker').value = moonTheme.moonsBg || '#1C1C1E';
+        document.getElementById('moontab-bg-text').value = moonTheme.moonsBg || '#1C1C1E';
+        document.getElementById('moontab-card-picker').value = moonTheme.cardBg || '#3A3A3C';
+        document.getElementById('moontab-card-text').value = moonTheme.cardBg || '#3A3A3C';
+        document.getElementById('moontab-text-picker').value = moonTheme.text || '#F5F5F7';
+        document.getElementById('moontab-text-hex').value = moonTheme.text || '#F5F5F7';
+        document.getElementById('moontab-accent1-picker').value = moonTheme.accent1 || '#AEAEB2';
+        document.getElementById('moontab-accent1-text').value = moonTheme.accent1 || '#AEAEB2';
+        document.getElementById('moontab-accent2-picker').value = moonTheme.accent2 || '#6C6C70';
+        document.getElementById('moontab-accent2-text').value = moonTheme.accent2 || '#6C6C70';
 
         if (appData.opening) {
           document.getElementById('opening-badge-input').value = appData.opening.badgeText || "PROT. SPACE";
@@ -2618,12 +2640,12 @@
       document.getElementById('dual-hex-text-1').value = appData.theme.accentColor;
       document.getElementById('dual-hex-picker-2').value = appData.theme.accentColor2 || saved.accentColor;
       document.getElementById('dual-hex-text-2').value = appData.theme.accentColor2 || saved.accentColor;
-      document.getElementById('theme-intro-bg-hex').value = appData.theme.introBg || '#FFF8F6';
-      document.getElementById('theme-text-primary-hex').value = appData.theme.textPrimary || '#3A1B20';
-      document.getElementById('theme-accent-color-hex').value = appData.theme.accentColor || '#B82C38';
+      document.getElementById('theme-intro-bg-hex').value = appData.theme.introBg || '#F5F5F7';
+      document.getElementById('theme-text-primary-hex').value = appData.theme.textPrimary || '#1C1C1E';
+      document.getElementById('theme-accent-color-hex').value = appData.theme.accentColor || '#1C1C1E';
       document.getElementById('theme-header-bg-hex').value = appData.theme.headerBg || '#FFFFFF';
       document.getElementById('theme-header-text-hex').value = appData.theme.headerText || '#1c1917';
-      document.getElementById('theme-opening-bg-hex').value = appData.theme.openingBg || '#1c1917';
+      document.getElementById('theme-opening-bg-hex').value = appData.theme.openingBg || '#1C1C1E';
       saveToStorage();
       applyThemeColors();
       renderIntro();
@@ -2833,7 +2855,7 @@
     async function loadSolaceCloudDataBeforeRender() {
       try {
         const firebaseConfig = {
-          apiKey: "AIzaSyCWGjJoh17s1U1ki8bN-j24Y4hLHf1d7U",
+          apiKey: "AIzaSyCWGjJoh17s1U1kiS8bN-j24Y4hLHf1d7U",
           authDomain: "for-my-solace.firebaseapp.com",
           projectId: "for-my-solace",
           storageBucket: "for-my-solace.firebasestorage.app",
@@ -2901,6 +2923,34 @@
         .replace(/'/g, '&#039;');
     }
 
+    function applySolaceMonochromePalette() {
+      // Keep all saved letters, songs, stories, and moon messages; update only their theme colors.
+      appData.theme = {
+        ...(appData.theme || {}),
+        introBg: '#F5F5F7',
+        songsBg: '#F5F5F7',
+        spotifyBg: '#F5F5F7',
+        storiesBg: '#F5F5F7',
+        cardBg: '#E5E5E7',
+        textPrimary: '#1C1C1E',
+        accentColor: '#1C1C1E',
+        accentColor2: '#AEAEB2',
+        openingBg: '#1C1C1E',
+        openingText: '#F5F5F7',
+        headerBg: '#E5E5E7',
+        headerText: '#1C1C1E'
+      };
+      appData.moonTabTheme = {
+        ...(appData.moonTabTheme || {}),
+        moonsBg: '#1C1C1E',
+        cardBg: '#3A3A3C',
+        text: '#F5F5F7',
+        accent1: '#AEAEB2',
+        accent2: '#6C6C70'
+      };
+      localStorage.setItem('dedicated_solace_site_data', JSON.stringify(appData));
+    }
+
     function initApp() {
       applyThemeColors();
       renderIntro();
@@ -2921,6 +2971,7 @@
 
     window.onload = async function() {
       await loadSolaceCloudDataBeforeRender();
+      applySolaceMonochromePalette();
       initApp();
     };
   </script>
